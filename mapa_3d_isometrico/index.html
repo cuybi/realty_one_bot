@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa 3D Isométrico – Santa Cruz & Urubó</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    font-family: 'Montserrat', sans-serif;
+    color: #e8f5e9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #4caf50, #2196f3, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  #controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+  .btn-green {
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(76,175,80,0.4);
+  }
+  .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(76,175,80,0.5); }
+  .btn-blue {
+    background: linear-gradient(135deg, #1565c0, #42a5f5);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(33,150,243,0.4);
+  }
+  .btn-blue:hover { transform: translateY(-2px); }
+  .btn-orange {
+    background: linear-gradient(135deg, #e65100, #ff9800);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(255,152,0,0.4);
+  }
+  .btn-orange:hover { transform: translateY(-2px); }
+  #canvas-wrapper {
+    background: #161b22;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    overflow: hidden;
+  }
+  canvas { display: block; border-radius: 12px; }
+  #status {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: #81c784;
+    letter-spacing: 1px;
+    min-height: 20px;
+    text-align: center;
+  }
+  .legend {
+    display: flex;
+    gap: 18px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<h1>🗺️ Mapa 3D Isométrico &mdash; Santa Cruz &amp; Urubó</h1>
+<div id="controls">
+  <button class="btn btn-green" onclick="downloadImage('png')">⬇ Descargar PNG (Alta Resolución)</button>
+  <button class="btn btn-blue" onclick="downloadImage('jpg')">⬇ Descargar JPG (Alta Resolución)</button>
+  <button class="btn btn-orange" onclick="renderAll()">🔄 Re-renderizar</button>
+</div>
+<div id="canvas-wrapper">
+  <canvas id="mapCanvas"></canvas>
+</div>
+<div id="status">Renderizando mapa 3D isométrico...</div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#388e3c"></div> Punto de interés</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff5722; border-radius: 0; width:20px; height:8px;"></div> Puente (naranja)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1565c0"></div> Río Piraí</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#66bb6a; border-radius:2px; width:20px;height:8px;"></div> Urubó (verde)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4fc3f7; border-radius:2px; width:20px;height:8px;"></div> Santa Cruz (ciudad)</div>
+</div>
+<script>
+// ============================================================
+// DATOS DEL MAPA ORIGINAL (coordenadas 0–1000)
+// extraídas manualmente del mapa de 725x1024
+// x: horizontal, y: vertical (0=arriba, 1000=abajo)
+// ============================================================
+const MAP_DATA = {
+  // Río Piraí – polilínea central
+  river: [
+    {x: 380, y: 0},
+    {x: 360, y: 60},
+    {x: 340, y: 130},
+    {x: 330, y: 200},
+    {x: 330, y: 280},
+    {x: 310, y: 360},
+    {x: 300, y: 440},
+    {x: 295, y: 520},
+    {x: 300, y: 600},
+    {x: 290, y: 680},
+    {x: 280, y: 760},
+    {x: 280, y: 840},
+    {x: 270, y: 910},
+    {x: 265, y: 1000},
+  ],
+  riverWidth: 44, // unidades del mapa (se escala)
+
+  // Puentes (segmentos naranjas que cruzan el río)
+  bridges: [
+    { id: 'bridge1', label: 'puente 8vo. anillo\nvalle sánchez', x: 330, y: 270, angle: -15 },
+    { id: 'bridge2', label: 'puente\n6to. anillo', x: 308, y: 420, angle: -5 },
+    { id: 'bridge3', label: 'puente\n6to. anillo sur', x: 285, y: 720, angle: -8 },
+    { id: 'bridge4', label: 'puente\nmario foianini', x: 278, y: 828, angle: -5 },
+    { id: 'bridge5', label: 'puente\nbicentenario', x: 272, y: 940, angle: -5 },
+  ],
+
+  // Puntos de interés
+  pois: [
+    // Marcadores rojos (puntos de interés)
+    { id:'poi1',  label:'panorama\ndel urubo',    x: 165, y: 37,  color:'#c62828', size: 1.0, isGreen: false },
+    { id:'poi2',  label:'reservas\ndel urubo',    x: 225, y: 165, color:'#c62828', size: 0.9, isGreen: false },
+    { id:'poi3',  label:'el palmerol',            x: 310, y: 195, color:'#c62828', size: 0.9, isGreen: false },
+    { id:'poi4',  label:'kalomai parke\nacuático', x: 125, y: 310, color:'#c62828', size: 0.9, isGreen: false },
+    { id:'poi5',  label:'playa\nturquesa',        x: 130, y: 490, color:'#c62828', size: 0.85, isGreen: false },
+    { id:'poi6',  label:'herebmi',                x: 165, y: 560, color:'#c62828', size: 0.85, isGreen: false },
+    { id:'poi7',  label:'urubo\ngreen',           x: 165, y: 715, color:'#c62828', size: 0.9, isGreen: false },
+    { id:'poi8',  label:'clínicas\ndel urubo',    x: 160, y: 785, color:'#c62828', size: 0.85, isGreen: false },
+    { id:'poi9',  label:'mall\nventura',          x: 310, y: 798, color:'#c62828', size: 0.85, isGreen: false },
+    { id:'poi10', label:'valle\nsánchez',         x: 545, y: 280, color:'#c62828', size: 0.9, isGreen: false },
+    { id:'poi11', label:'aeropuerto\nviru-viru',  x: 670, y: 162, color:'#c62828', size: 0.9, isGreen: false },
+    // Marcadores verdes (Urubo Green Park & Santa Cruz)
+    { id:'poi12', label:'urubo green park',       x: 295, y: 55,  color:'#2e7d32', size: 1.3, isGreen: true },
+    { id:'poi13', label:'santa cruz',             x: 415, y: 895, color:'#2e7d32', size: 1.3, isGreen: true },
+  ],
+};
+
+// ============================================================
+// CONFIGURACIÓN DE RENDER
+// ============================================================
+const BASE_W = 1200;
+const BASE_H = 1700;
+const ISO_ANGLE = 30 * Math.PI / 180;
+const ISO_SCALE_Y = 0.55;
+const ELEV_TERRAIN = 40;   // elevación base del terreno
+const ELEV_RIVER   = 10;   // elevación del río (más bajo)
+const ELEV_BRIDGE  = 55;   // elevación de los puentes
+const ELEV_CITY    = 28;   // elevación terreno ciudad
+
+let canvas, ctx;
+
+function init() {
+  canvas = document.getElementById('mapCanvas');
+  canvas.width  = BASE_W;
+  canvas.height = BASE_H;
+  canvas.style.width  = Math.min(BASE_W, window.innerWidth - 60) + 'px';
+  canvas.style.height = (Math.min(BASE_W, window.innerWidth - 60) * BASE_H / BASE_W) + 'px';
+  ctx = canvas.getContext('2d');
+  renderAll();
+}
+
+// Convierte coordenada del mapa (mx 0-1000, my 0-1000, mz elevación) a canvas
+function mapToCanvas(mx, my, mz) {
+  // Normalizar a BASE_W / BASE_H
+  const nx = (mx / 1000) * BASE_W;
+  const ny = (my / 1000) * BASE_H;
+  // Proyección isométrica suavizada (inclinación vertical)
+  const screenX = nx;
+  const screenY = ny - mz * 0.7; // la elevación sube hacia arriba en pantalla
+  return { x: screenX, y: screenY };
+}
+
+// ============================================================
+// FUNCIONES DE DIBUJO MODULARES
+// ============================================================
+
+function drawSky(ctx) {
+  const grad = ctx.createLinearGradient(0, 0, 0, BASE_H * 0.18);
+  grad.addColorStop(0,   '#0d1b0e');
+  grad.addColorStop(0.5, '#1a2e1a');
+  grad.addColorStop(1,   '#2e4a1e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, BASE_W, BASE_H * 0.18);
+}
+
+function drawUruboPlatform(ctx) {
+  // Zona izquierda (Urubó) – terreno verde con textura de vegetación
+  const leftEdge = 0;
+  const rightEdge = (330 / 1000) * BASE_W - (44/1000)*BASE_W*0.5 - 10;
+
+  // Cuerpo lateral de la "plataforma"
+  ctx.save();
+
+  // Gradiente de fondo principal del Urubó
+  const grad = ctx.createLinearGradient(leftEdge, 0, rightEdge, BASE_H);
+  grad.addColorStop(0,   '#1b4d1e');
+  grad.addColorStop(0.3, '#2d7a2d');
+  grad.addColorStop(0.6, '#246b24');
+  grad.addColorStop(1,   '#1a5c1a');
+
+  ctx.fillStyle = grad;
+  // Polígono de la zona Urubó (sigue el borde occidental del río con desfase isométrico)
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(rightEdge, 0);
+  for (let i = 0; i < MAP_DATA.river.length; i++) {
+    const rp = MAP_DATA.river[i];
+    const cx = (rp.x / 1000) * BASE_W - (MAP_DATA.riverWidth / 1000) * BASE_W * 0.5;
+    const cy = (rp.y / 1000) * BASE_H - ELEV_TERRAIN * 0.7;
+    ctx.lineTo(cx, cy);
+  }
+  ctx.lineTo(0, BASE_H);
+  ctx.closePath();
+  ctx.fill();
+
+  // Textura de árboles / vegetación (puntos irregulares)
+  drawVegetationTexture(ctx, leftEdge, 0, rightEdge, BASE_H, 380);
+
+  // Sombreado 3D lateral izquierdo (cara lateral de la plataforma)
+  const sideGrad = ctx.createLinearGradient(0, 0, 0, BASE_H);
+  sideGrad.addColorStop(0, 'rgba(0,0,0,0.4)');
+  sideGrad.addColorStop(1, 'rgba(0,0,0,0.15)');
+  ctx.fillStyle = sideGrad;
+  ctx.fillRect(0, 0, 8, BASE_H);
+
+  ctx.restore();
+}
+
+function drawVegetationTexture(ctx, x1, y1, x2, y2, count) {
+  const rng = seededRng(42);
+  ctx.save();
+  for (let i = 0; i < count; i++) {
+    const tx = x1 + rng() * (x2 - x1);
+    const ty = y1 + rng() * (y2 - y1) * 0.92;
+    const r = 6 + rng() * 14;
+    const lightness = 0.25 + rng() * 0.25;
+    ctx.globalAlpha = 0.2 + rng() * 0.35;
+    // Árbol en forma de cono isométrico
+    ctx.beginPath();
+    ctx.arc(tx, ty, r, 0, Math.PI * 2);
+    ctx.fillStyle = `hsl(${105 + rng()*30}, ${55 + rng()*20}%, ${25 + lightness*30}%)`;
+    ctx.fill();
+    // copa más clara
+    ctx.beginPath();
+    ctx.arc(tx - r*0.2, ty - r*0.3, r*0.55, 0, Math.PI * 2);
+    ctx.fillStyle = `hsl(${115 + rng()*20}, 60%, ${38 + lightness*20}%)`;
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+// Generador de números pseudoaleatorios seeded
+function seededRng(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 16807 + 0) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+
+function drawCityPlatform(ctx) {
+  // Zona derecha (Santa Cruz) – terreno urbano beige/gris
+  const riverRight = [];
+  for (let i = 0; i < MAP_DATA.river.length; i++) {
+    const rp = MAP_DATA.river[i];
+    riverRight.push({
+      x: (rp.x / 1000) * BASE_W + (MAP_DATA.riverWidth / 1000) * BASE_W * 0.5,
+      y: (rp.y / 1000) * BASE_H - ELEV_CITY * 0.7
+    });
+  }
+
+  ctx.save();
+  // Fondo ciudad
+  const grad = ctx.createLinearGradient((330/1000)*BASE_W, 0, BASE_W, BASE_H);
+  grad.addColorStop(0,   '#d4cdb8');
+  grad.addColorStop(0.3, '#c9c4ae');
+  grad.addColorStop(0.7, '#b8b4a0');
+  grad.addColorStop(1,   '#a8a492');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(BASE_W, 0);
+  ctx.lineTo(riverRight[0].x, riverRight[0].y);
+  for (let i = 1; i < riverRight.length; i++) {
+    ctx.lineTo(riverRight[i].x, riverRight[i].y);
+  }
+  ctx.lineTo(BASE_W, BASE_H);
+  ctx.closePath();
+  ctx.fill();
+
+  // Cuadrícula urbana (calles de Santa Cruz) – perspectiva isométrica
+  drawUrbanGrid(ctx, (330/1000)*BASE_W, BASE_W, BASE_H);
+
+  // Anillos concéntricos de Santa Cruz (en la zona inferior derecha)
+  drawConcentricrings(ctx);
+
+  ctx.restore();
+}
+
+function drawUrbanGrid(ctx, startX, endX, height) {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(110,100,80,0.3)';
+  ctx.lineWidth = 1.2;
+  const cellW = (endX - startX) / 14;
+  const cellH = height / 22;
+  for (let col = 0; col <= 14; col++) {
+    const x = startX + col * cellW;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+  for (let row = 0; row <= 22; row++) {
+    const y = row * cellH;
+    ctx.beginPath();
+    ctx.moveTo(startX, y);
+    ctx.lineTo(endX, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawConcentricrings(ctx) {
+  const cx = (590/1000)*BASE_W;
+  const cy = (920/1000)*BASE_H;
+  ctx.save();
+  for (let r = 30; r <= 260; r += 38) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(90,80,60,${0.22 - r/1400})`;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+  }
+  // Radios como calles
+  for (let angle = 0; angle < 360; angle += 22.5) {
+    const rad = angle * Math.PI / 180;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(rad)*260, cy + Math.sin(rad)*260);
+    ctx.strokeStyle = 'rgba(90,80,60,0.15)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawRiver(ctx) {
+  const rw = (MAP_DATA.riverWidth / 1000) * BASE_W;
+
+  ctx.save();
+  // Sombra/profundidad del río
+  ctx.shadowColor = 'rgba(0,50,150,0.4)';
+  ctx.shadowBlur = 16;
+
+  // Cara lateral del río (efecto 3D)
+  ctx.beginPath();
+  for (let i = 0; i < MAP_DATA.river.length; i++) {
+    const rp = MAP_DATA.river[i];
+    const rx = (rp.x / 1000) * BASE_W - rw * 0.5;
+    const ry = (rp.y / 1000) * BASE_H - ELEV_RIVER * 0.7;
+    if (i === 0) ctx.moveTo(rx, ry); else ctx.lineTo(rx, ry);
+  }
+  for (let i = MAP_DATA.river.length - 1; i >= 0; i--) {
+    const rp = MAP_DATA.river[i];
+    const rx = (rp.x / 1000) * BASE_W + rw * 0.5;
+    const ry = (rp.y / 1000) * BASE_H - ELEV_RIVER * 0.7;
+    ctx.lineTo(rx, ry);
+  }
+  ctx.closePath();
+
+  const riverGrad = ctx.createLinearGradient(
+    (MAP_DATA.river[0].x/1000)*BASE_W, 0,
+    (MAP_DATA.river[0].x/1000)*BASE_W + rw, 0
+  );
+  riverGrad.addColorStop(0,   '#1565c0');
+  riverGrad.addColorStop(0.3, '#1976d2');
+  riverGrad.addColorStop(0.5, '#29b6f6');
+  riverGrad.addColorStop(0.7, '#1976d2');
+  riverGrad.addColorStop(1,   '#0d47a1');
+  ctx.fillStyle = riverGrad;
+  ctx.fill();
+
+  // Reflejo/brillo del agua
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 0.18;
+  ctx.strokeStyle = '#90caf9';
+  ctx.lineWidth = 3;
+  for (let i = 0; i < MAP_DATA.river.length - 1; i++) {
+    const rp = MAP_DATA.river[i];
+    const rx = (rp.x / 1000) * BASE_W - rw * 0.1;
+    const ry = (rp.y / 1000) * BASE_H - ELEV_RIVER * 0.7;
+    const rp2 = MAP_DATA.river[i+1];
+    const rx2 = (rp2.x / 1000) * BASE_W - rw * 0.1;
+    const ry2 = (rp2.y / 1000) * BASE_H - ELEV_RIVER * 0.7;
+    ctx.beginPath();
+    ctx.moveTo(rx, ry + 4);
+    ctx.lineTo(rx2, ry2 + 4);
+    ctx.stroke();
+  }
+
+  // Etiqueta "río piraí" x2
+  ctx.globalAlpha = 1;
+  ctx.font = `bold ${BASE_W * 0.018}px Montserrat`;
+  ctx.fillStyle = '#e3f2fd';
+  ctx.textAlign = 'center';
+  // Etiqueta superior
+  const rpLabelTop = MAP_DATA.river[2];
+  ctx.fillText('río piraí', (rpLabelTop.x/1000)*BASE_W + rw*0.6 + 25, (rpLabelTop.y/1000)*BASE_H - ELEV_RIVER*0.7 - 8);
+  // Etiqueta inferior
+  const rpLabelBot = MAP_DATA.river[9];
+  ctx.fillText('río piraí', (rpLabelBot.x/1000)*BASE_W + rw*0.6 + 25, (rpLabelBot.y/1000)*BASE_H - ELEV_RIVER*0.7 - 8);
+
+  ctx.restore();
+}
+
+function drawBridges(ctx) {
+  const rw = (MAP_DATA.riverWidth / 1000) * BASE_W;
+
+  MAP_DATA.bridges.forEach(bridge => {
+    const bx = (bridge.x / 1000) * BASE_W;
+    const by = (bridge.y / 1000) * BASE_H - ELEV_BRIDGE * 0.7;
+    const len = rw * 1.9; // largo del puente
+    const thick = BASE_W * 0.028; // ancho del tablero
+
+    ctx.save();
+    ctx.translate(bx, by);
+    ctx.rotate(bridge.angle * Math.PI / 180);
+
+    // Sombra del puente
+    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 6;
+
+    // Tablero del puente (cara superior naranja)
+    const bridgeGrad = ctx.createLinearGradient(-len/2, -thick/2, len/2, thick/2);
+    bridgeGrad.addColorStop(0,   '#bf360c');
+    bridgeGrad.addColorStop(0.2, '#ff5722');
+    bridgeGrad.addColorStop(0.5, '#ff7043');
+    bridgeGrad.addColorStop(0.8, '#ff5722');
+    bridgeGrad.addColorStop(1,   '#bf360c');
+    ctx.fillStyle = bridgeGrad;
+    ctx.beginPath();
+    ctx.roundRect(-len/2, -thick/2, len, thick, 3);
+    ctx.fill();
+
+    // Lado lateral del puente (efecto 3D)
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#7b1f00';
+    ctx.beginPath();
+    ctx.moveTo(-len/2, thick/2);
+    ctx.lineTo( len/2, thick/2);
+    ctx.lineTo( len/2 + 3, thick/2 + 9);
+    ctx.lineTo(-len/2 + 3, thick/2 + 9);
+    ctx.closePath();
+    ctx.fill();
+
+    // Línea central punteada (carriles)
+    ctx.setLineDash([14, 8]);
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-len/2 + 10, 0);
+    ctx.lineTo( len/2 - 10, 0);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Cables/vigas del puente (líneas finas)
+    ctx.strokeStyle = 'rgba(200,90,20,0.7)';
+    ctx.lineWidth = 1.5;
+    for (let i = -len/2 + 20; i <= len/2 - 20; i += 22) {
+      ctx.beginPath();
+      ctx.moveTo(i, -thick/2 - 2);
+      ctx.lineTo(i, -thick/2 - 18);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+
+    // Etiqueta del puente
+    const lines = bridge.label.split('\n');
+    const fontSize = BASE_W * 0.014;
+    const padX = 10, padY = 6;
+    const lineH = fontSize * 1.3;
+    const textW = Math.max(...lines.map(l => l.length)) * fontSize * 0.6;
+    const textH = lines.length * lineH;
+    const lx = bx + rw * 0.85;
+    const ly = by - 12;
+
+    ctx.save();
+    // Fondo de la etiqueta
+    ctx.fillStyle = 'rgba(255,255,255,0.93)';
+    ctx.strokeStyle = '#ff5722';
+    ctx.lineWidth = 1.5;
+    const rr = 5;
+    roundRect(ctx, lx - padX, ly - textH - padY, textW + padX*2, textH + padY*2, rr);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#bf360c';
+    ctx.font = `bold ${fontSize}px Montserrat`;
+    ctx.textAlign = 'left';
+    lines.forEach((line, i) => {
+      ctx.fillText(line, lx, ly - textH + (i + 0.8) * lineH);
+    });
+    ctx.restore();
+
+    // Punto negro de ubicación
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(bx, by, BASE_W * 0.007, 0, Math.PI * 2);
+    ctx.fillStyle = '#212121';
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
+function drawPOIs(ctx) {
+  MAP_DATA.pois.forEach(poi => {
+    const px = (poi.x / 1000) * BASE_W;
+    const py = (poi.y / 1000) * BASE_H - ELEV_TERRAIN * 0.7;
+    const sz = BASE_W * 0.022 * poi.size;
+
+    ctx.save();
+
+    if (poi.isGreen) {
+      // Pin verde grande (Urubo Green Park y Santa Cruz)
+      drawGreenPin(ctx, px, py, sz * 1.5, poi.label);
+    } else {
+      // Pin rojo oscuro
+      drawRedPin(ctx, px, py, sz, poi.label);
+    }
+
+    ctx.restore();
+  });
+}
+
+function drawRedPin(ctx, x, y, sz, label) {
+  // Sombra
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetY = 3;
+
+  // Cuerpo del pin (teardrop)
+  ctx.beginPath();
+  ctx.arc(x, y - sz * 1.3, sz, 0, Math.PI * 2);
+  const pinGrad = ctx.createRadialGradient(x - sz*0.3, y - sz*1.7, sz*0.1, x, y - sz*1.3, sz);
+  pinGrad.addColorStop(0, '#ef5350');
+  pinGrad.addColorStop(0.5, '#c62828');
+  pinGrad.addColorStop(1, '#7b0000');
+  ctx.fillStyle = pinGrad;
+  ctx.fill();
+
+  // Triángulo inferior
+  ctx.beginPath();
+  ctx.moveTo(x - sz * 0.6, y - sz * 0.6);
+  ctx.lineTo(x + sz * 0.6, y - sz * 0.6);
+  ctx.lineTo(x, y);
+  ctx.fillStyle = '#c62828';
+  ctx.fill();
+
+  // Círculo interior blanco
+  ctx.shadowBlur = 0;
+  ctx.beginPath();
+  ctx.arc(x, y - sz * 1.3, sz * 0.4, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fill();
+
+  ctx.restore();
+
+  // Etiqueta
+  const lines = label.split('\n');
+  const fontSize = BASE_W * 0.013;
+  const lineH = fontSize * 1.25;
+  const padX = 8, padY = 5;
+  const textW = Math.max(...lines.map(l => l.length)) * fontSize * 0.58;
+  const textH = lines.length * lineH;
+  const lx = x + sz * 1.1;
+  const ly = y - sz * 1.6;
+
+  ctx.save();
+  ctx.fillStyle = 'rgba(255,255,255,0.95)';
+  ctx.strokeStyle = '#c62828';
+  ctx.lineWidth = 1.2;
+  roundRect(ctx, lx - padX, ly - padY, textW + padX*2, textH + padY*2, 4);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#1a1a1a';
+  ctx.font = `600 ${fontSize}px Montserrat`;
+  ctx.textAlign = 'left';
+  lines.forEach((line, i) => {
+    ctx.fillText(line, lx, ly + (i + 0.78) * lineH);
+  });
+  ctx.restore();
+}
+
+function drawGreenPin(ctx, x, y, sz, label) {
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = 10;
+  ctx.shadowOffsetY = 4;
+
+  // Cuerpo grande del pin verde
+  ctx.beginPath();
+  ctx.arc(x, y - sz * 1.2, sz, 0, Math.PI * 2);
+  const pinGrad = ctx.createRadialGradient(x - sz*0.3, y - sz*1.7, sz*0.1, x, y - sz*1.2, sz);
+  pinGrad.addColorStop(0, '#81c784');
+  pinGrad.addColorStop(0.5, '#2e7d32');
+  pinGrad.addColorStop(1, '#1b5e20');
+  ctx.fillStyle = pinGrad;
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(x - sz * 0.6, y - sz * 0.5);
+  ctx.lineTo(x + sz * 0.6, y - sz * 0.5);
+  ctx.lineTo(x, y + sz * 0.1);
+  ctx.fillStyle = '#2e7d32';
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.beginPath();
+  ctx.arc(x, y - sz * 1.2, sz * 0.4, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fill();
+
+  // Ícono de hoja / flecha dentro del pin
+  ctx.fillStyle = '#1b5e20';
+  ctx.beginPath();
+  ctx.arc(x, y - sz * 1.2, sz * 0.22, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+
+  // Etiqueta grande para marcadores verdes
+  const lines = label.split('\n');
+  const fontSize = BASE_W * 0.018;
+  const lineH = fontSize * 1.3;
+  const padX = 14, padY = 8;
+  const textW = Math.max(...lines.map(l => l.length)) * fontSize * 0.58;
+  const textH = lines.length * lineH;
+  const lx = x - textW * 0.5;
+  const ly = y + sz * 0.4;
+
+  ctx.save();
+  // Fondo verde translúcido
+  const bgGrad = ctx.createLinearGradient(lx - padX, ly - padY, lx + textW + padX, ly + textH + padY);
+  bgGrad.addColorStop(0, 'rgba(46,125,50,0.92)');
+  bgGrad.addColorStop(1, 'rgba(27,94,32,0.92)');
+  ctx.fillStyle = bgGrad;
+  ctx.strokeStyle = 'rgba(129,199,132,0.8)';
+  ctx.lineWidth = 2;
+  roundRect(ctx, lx - padX, ly - padY, textW + padX*2, textH + padY*2, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#f1f8e9';
+  ctx.font = `bold ${fontSize}px Montserrat`;
+  ctx.textAlign = 'center';
+  lines.forEach((line, i) => {
+    ctx.fillText(line, x, ly + (i + 0.82) * lineH);
+  });
+  ctx.restore();
+}
+
+function drawLagunaKalomai(ctx) {
+  // Laguna cerca de Kalomai Park (zona izquierda)
+  const lx = (100 / 1000) * BASE_W;
+  const ly = (350 / 1000) * BASE_H - ELEV_TERRAIN * 0.7;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,100,200,0.4)';
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.ellipse(lx, ly, BASE_W * 0.035, BASE_H * 0.018, -0.2, 0, Math.PI * 2);
+  const lagGrad = ctx.createRadialGradient(lx - 4, ly - 3, 2, lx, ly, BASE_W * 0.035);
+  lagGrad.addColorStop(0, '#4fc3f7');
+  lagGrad.addColorStop(0.6, '#0288d1');
+  lagGrad.addColorStop(1, '#01579b');
+  ctx.fillStyle = lagGrad;
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawAirport(ctx) {
+  // Aeropuerto Viru-Viru (esquina superior derecha)
+  const ax = (650/1000)*BASE_W;
+  const ay = (120/1000)*BASE_H - ELEV_CITY * 0.7;
+  const aw = BASE_W * 0.09;
+  const ah = BASE_H * 0.07;
+
+  ctx.save();
+  // Zona del aeropuerto
+  ctx.fillStyle = 'rgba(180,170,140,0.7)';
+  ctx.beginPath();
+  ctx.roundRect(ax - aw/2, ay - ah/2, aw, ah, 6);
+  ctx.fill();
+
+  // Pistas de aterrizaje
+  ctx.strokeStyle = 'rgba(100,90,70,0.6)';
+  ctx.lineWidth = 3;
+  // Pista horizontal
+  ctx.beginPath();
+  ctx.moveTo(ax - aw*0.48, ay);
+  ctx.lineTo(ax + aw*0.48, ay);
+  ctx.stroke();
+  // Pista diagonal
+  ctx.beginPath();
+  ctx.moveTo(ax - aw*0.3, ay - ah*0.4);
+  ctx.lineTo(ax + aw*0.3, ay + ah*0.4);
+  ctx.stroke();
+
+  // Líneas de taxi
+  ctx.strokeStyle = 'rgba(100,90,70,0.3)';
+  ctx.lineWidth = 1.5;
+  for (let i = -3; i <= 3; i++) {
+    ctx.beginPath();
+    ctx.moveTo(ax + i * aw/7, ay - ah/2);
+    ctx.lineTo(ax + i * aw/7, ay + ah/2);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// Polígono redondeado
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+}
+
+function drawCompassAndTitle(ctx) {
+  // Rosa de los vientos (brújula)
+  const cx = BASE_W - 80, cy = 80;
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.beginPath();
+  ctx.arc(cx, cy, 45, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const arrows = [
+    {angle: -90, label: 'N', color: '#ef5350'},
+    {angle:   0, label: 'E', color: '#fff'},
+    {angle:  90, label: 'S', color: '#fff'},
+    {angle: 180, label: 'O', color: '#fff'},
+  ];
+  arrows.forEach(({angle, label, color}) => {
+    const rad = angle * Math.PI / 180;
+    const ax = cx + Math.cos(rad) * 30;
+    const ay = cy + Math.sin(rad) * 30;
+    ctx.fillStyle = color;
+    ctx.font = `bold ${BASE_W*0.016}px Montserrat`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, ax, ay);
+  });
+
+  // Cruz
+  ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(cx, cy - 22); ctx.lineTo(cx, cy + 22); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx - 22, cy); ctx.lineTo(cx + 22, cy); ctx.stroke();
+  ctx.restore();
+
+  // Título
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  roundRect(ctx, 18, 16, BASE_W * 0.38, BASE_H * 0.038, 8);
+  ctx.fill();
+
+  ctx.font = `bold ${BASE_W * 0.022}px Montserrat`;
+  ctx.fillStyle = '#c8e6c9';
+  ctx.textAlign = 'left';
+  ctx.fillText('Mapa Corredor Urubó – Santa Cruz', 28, 16 + BASE_H * 0.028);
+  ctx.restore();
+}
+
+function drawScaleBar(ctx) {
+  ctx.save();
+  const sbx = 20, sby = BASE_H - 42, sbw = BASE_W * 0.12;
+  ctx.fillStyle = 'rgba(0,0,0,0.55)';
+  roundRect(ctx, sbx - 6, sby - 16, sbw + 32, 34, 6);
+  ctx.fill();
+  // Barra
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(sbx, sby, sbw, 8);
+  ctx.fillStyle = '#444';
+  ctx.fillRect(sbx + sbw/2, sby, sbw/2, 8);
+  // Texto
+  ctx.font = `600 ${BASE_W*0.012}px Montserrat`;
+  ctx.fillStyle = '#f5f5f5';
+  ctx.textAlign = 'left';
+  ctx.fillText('0         5 km', sbx, sby - 3);
+  ctx.restore();
+}
+
+function drawLegend(ctx) {
+  const lx = BASE_W - 218, ly = BASE_H - 220;
+  const items = [
+    { color: '#2e7d32', label: 'Punto Urubo Green Park / Sta. Cruz', type: 'circle-big' },
+    { color: '#c62828', label: 'Punto de interés', type: 'circle' },
+    { color: '#ff5722', label: 'Puente (naranja)', type: 'rect' },
+    { color: '#1976d2', label: 'Río Piraí', type: 'rect' },
+    { color: '#2d7a2d', label: 'Zona Urubó', type: 'rect' },
+    { color: '#c9c4ae', label: 'Zona Urbana (Sta. Cruz)', type: 'rect' },
+  ];
+  const itemH = 26;
+  const legH = items.length * itemH + 20;
+  const legW = 210;
+
+  ctx.save();
+  ctx.fillStyle = 'rgba(10,20,10,0.82)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, lx - 10, ly - 10, legW, legH, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = `bold ${BASE_W * 0.013}px Montserrat`;
+  ctx.fillStyle = '#c8e6c9';
+  ctx.textAlign = 'left';
+  ctx.fillText('LEYENDA', lx, ly + 6);
+
+  items.forEach((item, i) => {
+    const iy = ly + 26 + i * itemH;
+    ctx.fillStyle = item.color;
+    if (item.type === 'rect') {
+      ctx.fillRect(lx, iy - 8, 18, 10);
+    } else {
+      ctx.beginPath();
+      ctx.arc(lx + 9, iy - 3, 7, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.fillStyle = '#e8f5e9';
+    ctx.font = `${BASE_W * 0.011}px Montserrat`;
+    ctx.fillText(item.label, lx + 24, iy + 1);
+  });
+  ctx.restore();
+}
+
+// ============================================================
+// RENDER PRINCIPAL
+// ============================================================
+function renderAll() {
+  if (!ctx) return;
+  document.getElementById('status').textContent = 'Renderizando…';
+
+  requestAnimationFrame(() => {
+    // Fondo
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, BASE_W, BASE_H);
+
+    drawSky(ctx);
+    drawUruboPlatform(ctx);
+    drawCityPlatform(ctx);
+    drawAirport(ctx);
+    drawLagunaKalomai(ctx);
+    drawRiver(ctx);
+    drawBridges(ctx);
+    drawPOIs(ctx);
+    drawCompassAndTitle(ctx);
+    drawScaleBar(ctx);
+    drawLegend(ctx);
+
+    document.getElementById('status').textContent = '✅ Mapa renderizado correctamente — listo para descargar';
+  });
+}
+
+// ============================================================
+// EXPORTADOR DE ALTA RESOLUCIÓN
+// ============================================================
+function downloadImage(format) {
+  document.getElementById('status').textContent = '⏳ Generando imagen de alta resolución (4K)…';
+
+  const SCALE = 4; // 4800 x 6800 px
+  const offCanvas = document.createElement('canvas');
+  offCanvas.width  = BASE_W * SCALE;
+  offCanvas.height = BASE_H * SCALE;
+  const offCtx = offCanvas.getContext('2d');
+  offCtx.scale(SCALE, SCALE);
+
+  // Reasignar ctx temporalmente al offscreen canvas
+  const savedCtx = ctx;
+  ctx = offCtx;
+
+  // Fondo
+  offCtx.fillStyle = '#0d1117';
+  offCtx.fillRect(0, 0, BASE_W, BASE_H);
+
+  drawSky(offCtx);
+  drawUruboPlatform(offCtx);
+  drawCityPlatform(offCtx);
+  drawAirport(offCtx);
+  drawLagunaKalomai(offCtx);
+  drawRiver(offCtx);
+  drawBridges(offCtx);
+  drawPOIs(offCtx);
+  drawCompassAndTitle(offCtx);
+  drawScaleBar(offCtx);
+  drawLegend(offCtx);
+
+  // Restaurar
+  ctx = savedCtx;
+
+  let mimeType, ext, quality;
+  if (format === 'jpg') {
+    mimeType = 'image/jpeg';
+    ext = 'jpg';
+    quality = 0.96;
+  } else {
+    mimeType = 'image/png';
+    ext = 'png';
+    quality = 1;
+  }
+
+  const link = document.createElement('a');
+  link.download = `mapa_isometrico_3d_santa_cruz_urubo.${ext}`;
+  link.href = offCanvas.toDataURL(mimeType, quality);
+  link.click();
+
+  document.getElementById('status').textContent = `✅ Imagen descargada como .${ext} (${BASE_W * SCALE} × ${BASE_H * SCALE} px)`;
+}
+
+// Arrancar
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

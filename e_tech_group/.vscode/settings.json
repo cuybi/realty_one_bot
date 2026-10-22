@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+  "php.executablePath": "C:\\xampp\\php\\php.exe"
+}

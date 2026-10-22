@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+*.pyc
+etech.db
+.DS_Store

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Tech Group | Innovación Tecnológica</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="e-Tech Group Logo">
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#about">Acerca de</a></li>
+                <li><a href="#services">Servicios & Soluciones</a></li>
+                <li><a href="#virtual-dept">Dpto. Sistemas Virtual</a></li>
+                <li><a href="#clients">Nuestros Clientes</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with 6-Photo Carousel -->
+        <section id="home" class="hero">
+            <div class="hero-carousel">
+                <div class="slide active"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero_1.jpg')">
+                </div>
+                <div class="slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero_2.jpg')">
+                </div>
+                <div class="slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000')">
+                </div>
+                <div class="slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero_4.jpg')">
+                </div>
+                <div class="slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000')">
+                </div>
+                <div class="slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2000')">
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1 data-aos="fade-up">Ingeniería <span>Informática</span> de Clase Mundial</h1>
+                <p data-aos="fade-up" data-aos-delay="200">Soluciones integrales en TI y Outsourcing estratégico para el
+                    sector industrial y petrolero.</p>
+                <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://wa.me/59179878853" class="btn-primary pulse-anim">Contactar Ahora <i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="#about" class="btn-secondary">Conócenos</a>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <div class="nav-dot active" onclick="goToSlide(0)"></div>
+                <div class="nav-dot" onclick="goToSlide(1)"></div>
+                <div class="nav-dot" onclick="goToSlide(2)"></div>
+                <div class="nav-dot" onclick="goToSlide(3)"></div>
+                <div class="nav-dot" onclick="goToSlide(4)"></div>
+                <div class="nav-dot" onclick="goToSlide(5)"></div>
+            </div>
+            <button class="carousel-control prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-control next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Acerca de Section - Replicating Reference Image -->
+        <section id="about">
+            <div class="about-header-white">
+                <h2 data-aos="fade-up">Conociendo a e-Tech Group y nuestra trayectoria</h2>
+            </div>
+            <div class="about-content-teal">
+                <div class="container">
+                    <div class="about-layout">
+                        <div class="about-visual float-anim" data-aos="fade-right">
+                            <img src="images/about_developer.jpg" alt="Trayectoria e-Tech Group">
+                        </div>
+                        <div class="about-text-content" data-aos="fade-left">
+                            <h3 class="highlight-text">e-Tech Group, fundado en 2001, lidera el sector petrolero en
+                                servicios de ingeniería informática y tecnologías de la información en Bolivia.</h3>
+
+                            <p>Sus primeras actividades se centraron en la administración del área informática de
+                                empresas del rubro petrolero; siendo pioneros a nivel nacional en brindar el servicio
+                                denominado "Departamento de Sistemas Virtual".</p>
+
+                            <p>Desde entonces no hemos dejado de crecer tanto en tecnología, ciencia y espíritu,
+                                pretendiendo ser luz en el caminar empresarial de nuestros clientes.</p>
+
+                            <div class="about-action">
+                                <a href="#contact" class="btn-transparent">Contactar Ahora...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Sub-section: Mission/Vision Accordions and History Grid -->
+            <div class="about-details-section">
+                <div class="container">
+                    <div class="details-header">
+                        <h2>Acerca de nosotros y nuestros servicios</h2>
+                    </div>
+
+                    <div class="accordion-grid">
+                        <div class="accordion-item" data-aos="fade-right">
+                            <div class="accordion-header">
+                                <span>Misión</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Brindar servicios de Ingeniería Informática con calidad total, responsabilidad y
+                                    tecnología de punta.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-left">
+                            <div class="accordion-header">
+                                <span>Visión</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Ser la mejor opción en Ingeniería Informática y TI en nuestros mercados objetivo,
+                                    superando las expectativas de nuestros clientes.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-right" data-aos-delay="100">
+                            <div class="accordion-header">
+                                <span>Valores y Principios</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Integridad, Innovación, Compromiso y Excelencia en cada solución entregada.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-left" data-aos-delay="100">
+                            <div class="accordion-header">
+                                <span>Premios y reconocimientos</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Reconocidos por nuestra trayectoria en el sector petrolero e industrial de Bolivia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history-growth-grid">
+                        <div class="history-card" data-aos="fade-up">
+                            <div class="card-image">
+                                <img src="images/history_comparison.png" alt="Historia e-Tech Group">
+                            </div>
+                            <h3>La historia de e-Tech Group a través de los años en su comienzo</h3>
+                            <p>e-Tech Group fue fundado en 2001, comenzando como pionero en el departamento de sistemas
+                                virtual para empresas del sector petrolero, estableciendo un estándar de calidad en
+                                servicios tecnológicos.</p>
+                        </div>
+                        <div class="growth-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-image">
+                                <img src="images/growth_modern.png" alt="Crecimiento e-Tech Group">
+                            </div>
+                            <h3>El crecimiento y desarrollo de e-Tech Group desde 2001</h3>
+                            <p>Desde su fundación, e-Tech Group ha evolucionado significativamente, ampliando sus
+                                servicios y mejorando tecnologías. Ha ayudado a numerosas empresas del sector energético
+                                a optimizar sus operaciones, convirtiéndose en un referente en el mercado de ingeniería
+                                informática.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios & Soluciones Section - Replicating Reference Image -->
+        <section id="services">
+            <div class="services-header-white">
+                <div class="container">
+                    <div class="details-header" data-aos="fade-up">
+                        <h2>Servicios de ingeniería y tecnología avanzada</h2>
+                    </div>
+
+                    <div class="accordion-grid">
+                        <div class="accordion-item" data-aos="fade-up">
+                            <div class="accordion-header">
+                                <span>1) Help Desk</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Un buen soporte contribuye a agilizar el día a día en el trabajo. Muchas compañías no
+                                    tienen un servicio de soporte, con lo que sufren dicha carencia (personal perdiendo
+                                    el tiempo en intentar arreglar algo, o en aprender cómo hacer algo), lo que
+                                    normalmente redunda en un descenso de la productividad.</p>
+                                <p>Sin un soporte adecuado, una compañía puede funcionar como un motor sin aceite: se
+                                    podrá mover pero no funcionará como debe, el personal pierde tiempo, se sienten
+                                    frustrados y los sistemas dificultar el trabajo en vez de facilitarlo. Con un
+                                    enfoque adecuado, el servicio de soporte proporciona soluciones y soporte al usuario
+                                    final. La empresa estará preparada para tener una mayor productividad.</p>
+                                <p>e-Tech Group le puede ayudar con el soporte que necesita su organización poniendo a
+                                    su disposición el Servicio de Help Desk.</p>
+                                <p>En e-Tech Group, contamos de un Departamento dedicado íntegramente al soporte técnico
+                                    de los sistemas informáticos de nuestros clientes. Nuestro objetivo es proporcionar
+                                    un servicio rápido y eficaz para conseguir que el cliente no cese en su negocio más
+                                    tiempo del necesario por una falla inoportuna de sus sistemas informáticos.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="accordion-header">
+                                <span>2) Auditoría Informática</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>La auditoria en informática que e-Tech Group realizará en su prestigiosa empresa
+                                    consistirá en la revisión y la evaluación de los controles, sistemas, procedimientos
+                                    de informática; de los equipos de cómputo, su utilización, eficiencia y seguridad,
+                                    de la organización que participan en el procesamiento de la información, a fin de
+                                    que por medio del señalamiento de cursos alternativos se logre una utilización más
+                                    eficiente y segura de la información que servirá para una adecuada toma de
+                                    decisiones.</p>
+                                <p>Este trabajo comprenderá no sólo la evaluación de los equipos de cómputo, de un
+                                    sistema o procedimiento específico, sino que además habrá de evaluar los sistemas de
+                                    información en general desde sus entradas, procedimientos, controles, archivos,
+                                    seguridad y obtención de información.</p>
+                                <p>e-Tech Group elaborará este trabajo de Auditoria en Informática que será de vital
+                                    importancia para el buen desempeño de los sistemas de información en su empresa, ya
+                                    que proporcionará los controles necesarios para que los sistemas sean confiables y
+                                    con un buen nivel de seguridad (informática, organización de centros de información,
+                                    hardware y software).</p>
+                                <p><strong>OBJETIVOS:</strong> Evaluar los sistemas y procedimientos, Evaluar los
+                                    equipos de cómputo.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="accordion-header">
+                                <span>3) Investigación y Desarrollo</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Un buen soporte contribuye a agilizar el día a día en el trabajo. Muchas compañías no
+                                    tienen un servicio de soporte, con lo que sufren dicha carencia (personal perdiendo
+                                    el tiempo en intentar arreglar algo, o en aprender cómo hacer algo), lo que
+                                    normalmente redunda en un descenso de la productividad.</p>
+                                <p>Sin un soporte adecuado, una compañía puede funcionar como un motor sin aceite: se
+                                    podrá mover pero no funcionará como debe, el personal pierde tiempo, se sienten
+                                    frustrados y los sistemas dificultar el trabajo en vez de facilitarlo. Con un
+                                    enfoque adecuado, el servicio de soporte proporciona soluciones y soporte al usuario
+                                    final. La empresa estará preparada para tener una mayor productividad.</p>
+                                <p>e-Tech Group le puede ayudar con el soporte que necesita su organización poniendo a
+                                    su disposición el Servicio de Help Desk.</p>
+                                <p>En e-Tech Group, contamos de un Departamento dedicado íntegramente al soporte técnico
+                                    de los sistemas informáticos de nuestros clientes. Nuestro objetivo es proporcionar
+                                    un servicio rápido y eficaz para conseguir que el cliente no cese en su negocio más
+                                    tiempo del necesario por una falla inoportuna de sus sistemas informáticos.</p>
+
+                                <h4 style="margin-top: 20px; color: var(--accent);">Desarrollo de Software</h4>
+                                <p>e-Tech Group pone a su disposición las siguientes aplicaciones del <strong>Sistema
+                                        Administrativo Integrado Bookkeeper:</strong></p>
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                                    <li>Administración de Personal</li>
+                                    <li>Contabilidad</li>
+                                    <li>Activos Fijos</li>
+                                    <li>Inventarios y Almacenes</li>
+                                    <li>Ventas</li>
+                                    <li>Cuentas por Pagar</li>
+                                    <li>Cuentas por Cobrar</li>
+                                    <li>Control de Servicios</li>
+                                    <li>Control de Correspondencia</li>
+                                </ul>
+                                <p style="margin-top: 15px;"><strong>Proyectos de Investigación:</strong></p>
+                                <ul style="list-style: disc; margin-left: 20px;">
+                                    <li>Data Warehouse</li>
+                                    <li>Data Mining</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="accordion-header">
+                                <span>4) Mantenimiento</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <h4 style="margin-top: 15px; color: var(--accent);">Mantenimiento Preventivo</h4>
+                                <p>Este servicio cubre a los equipos sin que se hayan dañado: limpiezas, lubricaciones y
+                                    revisión de rendimiento. Establecemos un número de visitas definidas de acuerdo al
+                                    equipo, condiciones de trabajo y necesidades. Por regla cada contrato establece dos
+                                    visitas al año (una en cada semestre), pero puede ser incrementada a solicitud del
+                                    cliente.</p>
+
+                                <h4 style="margin-top: 15px; color: var(--accent);">Mantenimiento Correctivo</h4>
+                                <p>Este servicio cubre a los equipos por un reporte de daño o mal funcionamiento. Es
+                                    ilimitado y se atiende en conformidad con la respuesta establecida con el cliente.
+                                    Contamos con personal calificado para registrar los reportes de daños enviados,
+                                    asignamos un número de reporte. Este número de reporte entra a nuestro sistema y es
+                                    procesado por los canales adecuados hasta su solución.</p>
+
+                                <h4 style="margin-top: 15px; color: var(--accent);">Inventario de Hardware y Software
+                                </h4>
+                                <p>Brindamos servicio de Inventario de Hardware y Software para mantener al día toda su
+                                    inversión en informática ya sea en hardware y/o software.</p>
+
+                                <p style="margin-top: 10px;"><strong>Este servicio incluye lo siguiente:</strong></p>
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 5px;">
+                                    <li>Levantamiento de inventario de software y recursos:
+                                        <ul style="list-style: circle; margin-left: 20px; margin-top: 5px;">
+                                            <li>Marca y modelo</li>
+                                            <li>Programas instalados</li>
+                                            <li>Capacidad disponible en disco duro</li>
+                                            <li>Memoria instalada</li>
+                                            <li>Cualquier otro dato adicional a solicitud del cliente</li>
+                                        </ul>
+                                    </li>
+                                    <li>Presentación de informe escrito con el detalle de los datos obtenidos</li>
+                                    <li>Verificación de las licencias con las que cuenta el cliente</li>
+                                    <li>Verificación de los programas instalados vs. las licencias existentes</li>
+                                    <li>Presentación de cotización (en caso de que se requiera comprar licencias
+                                        adicionales)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="accordion-header">
+                                <span>5) Red & Telecomunicaciones</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <h4 style="margin-top: 15px; color: var(--accent);">Consultoría de Redes</h4>
+                                <p>Ofrecemos estudiar su red para incrementar su rendimiento, de manera que aproveche
+                                    óptimamente los recursos actualmente instalados. Todo esto nos convierte en una
+                                    solución real. Para empresas que todavía no tienen una red, existen numerosos
+                                    beneficios resultantes de la instalación de una, como pueden ser:</p>
+
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                                    <li><strong>Mejora en las Comunicaciones:</strong> E-Mail interno e Intranet para la
+                                        comunicación, carpetas compartidas.</li>
+                                    <li><strong>Incremento de la Productividad y Menores Costos:</strong> Mejora de la
+                                        fuerza de trabajo, documentos compartidos, menos tiempo llevando discos externos
+                                        a otras máquinas, menores costos de comunicación con sitios y usuarios remotos.
+                                    </li>
+                                    <li><strong>Menores Riesgos:</strong> Riesgo nulo de pérdida de datos debido a
+                                        copias de seguridad programadas en la red y menor riesgo de accesos no
+                                        autorizados o infecciones de virus.</li>
+                                </ul>
+
+                                <h4 style="margin-top: 20px; color: var(--accent);">Soporte de Redes</h4>
+                                <p>Le ofrecemos soporte permanente. Le asignamos personal capacitado con todo el soporte
+                                    del Equipo de Ingenieros y Técnicos de e-Tech Group.</p>
+                                <p>Realizamos visitas planificadas para asegurar que sus sistemas estén actualizados y
+                                    la administración de sus equipos es correcta para el óptimo funcionamiento. Tareas
+                                    que realizamos normalmente en una red de entorno Microsoft:</p>
+
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                                    <li>Instalación de los HotFixes de Microsoft verificados.</li>
+                                    <li>Comprobación de las actualizaciones de Anti-virus.</li>
+                                    <li>Comprobación de los procesos de Backup.</li>
+                                    <li>Verificación del estado del hardware.</li>
+                                    <li>Comprobación de todos los registros: Anti-Virus, Correo, Internet, etc.</li>
+                                    <li>Instalación de nuevo software y servicio de llamadas con tiempos de respuesta
+                                        garantizados.</li>
+                                    <li>Proyectos e implementación de redes para Voz y Datos.</li>
+                                    <li>Proyectos de equipamiento activo para redes LAN y WAN.</li>
+                                    <li>Servicio de administración de dominios y correo electrónico.</li>
+                                    <li>Desarrollo de sistemas para Data Warehouse.</li>
+                                </ul>
+
+                                <h4 style="margin-top: 20px; color: var(--accent);">Soluciones Wireless</h4>
+                                <p>Si dispone de una oficina o de un almacén donde quiere disponer de conectividad de
+                                    una manera rápida y sin tener que cablear, la tecnología wireless le proporcionará
+                                    una solución óptima, aportando agilidad y mejorando la productividad.</p>
+
+                                <h5 style="margin-top: 15px; color: var(--text-main); font-weight: 600;">Ventajas de la
+                                    tecnología Wireless:</h5>
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                                    <li><strong>Costos reducidos de implementación:</strong> Ahorro en cableado y
+                                        protección de inversión en cambios de sede.</li>
+                                    <li><strong>Tiempo de Implementación:</strong> Solución sencilla y rápida de
+                                        instalar.</li>
+                                    <li><strong>Reducción de costos de mantenimiento:</strong> Sencillez de la solución
+                                        y robustez de los equipos.</li>
+                                    <li><strong>Posibilidades de evolución:</strong> Alternativa viable y creciente en
+                                        el mercado actual.</li>
+                                    <li><strong>Retorno de la inversión:</strong> Ahorro enorme en tendidos de fibras o
+                                        líneas alquiladas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                            <div class="accordion-header">
+                                <span>6) Administración Web</span> <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Si bien es cierto que su negocio no va a desaparecer por no estar en Internet,
+                                    también es muy cierto que desaprovechará las posibilidades de negocio y expansión
+                                    que la RED pone al alcance de todos. Esta es la filosofía que hace grande a INTERNET
+                                    y que le ha permitido experimentar la mayor expansión nunca conocida.</p>
+                                <p style="margin-top: 10px;">Con una planificación seria y unos objetivos realistas su
+                                    empresa puede crear su espacio y su estrategia en Internet con una inversión a la
+                                    medida de sus posibilidades.</p>
+
+                                <p style="margin-top: 15px;"><strong>Servicios que ofrecemos:</strong></p>
+                                <ul style="list-style: disc; margin-left: 20px; margin-top: 5px;">
+                                    <li>Registro de Dominios</li>
+                                    <li>Gestión de Dominios</li>
+                                    <li>Mantenimiento de Dominios</li>
+                                    <li>Correo electrónico</li>
+                                    <li>Administración de aplicaciones Web en Internet e Intranet</li>
+                                    <li>Mantenimiento de aplicaciones WEB</li>
+                                    <li>Diseño de páginas web</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="processes-content-teal">
+                <div class="container">
+                    <div class="details-header" data-aos="fade-up">
+                        <h2 style="color: #fff;">Nuestros procesos para un servicio excepcional</h2>
+                    </div>
+
+                    <div class="process-grid">
+                        <div class="process-card" data-aos="zoom-in">
+                            <img src="images/proceso_1.jpg" alt="Proceso 1">
+                            <div class="process-description">
+                                <h4>Análisis Inicial</h4>
+                                <p>Evaluamos profundamente sus necesidades y la infraestructura actual para diseñar la
+                                    solución óptima.</p>
+                            </div>
+                        </div>
+                        <div class="process-card" data-aos="zoom-in" data-aos-delay="100">
+                            <img src="images/proceso_2.jpg" alt="Proceso 2">
+                            <div class="process-description">
+                                <h4>Diseño de Solución</h4>
+                                <p>Creamos una arquitectura tecnológica robusta y escalable, priorizando la seguridad y
+                                    eficiencia.</p>
+                            </div>
+                        </div>
+                        <div class="process-card" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="images/proceso_3.jpg" alt="Proceso 3">
+                            <div class="process-description">
+                                <h4>Implementación</h4>
+                                <p>Ejecutamos el despliegue con precisión técnica, minimizando interrupciones en su
+                                    operación.</p>
+                            </div>
+                        </div>
+                        <div class="process-card" data-aos="zoom-in" data-aos-delay="300">
+                            <img src="images/proceso_4.jpg" alt="Proceso 4">
+                            <div class="process-description">
+                                <h4>Soporte Continuo</h4>
+                                <p>Acompañamos su crecimiento con monitoreo constante y soporte técnico especializado
+                                    24/7.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dpto Virtual Section -->
+        <section id="virtual-dept">
+            <div class="virtual-header-teal">
+                <h2>Departamento de Sistemas Virtual...</h2>
+            </div>
+            <div class="virtual-content-light">
+                <div class="container">
+                    <div class="virtual-flex">
+                        <div class="virtual-image float-anim" data-aos="fade-right">
+                            <img src="images/virtual_dept_new.jpg" alt="Soluciones Informáticas e-Tech">
+                        </div>
+                        <div class="virtual-text-light" data-aos="fade-left">
+                            <h3 class="virtual-title">Soluciones Informáticas</h3>
+                            <p class="virtual-intro">Contar con nuestro servicio "Departamento de Sistema Virtual" pone
+                                a su disposición todos los beneficios que brinda un departamento de sistemas dentro de
+                                su empresa. A continuación un resumen de los beneficios que esto incluye:</p>
+
+                            <div class="virtual-benefits-list-light">
+                                <p><strong>Help Desk.</strong>- Dedicado íntegramente al soporte técnico de los sistemas
+                                    informáticos de nuestros clientes.</p>
+                                <p><strong>Mantenimiento de Hardware y Software.</strong>- Mantenimiento Preventivo y
+                                    Correctivo, Inventario de Hardware y Software, Respaldo de Información.</p>
+                                <p><strong>Redes y comunicaciones.</strong>- Proveemos, instalamos y configuramos el
+                                    equipamiento para cubrir las necesidades de su LAN y WAN.</p>
+                                <p><strong>Investigación y Desarrollo.</strong>- Para los clientes que cuentan con el
+                                    servicio de Departamento de Sistemas Virtual, las licencias de todos nuestros
+                                    sistemas ya desarrollados es gratuita, si necesitaran una modificación o desarrollo
+                                    de un nuevo modulo y/o sistema se preparará un cronograma y presupuesto tentativo
+                                    para dicho proyecto de forma adicional.</p>
+                                <p><strong>Auditoria Informática.</strong>- Evaluar Sistemas y Procedimientos, Evaluar
+                                    Equipos de Computación.</p>
+                                <p><strong>Soluciones Wireless.</strong>- Con esta tecnología puede mejorar
+                                    sensiblemente su negocio, aportando agilidad y mejorando la productividad.</p>
+                                <p><strong>Administración Web.</strong>- Registro de Dominios, Gestión de Dominios,
+                                    Mantenimiento de Dominios, Correo electrónico, Administración de aplicaciones Web en
+                                    Internet e Intranet, Mantenimiento de aplicaciones WEB.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transition with gray background to avoid black gap -->
+        <div style="background: #E8EAED; padding: 20px 0;">
+            <div class="section-divider-glow"></div>
+        </div>
+
+        <!-- Sección Clientes - Réplica Exacta de la Referencia -->
+        <section id="clients">
+            <div class="clients-container-official">
+                <div class="container">
+                    <div class="details-header" data-aos="fade-up" style="margin-bottom: 40px;">
+                        <h2>Nuestros Clientes</h2>
+                    </div>
+
+                    <!-- Carrusel Central con los 20 Logos Reales -->
+                    <div class="clients-carousel-wrapper" data-aos="fade-up">
+                        <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                        <div class="clients-carousel-main">
+                            <img src="images/LOGOS WEB-01.png" class="carousel-img active" alt="Cliente 1">
+                            <img src="images/LOGOS WEB-02.png" class="carousel-img" alt="Cliente 2">
+                            <img src="images/LOGOS WEB-03.png" class="carousel-img" alt="Cliente 3">
+                            <img src="images/LOGOS WEB-04.png" class="carousel-img" alt="Cliente 4">
+                            <img src="images/LOGOS WEB-05.png" class="carousel-img" alt="Cliente 5">
+                            <img src="images/LOGOS WEB-06.png" class="carousel-img" alt="Cliente 6">
+                            <img src="images/LOGOS WEB-07.png" class="carousel-img" alt="Cliente 7">
+                            <img src="images/LOGOS WEB-08.png" class="carousel-img" alt="Cliente 8">
+                            <img src="images/LOGOS WEB-09.png" class="carousel-img" alt="Cliente 9">
+                            <img src="images/LOGOS WEB-10.png" class="carousel-img" alt="Cliente 10">
+                            <img src="images/LOGOS WEB-11.png" class="carousel-img" alt="Cliente 11">
+                            <img src="images/LOGOS WEB-12.png" class="carousel-img" alt="Cliente 12">
+                            <img src="images/LOGOS WEB-13.png" class="carousel-img" alt="Cliente 13">
+                            <img src="images/LOGOS WEB-15.png" class="carousel-img" alt="Cliente 15">
+                            <img src="images/LOGOS WEB-16.png" class="carousel-img" alt="Cliente 16">
+                            <img src="images/LOGOS WEB-17.png" class="carousel-img" alt="Cliente 17">
+                            <img src="images/LOGOS WEB-18.png" class="carousel-img" alt="Cliente 18">
+                            <img src="images/LOGOS WEB-19.png" class="carousel-img" alt="Cliente 19">
+                            <img src="images/LOGOS WEB-21.png" class="carousel-img" alt="Cliente 21">
+                            <img src="images/LOGOS WEB-23.png" class="carousel-img" alt="Cliente 23">
+                        </div>
+                        <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="clients-list-columns">
+                        <div class="list-column">
+                            <ul>
+                                <li>NABORS DRILLING S.A.</li>
+                                <li>SERVICIOS PETROLEROS PONEX S.R.L.</li>
+                                <li>NBJ Manufacturas Petroleras</li>
+                                <li>SMITH INTERNATIONAL BOLIVIA LTDA.</li>
+                                <li>SCHLUMBERGER SURENCO S.A.</li>
+                                <li>PLUSPETROL BOLIVIA CORP. S.A.</li>
+                                <li>SKANSKA BOLIVIA I.S.S.A.</li>
+                                <li>EDVSA BOLIVIA S.R.L.</li>
+                                <li>TRADICOM S.A.</li>
+                                <li>TECHNIQUES BOLIVIA S.R.L</li>
+                                <li>VICAR S.R.L.</li>
+                                <li>FAN-BOLIVIA (Fundación Amigos de la Naturaleza)</li>
+                                <li>CALERA ORIENTAL SRL</li>
+                                <li>HANOVER S.A.</li>
+                                <li>REPSOL S.A.</li>
+                            </ul>
+                        </div>
+                        <div class="list-column">
+                            <ul>
+                                <li>BGP (China National Petroleum Corporation)</li>
+                                <li>EXTERRAN BOLIVIA S.R.L.</li>
+                                <li>AGROPECUARIA NUEVO AMANECER S.R.L.</li>
+                                <li>TECAGRO S.R.L.</li>
+                                <li>NOV DOWNHOLE BOLIVIA S.R.L.</li>
+                                <li>NATIONAL OILWELL VARCO DE BOLIVIA S.R.L.</li>
+                                <li>VINTAGE PETROLEUM S.R.L.</li>
+                                <li>CONSTRUCTORA PROYECTO S.R.L.</li>
+                                <li>CONSTRUCTORA OBELISCO LTDA.</li>
+                                <li>CONSTRUCTORA SELAH</li>
+                                <li>CONSTRUCTORA PREDIAL S.R.L.</li>
+                                <li>CRYSTALL RESORT S.R.L.</li>
+                                <li>COPRISA S.R.L.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="details-header" data-aos="fade-up" style="margin-bottom: 40px;">
+                    <h2 style="color: #fff;">¿NECESITAS INFORMACIÓN?</h2>
+                </div>
+                <div class="contact-grid">
+                    <form class="contact-form" data-aos="fade-up">
+                        <input type="text" placeholder="Nombre Completo" required>
+                        <input type="email" placeholder="Correo Electrónico" required>
+                        <input type="tel" placeholder="Teléfono / WhatsApp">
+                        <textarea placeholder="Mensaje (Opcional)"></textarea>
+                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-official">
+        <div class="container">
+            <div class="footer-main-grid">
+                <!-- Column 1: Logo & Social -->
+                <div class="footer-col-brand">
+                    <img src="images/logo.png" alt="e-Tech Group" class="footer-logo">
+                    <p class="footer-desc">e-Tech Group es una empresa líder en ingeniería informática y TI, ofreciendo
+                        soluciones integrales y outsourcing estratégico para el sector industrial y petrolero en
+                        Bolivia.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Acerca de</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#virtual-dept">Dpto. Virtual</a></li>
+                        <li><a href="#clients">Clientes</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="footer-col-contact">
+                    <h3>Oficina Central</h3>
+                    <p>Barrio Equipetrol, Calle Lugones N° 10</p>
+                    <p>Santa Cruz de la Sierra - Bolivia</p>
+                    <p>+591 79878853</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 E-Tech Group. Diseñado por e-Tech Group. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/59179878853" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>

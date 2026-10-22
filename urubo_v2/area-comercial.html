@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Comercial - Urubó Green Park</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .icon-dynamic {
+            animation: iconFloat 4s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            text-decoration: none !important;
+            display: block;
+        }
+        .icon-dynamic:hover {
+            transform: scale(1.15) !important;
+            animation-play-state: paused;
+        }
+        .icon-dynamic:hover .icon-circle {
+            background: var(--primary) !important;
+            box-shadow: 0 15px 30px rgba(46, 126, 51, 0.4) !important;
+        }
+        .icon-circle {
+            transition: all 0.4s ease !important;
+        }
+        .section-title {
+            font-size: 1.4rem !important;
+            letter-spacing: 5px !important;
+            font-weight: 700 !important;
+            margin-bottom: 15px !important;
+            text-transform: uppercase;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header id="header" class="scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Urubó Green Park">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="has-dropdown">
+                    <a href="index.html#acerca">Acerca de <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="piscina.html">Piscinas</a></li>
+                        <li><a href="piscina-playa.html">Piscina Playa</a></li>
+                        <li><a href="area-comercial.html">Área comercial</a></li>
+                        <li><a href="club-house.html">Club House</a></li>
+                        <li><a href="gimnasio.html">Gimnasio</a></li>
+                        <li><a href="saunas.html">Saunas</a></li>
+                        <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                        <li><a href="mirador.html">Mirador</a></li>
+                        <li><a href="area-verde.html">Áreas Verdes</a></li>
+                        <li><a href="churrasquera.html">Churrasqueras</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="index.html#plano-total">Plano Total <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#recreacion">Recreación</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li class="mobile-has-dropdown active">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Acerca de <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown active" id="mobileDropdown">
+                    <li><a href="piscina.html">Piscinas</a></li>
+                    <li><a href="piscina-playa.html">Piscina Playa</a></li>
+                    <li><a href="area-comercial.html" class="active">Área comercial</a></li>
+                    <li><a href="club-house.html">Club House</a></li>
+                    <li><a href="gimnasio.html">Gimnasio</a></li>
+                    <li><a href="saunas.html">Saunas</a></li>
+                    <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                    <li><a href="mirador.html">Mirador</a></li>
+                    <li><a href="area-verde.html">Áreas Verdes</a></li>
+                    <li><a href="churrasquera.html">Churrasqueras</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-dropdown">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Plano Total <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="index.html#plano-total">Ver Plano</a></li>
+                    <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#recreacion">Recreación</a></li>
+            <li><a href="index.html#galeria">Galería</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <section class="amenity-hero" style="height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; overflow: hidden; background: url('area_comercial_hero.png') center/cover no-repeat;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <h1 class="reveal-init" style="font-size: 4rem; margin-bottom: 15px; text-shadow: 0 5px 15px rgba(0,0,0,0.3); font-family: var(--font-heading);" data-cms-id="hero-title">ÁREA COMERCIAL</h1>
+            <p class="reveal-init" style="font-size: 1.5rem; max-width: 700px; margin: 0 auto; opacity: 0.9; font-weight: 300;" data-cms-id="hero-subtitle">Conveniencia y estilo a pasos de tu nuevo hogar.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="amenity-main-grid">
+                <div class="reveal-left">
+                    <img src="area_comercial_hero.png" alt="Área Comercial" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.2);" data-cms-id="section-img">
+                </div>
+                <div class="about-text-card reveal-right">
+                    <h1 style="color: var(--primary); font-size: 1.8rem; line-height: 1.3; margin-bottom: 25px; font-family: var(--font-heading);" data-cms-id="section-title">¡Te esperamos con una sonrisa!</h1>
+                    <p style="font-size: 1rem; margin-bottom: 20px; color: #444;" data-cms-id="section-text">¿Imaginas tener todo lo que necesitas a solo unos pasos de tu hogar? ¡En nuestro condominio, lo hacemos posible! Nuestra vibrante área comercial está diseñada para hacer tu vida más fácil y placentera.</p>
+                    
+                    <p style="font-weight: 700; margin-bottom: 15px; color: var(--text-dark); font-size: 0.95rem;">Aquí te contamos todo lo que encontrarás:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.1s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Variedad de tiendas:</strong> Desde supermercados hasta boutiques de moda, pasando por farmacias y tiendas de conveniencia. ¡Tenemos todo lo que necesitas para tu día a día!
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.2s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Deliciosos restaurantes y cafeterías:</strong> Disfruta de una amplia variedad de opciones gastronómicas. ¡Desde una cena elegante hasta un café rápido!
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.3s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Servicios:</strong> Peluquería, lavandería, gimnasio... ¡Todo lo que necesitas para cuidarte y mantener tu estilo de vida activo!
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.4s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Ambiente agradable:</strong> Diseñado para ser un lugar de encuentro y convivencia donde podrás relajarte y socializar con tus vecinos.
+                        </li>
+                    </ul>
+                    
+                    <p style="font-weight: 700; margin-bottom: 15px; color: var(--text-dark); font-size: 0.95rem;">Además, te ofrecemos:</p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.5s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Seguridad:</strong> Vigilancia las 24 horas para que disfrutes de tus compras con total tranquilidad.
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.6s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Estacionamiento:</strong> Amplio estacionamiento para que no tengas que preocuparte por tu vehículo.
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.7s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Eventos y promociones:</strong> ¡Siempre tenemos algo nuevo! Mantente atento a nuestros eventos especiales.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Additional Amenities Icons Row -->
+            <div class="additional-amenities" style="margin-top: 100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 20px; border-top: 1px solid #eee; padding-top: 80px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+                <a href="piscina.html" class="icon-dynamic" style="text-align: center; animation-delay: 0s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Piscinas</span>
+                </a>
+                <a href="piscina-playa.html" class="icon-dynamic" style="text-align: center; animation-delay: 0.2s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Piscina Playa</span>
+                </a>
+                <a href="saunas.html" class="icon-dynamic" style="text-align: center; animation-delay: 0.4s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-hot-tub"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Saunas</span>
+                </a>
+                <a href="churrasquera.html" class="icon-dynamic" style="text-align: center; animation-delay: 0.6s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Churrasqueras</span>
+                </a>
+                <a href="gimnasio.html" class="icon-dynamic" style="text-align: center; animation-delay: 0.8s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Gimnasio</span>
+                </a>
+                <a href="parque-infantil.html" class="icon-dynamic" style="text-align: center; animation-delay: 1.0s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Parque Infantil</span>
+                </a>
+                <a href="mirador.html" class="icon-dynamic" style="text-align: center; animation-delay: 1.2s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Mirador</span>
+                </a>
+                <a href="area-verde.html" class="icon-dynamic" style="text-align: center; animation-delay: 1.4s;">
+                    <div class="icon-circle" style="width: 90px; height: 90px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; box-shadow: 0 10px 25px rgba(84, 159, 215, 0.25);">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span style="font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1.5px;">Áreas Verdes</span>
+                </a>
+            </div>
+            
+            <div class="reveal-init" style="margin-top: 80px; text-align: center;">
+                <a href="index.html#recreacion" class="btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 12px 40px; border-radius: 50px; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
+                    <i class="fas fa-arrow-left"></i> Volver a Recreación
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: white; padding: 60px 0;">
+        <div class="container footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px;">
+            <div class="footer-about">
+                <img src="logo.png" alt="Logo" style="height: 60px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p>Exclusividad y armonía con la naturaleza en el Urubó.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p data-cms-id="global-phone">Móvil: +591 67866003</p>
+                <p data-cms-id="global-address">Santa Cruz de la Sierra - Bolivia</p>
+                <a href="admin.html" style="color: rgba(255,255,255,0.6); margin-top: 20px; display: inline-block; font-size: 0.8rem; text-decoration: none;"><i class="fas fa-lock"></i> Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="cms-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urubó Green Park | Eco-Luxury Living</title>
+    <meta name="description"
+        content="Vive en un paraíso verde donde el aire es fresco, la paz es palpable y la armonía es la norma. Terrenos en el Urubó desde 70 USD/m².">
+    <link rel="stylesheet" href="index.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Urubó Green Park Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li class="has-dropdown">
+                    <a href="#acerca">Acerca de <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="piscina.html">Piscinas</a></li>
+                        <li><a href="piscina-playa.html">Piscina Playa</a></li>
+                        <li><a href="area-comercial.html">Área comercial</a></li>
+                        <li><a href="club-house.html">Club House</a></li>
+                        <li><a href="gimnasio.html">Gimnasio</a></li>
+                        <li><a href="saunas.html">Saunas</a></li>
+                        <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                        <li><a href="mirador.html">Mirador</a></li>
+                        <li><a href="area-verde.html">Áreas Verdes</a></li>
+                        <li><a href="churrasquera.html">Churrasqueras</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#plano-total">Plano Total <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                    </ul>
+                </li>
+                <li><a href="#recreacion">Recreación</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#inicio" class="active">Inicio</a></li>
+            <li class="mobile-has-dropdown">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Acerca de <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown" id="mobileDropdown">
+                    <li><a href="piscina.html">Piscinas</a></li>
+                    <li><a href="piscina-playa.html">Piscina Playa</a></li>
+                    <li><a href="area-comercial.html">Área comercial</a></li>
+                    <li><a href="club-house.html">Club House</a></li>
+                    <li><a href="gimnasio.html">Gimnasio</a></li>
+                    <li><a href="saunas.html">Saunas</a></li>
+                    <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                    <li><a href="mirador.html">Mirador</a></li>
+                    <li><a href="area-verde.html">Áreas Verdes</a></li>
+                    <li><a href="churrasquera.html">Churrasqueras</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-dropdown">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Plano Total <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#plano-total">Ver Plano</a></li>
+                    <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                </ul>
+            </li>
+            <li><a href="#recreacion">Recreación</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <section id="inicio" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('hero_urubo_1.png')"></div>
+            <div class="hero-slide" style="background-image: url('hero_urubo_2.png')"></div>
+            <div class="hero-slide" style="background-image: url('hero_urubo_3.png')"></div>
+            <div class="hero-slide" style="background-image: url('hero_urubo_4.png')"></div>
+            <div class="hero-slide" style="background-image: url('hero_urubo_5.png')"></div>
+            <div class="hero-slide" style="background-image: url('hero_urubo_6.png')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <style>
+            @keyframes heroFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            .btn-dynamic {
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+                animation: heroFloat 4s ease-in-out infinite;
+                position: relative;
+                overflow: hidden;
+            }
+            .btn-dynamic:hover {
+                background: white !important;
+                color: var(--primary) !important;
+                transform: translateY(-5px) scale(1.05) !important;
+                box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3) !important;
+                animation-play-state: paused;
+            }
+            .btn-dynamic::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 300%;
+                height: 300%;
+                background: rgba(255, 255, 255, 0.1);
+                transform: translate(-50%, -50%) rotate(45deg) translateY(100%);
+                transition: transform 0.6s ease;
+            }
+            .btn-dynamic:hover::after {
+                transform: translate(-50%, -50%) rotate(45deg) translateY(-100%);
+            }
+            .section-title {
+                font-size: 1.4rem !important;
+                letter-spacing: 5px !important;
+                font-weight: 700 !important;
+                margin-bottom: 15px !important;
+            }
+            @keyframes iconFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+            }
+            .icon-dynamic {
+                animation: iconFloat 4s ease-in-out infinite;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+                text-decoration: none !important;
+                display: block;
+            }
+            .icon-dynamic:hover {
+                transform: scale(1.15) !important;
+                animation-play-state: paused;
+            }
+            .icon-dynamic:hover .icon-circle {
+                background: var(--primary) !important;
+                box-shadow: 0 15px 30px rgba(46, 126, 51, 0.4) !important;
+            }
+            .icon-circle {
+                transition: all 0.4s ease !important;
+            }
+            @keyframes whatsapp-pulse {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+                70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            }
+            .whatsapp-btn {
+                animation: whatsapp-pulse 2s infinite ease-in-out;
+                transition: all 0.3s ease !important;
+            }
+            .whatsapp-btn:hover {
+                transform: scale(1.2) rotate(10deg) !important;
+                animation-play-state: paused;
+            }
+            .faq-item {
+                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+                border: 1px solid transparent;
+            }
+            .faq-item:hover {
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+                border-color: var(--accent-light);
+            }
+            .faq-question {
+                transition: all 0.3s ease;
+            }
+            .faq-item:hover .faq-question {
+                color: var(--primary);
+            }
+            .faq-item:hover .fa-chevron-down {
+                transform: rotate(180deg);
+                color: var(--accent);
+            }
+            .fa-chevron-down {
+                transition: transform 0.4s ease, color 0.4s ease;
+            }
+            .contact-form {
+                max-width: 600px;
+                margin: 40px auto 0;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                padding: 40px;
+                border-radius: 30px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                text-align: left;
+                box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            .form-group label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 600;
+                font-size: 0.85rem;
+                color: rgba(255,255,255,0.9);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .form-control {
+                width: 100%;
+                padding: 15px 20px;
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid transparent;
+                border-radius: 15px;
+                font-family: var(--font-body);
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                color: #333;
+            }
+            .form-control:focus {
+                outline: none;
+                background: #fff;
+                box-shadow: 0 0 0 4px rgba(84, 159, 215, 0.3);
+            }
+            .btn-submit {
+                width: 100%;
+                padding: 18px;
+                background: var(--accent);
+                color: white;
+                border: none;
+                border-radius: 15px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                margin-top: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .btn-submit:hover {
+                background: #3e88c2;
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+        </style>
+        <div class="container hero-static-container">
+            <div class="hero-static-content">
+                <h1 class="reveal" data-cms-id="hero-title">VIVE EN EL CORAZÓN <br> DEL URUBÓ</h1>
+                <p class="reveal" data-cms-id="hero-subtitle">Imagina despertar cada mañana con el susurro del viento entre las hojas y el canto de las aves como única alarma. En Urubó Green Park, la paz no es un lujo, es nuestro estilo de vida. Hemos creado un refugio rodeado de arboledas donde el caos de la ciudad se desvanece, permitiéndote reconectar con lo que realmente importa.</p>
+                <div class="reveal hero-btn-group">
+                    <a href="disponibilidad.html" class="btn btn-accent btn-dynamic" style="animation-delay: 0s;" data-cms-id="hero_btn_dispo">Solicitar Disponibilidad</a>
+                    <a href="#recreacion" class="btn btn-primary btn-dynamic" style="animation-delay: 0.5s;" data-cms-id="hero_btn_conocer">Conocer Más</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hero Navigation -->
+        <div class="hero-nav">
+            <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+        <!-- Hero Dots -->
+        <div class="hero-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <section id="acerca" class="section-padding about-section-dark">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper reveal-left" style="position: relative;">
+                    <div class="about-image-decoration"></div>
+                    <img src="aerial_urubo.jpg" alt="Vista Aérea Urubó Green Park" class="about-main-img" data-cms-id="about-img">
+                </div>
+                <div class="about-text reveal-right">
+                    <p class="section-title" style="color: var(--accent-light) !important;" data-cms-id="about-label">Nuestra Filosofía</p>
+                    <div class="philosophy-text-container">
+                        <p class="philosophy-title" data-cms-id="about-title">LA CONEXIÓN PERFECTA...</p>
+                        <p data-cms-id="about-text">Vive en un paraíso verde donde el aire es fresco, la paz es palpable y la armonía es la norma. Nuestra urbanización, un oasis de lujo y confort, te ofrece la oportunidad de conectar con la naturaleza sin renunciar a las comodidades de la vida moderna. Rodeado de árboles centenarios y exuberante vegetación, encontrarás el equilibrio perfecto entre bienestar y sofisticación. ¡Tu sueño de un hogar ideal se hace realidad aquí!</p>
+                    </div>
+
+                    <!-- Zen Icons Row Centered -->
+                    <div class="philosophy-zen-icons">
+                        <div class="icon-dynamic zen-icon-box" style="animation-delay: 0s;">
+                            <div class="icon-circle zen-icon-circle">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span class="zen-icon-label" data-cms-id="icon1_label">Naturaleza</span>
+                        </div>
+                        <div class="icon-dynamic zen-icon-box" style="animation-delay: 0.3s;">
+                            <div class="icon-circle zen-icon-circle">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <span class="zen-icon-label" data-cms-id="icon2_label">Paz Total</span>
+                        </div>
+                        <div class="icon-dynamic zen-icon-box" style="animation-delay: 0.6s;">
+                            <div class="icon-circle zen-icon-circle">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span class="zen-icon-label" data-cms-id="icon3_label">Bienestar</span>
+                        </div>
+                    </div>
+
+                    <!-- Mission & Vision Accordion -->
+                    <div class="mv-accordion reveal" style="margin: 50px 0; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; border-radius: 15px; overflow: hidden;">
+                            <div class="faq-question" style="color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
+                                <span><i class="fas fa-bullseye" style="color: var(--accent-light); margin-right: 15px;"></i> Misión</span>
+                                <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div style="padding-bottom: 25px;" data-cms-id="mission-text">
+                                    La misión de Urubó Green Park es construir una comunidad vibrante y unida donde nuestros residentes puedan prosperar y crecer juntos. Nos dedicamos a ofrecer espacios y actividades que fomenten la interacción social, el sentido de pertenencia y el apoyo mutuo, creando un hogar donde cada persona se sienta valorada y conectada.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; overflow: hidden;">
+                            <div class="faq-question" style="color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
+                                <span><i class="fas fa-eye" style="color: var(--accent-light); margin-right: 15px;"></i> Visión</span>
+                                <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div style="padding-bottom: 25px;" data-cms-id="vision-text">
+                                    Ser una comunidad residencial unida y próspera, donde nuestros residentes se sientan orgullosos de llamar hogar. Visualizamos un entorno donde las familias crecen juntas, los vecinos se apoyan mutuamente y la naturaleza florece en armonía, creando un legado de bienestar y felicidad para las generaciones futuras.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-btns" style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
+                        <a href="disponibilidad.html" class="btn btn-white btn-dynamic" data-cms-id="about_btn">Ver Plano</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plano Total Sub-section -->
+            <div id="plano-total" class="plano-total-section reveal">
+                <p class="section-title" style="color: var(--primary) !important;" data-cms-id="plano-label">Urbanización</p>
+                <h2 class="section-heading" style="color: var(--accent);" data-cms-id="plano-title">Plano Total de Urubó Green Park</h2>
+                <p style="max-width: 750px; margin: 0 auto 50px; color: #777; font-size: 1.15rem; line-height: 1.8;" data-cms-id="plano-text">Diseñamos un espacio donde cada lote está estratégicamente ubicado para garantizar vistas privilegiadas y acceso directo a nuestras áreas de recreación.</p>
+                <div style="position: relative; display: inline-block;">
+                    <img src="plano_total_urubo.png" alt="Plano Total" class="plano-total-image" data-cms-id="plano-img">
+                </div>
+                <div style="margin-top: 40px;">
+                    <a href="disponibilidad.html" class="btn btn-primary" style="padding: 18px 50px; font-size: 1.1rem; border-radius: 15px; background: var(--primary); color: white; box-shadow: 0 15px 30px rgba(46, 126, 51, 0.2); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; display: inline-block;">Ver Plano</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recreacion" class="section-padding amenities">
+        <div class="container" style="text-align: center;">
+            <p class="section-title">Exclusividad</p>
+            <h2 class="section-heading" style="color: var(--accent);">Áreas de Recreación</h2>
+            <div class="amenities-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
+                <!-- Piscinas -->
+                <div class="recreation-card" style="text-align: center;">
+                    <div style="aspect-ratio: 1/1; overflow: hidden; border-radius: 0; margin-bottom: 30px;">
+                        <img src="recreacion_piscinas.png" alt="Piscinas" style="width: 100%; height: 100%; object-fit: cover;" data-cms-id="card1_img">
+                    </div>
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 20px;" data-cms-id="card1_title">Piscinas</h3>
+                    <p style="color: #444; line-height: 1.7; font-size: 1rem; max-width: 320px; margin: 0 auto;" data-cms-id="card1_text">"¡La diversión está garantizada en nuestra área de piscinas! Un espacio diseñado para toda la familia..."</p>
+                </div>
+                <!-- Áreas deportivas -->
+                <div class="recreation-card" style="text-align: center;">
+                    <div style="aspect-ratio: 1/1; overflow: hidden; border-radius: 0; margin-bottom: 30px;">
+                        <img src="recreacion_deportes.png" alt="Áreas deportivas" style="width: 100%; height: 100%; object-fit: cover;" data-cms-id="card2_img">
+                    </div>
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 20px;" data-cms-id="card2_title">Áreas deportivas</h3>
+                    <p style="color: #444; line-height: 1.7; font-size: 1rem; max-width: 320px; margin: 0 auto;" data-cms-id="card2_text">"¡La diversión y el espíritu de equipo te esperan en nuestra área deportiva!"</p>
+                </div>
+                <!-- Camping -->
+                <div class="recreation-card" style="text-align: center;">
+                    <div style="aspect-ratio: 1/1; overflow: hidden; border-radius: 0; margin-bottom: 30px;">
+                        <img src="recreacion_camping.png" alt="Camping" style="width: 100%; height: 100%; object-fit: cover;" data-cms-id="card3_img">
+                    </div>
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 20px;" data-cms-id="card3_title">Camping</h3>
+                    <p style="color: #444; line-height: 1.7; font-size: 1rem; max-width: 320px; margin: 0 auto;" data-cms-id="card3_text">"Desconecta del mundo y reconecta con la naturaleza en nuestra área de camping."</p>
+                </div>
+            </div>
+
+            <!-- Additional Amenities Icons Row -->
+            <div class="additional-amenities-container">
+                <a href="piscina.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <span class="amenity-icon-label">Piscina</span>
+                </a>
+                <a href="piscina-playa.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.2s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <span class="amenity-icon-label">Piscina Playa</span>
+                </a>
+                <a href="saunas.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.4s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-hot-tub"></i>
+                    </div>
+                    <span class="amenity-icon-label">Saunas</span>
+                </a>
+                <a href="churrasquera.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.6s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <span class="amenity-icon-label">Churrasquera</span>
+                </a>
+                <a href="gimnasio.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.8s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <span class="amenity-icon-label">Gimnasio</span>
+                </a>
+                <a href="parque-infantil.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.0s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <span class="amenity-icon-label">Parque Infantil</span>
+                </a>
+                <a href="mirador.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.2s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <span class="amenity-icon-label">Mirador</span>
+                </a>
+                <a href="area-verde.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.4s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="amenity-icon-label">Área Verde</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="section-padding">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <p class="section-title">Visualiza tu futuro</p>
+                <h2 class="section-heading" style="color: var(--accent);">Galería del Proyecto</h2>
+            </div>
+            <div class="gallery-carousel-wrapper">
+                <button class="gallery-nav-btn prev" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-carousel" id="galleryCarousel">
+                    <!-- 30 Items (15 columnas x 2 filas) -->
+                    <!-- Para reemplazar con tus fotos, cambia el atributo 'src' de cada <img> -->
+                    <div class="gallery-item"><img src="01.jpeg" alt="Galería 1"></div>
+                    <div class="gallery-item"><img src="02.jpeg" alt="Galería 2"></div>
+                    <div class="gallery-item"><img src="03.jpeg" alt="Galería 3"></div>
+                    <div class="gallery-item"><img src="04.jpeg" alt="Galería 4"></div>
+                    <div class="gallery-item"><img src="05.jpeg" alt="Galería 5"></div>
+                    <div class="gallery-item"><img src="06.jpeg" alt="Galería 6"></div>
+                    <div class="gallery-item"><img src="07.jpeg" alt="Galería 7"></div>
+                    <div class="gallery-item"><img src="08.jpeg" alt="Galería 8"></div>
+                    <div class="gallery-item"><img src="09.jpeg" alt="Galería 9"></div>
+                    <div class="gallery-item"><img src="010.jpeg" alt="Galería 10"></div>
+                    <div class="gallery-item"><img src="011.jpeg" alt="Galería 11"></div>
+                    <div class="gallery-item"><img src="012.jpeg" alt="Galería 12"></div>
+                    <div class="gallery-item"><img src="013.jpeg" alt="Galería 13"></div>
+                    <div class="gallery-item"><img src="014.jpeg" alt="Galería 14"></div>
+                    <div class="gallery-item"><img src="015.jpeg" alt="Galería 15"></div>
+                    <div class="gallery-item"><img src="016.jpeg" alt="Galería 16"></div>
+                    <div class="gallery-item"><img src="017.jpeg" alt="Galería 17"></div>
+                    <div class="gallery-item"><img src="018.jpeg" alt="Galería 18"></div>
+                    <div class="gallery-item"><img src="019.jpeg" alt="Galería 19"></div>
+                    <div class="gallery-item"><img src="020.jpeg" alt="Galería 20"></div>
+                    <div class="gallery-item"><img src="021.jpeg" alt="Galería 21"></div>
+                    <div class="gallery-item"><img src="022.jpeg" alt="Galería 22"></div>
+                    <div class="gallery-item"><img src="023.jpeg" alt="Galería 23"></div>
+                    <div class="gallery-item"><img src="024.jpeg" alt="Galería 24"></div>
+                    <div class="gallery-item"><img src="025.jpeg" alt="Galería 25"></div>
+                    <div class="gallery-item"><img src="026.jpeg" alt="Galería 26"></div>
+                    <div class="gallery-item"><img src="027.jpeg" alt="Galería 27"></div>
+                    <div class="gallery-item"><img src="028.jpeg" alt="Galería 28"></div>
+                    <div class="gallery-item"><img src="029.jpeg" alt="Galería 29"></div>
+                    <div class="gallery-item"><img src="030.jpeg" alt="Galería 30"></div>
+                </div>
+                <button class="gallery-nav-btn next" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding" style="background: var(--bg-gray);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <p class="section-title" data-cms-id="faq-title">Preguntas Frecuentes</p>
+                <h2 class="section-heading" style="color: var(--primary);" data-cms-id="faq-subtitle">Resolvemos tus dudas</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuál es el precio por metro cuadrado? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Los precios comienzan desde los 70 USD/m², variando según la ubicación y el tamaño del lote.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Ofrecen planes de financiamiento? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Sí, contamos con planes de financiamiento directo y facilidades de pago ajustadas a tus necesidades.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué seguridad ofrece la urbanización? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Contamos con seguridad privada las 24 horas, acceso controlado y cámaras de vigilancia en todo el perímetro.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuándo se entregan los lotes? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">La entrega está programada para finales de este año, con toda la documentación en orden.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ubicacion" class="section-padding">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <p class="section-title">Ubicación Estratégica</p>
+                <h2 class="section-heading" style="color: var(--accent);">¿Cómo llegar a tu nuevo hogar?</h2>
+            </div>
+            <div class="map-container"
+                style="height: 450px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);">
+                <iframe
+                    src="https://maps.google.com/maps?q=-17.627417,-63.209806&hl=es&z=15&t=h&output=embed"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="section-padding" style="background: var(--primary); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-heading" style="color: white;">¿Listo para vivir en el paraíso?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Envíanos tus datos y un asesor se pondrá en contacto contigo a la brevedad.</p>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" class="form-control" placeholder="juan@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">Teléfono / WhatsApp</label>
+                    <input type="tel" id="whatsapp-input" class="form-control" placeholder="+591 70000000" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje (Opcional)</label>
+                    <textarea id="mensaje" class="form-control" rows="4" placeholder="Estoy interesado en conocer más sobre los lotes..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Información</button>
+            </form>
+
+            <div style="margin-top: 50px;">
+                <p style="margin-bottom: 25px; opacity: 0.8; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">O contáctanos directamente</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="tel:+59167866003" class="btn btn-dynamic" style="background: transparent; border: 2px solid white; color: white; padding: 12px 30px; border-radius: 10px; font-size: 0.9rem; transition: var(--transition);" data-cms-id="global-phone-link"><i class="fas fa-phone"></i> <span data-cms-id="global-phone">+591 67866003</span></a>
+                    <a href="mailto:robertoliva@urubogreenpark.com.bo" class="btn btn-dynamic" style="background: transparent; border: 2px solid white; color: white; padding: 12px 30px; border-radius: 10px; font-size: 0.9rem; text-transform: lowercase; transition: var(--transition); animation-delay: 0.5s;" data-cms-id="global-email-link"><i class="fas fa-envelope"></i> <span data-cms-id="global-email" style="text-transform: lowercase;">robertoliva@urubogreenpark.com.bo</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="logo.png" alt="Logo" style="height: 60px; filter: brightness(0) invert(1);">
+                    <p>Urubó Green Park es una urbanización pensada en la armonía con la naturaleza, ofreciendo
+                        seguridad, confort y exclusividad en la zona de mayor plusvalía de Santa Cruz.</p>
+                    <div class="social-links" style="display: flex; gap: 15px; margin-top: 25px;">
+                        <a href="#" class="social-icon btn-dynamic" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); text-decoration: none;" data-cms-id="global-facebook-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon btn-dynamic" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); text-decoration: none; animation-delay: 0.2s;" data-cms-id="global-instagram-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon btn-dynamic" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); text-decoration: none; animation-delay: 0.4s;" data-cms-id="global-tiktok-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon btn-dynamic" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); text-decoration: none; animation-delay: 0.6s;" data-cms-id="global-youtube-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#plano-total">Plano Total</a></li>
+                        <li><a href="#recreacion">Recreación</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#ubicacion">Ubicación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Oficina Central</h4>
+                    <p style="color: white;" data-cms-id="global-address">Barrio Equipetrol, Calle Lugones N° 10</p>
+                    <p style="color: white;">Santa Cruz de la Sierra - Bolivia</p>
+                    <p style="color: white;" data-cms-id="global-phone">Móvil: +591-79878853</p>
+                    <a href="admin.html" style="color: rgba(255,255,255,0.4); margin-top: 15px; display: inline-block; font-size: 0.75rem; text-decoration: none;"><i class="fas fa-lock"></i> Admin</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Urubó Green Park. Diseñado por e-Tech Group. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <a href="https://wa.me/59167866003" class="whatsapp-btn" target="_blank" data-cms-id="global-whatsapp-link">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script src="main.js"></script>
+    <script src="cms-engine.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+2026-08-27 16:58:57,799 - youtube-mcp - INFO - Starting YouTube MCP Server...
+2026-08-27 16:58:57,828 - youtube-mcp - INFO - Initializing YouTube MCP Server
+2026-08-27 16:58:57,828 - youtube-mcp - DEBUG - Created MCP Server instance
+2026-08-27 16:58:57,828 - youtube-mcp - DEBUG - Initialized YouTube Search Tool
+2026-08-27 16:59:10,019 - youtube-mcp - ERROR - Fatal error occurred: unhandled errors in a TaskGroup (1 sub-exception)
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 266, in main
+  |     async with stdio_server() as (read, write):
+  |   File "C:\Users\etechadmin\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\lib\contextlib.py", line 217, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 83, in stdio_server
+  |     async with anyio.create_task_group() as tg:
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 86, in stdio_server
+    |     yield read_stream, write_stream
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 267, in main
+    |     await serve(read, write, options)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 61, in serve
+    |     embeddings = GoogleGenerativeAIEmbeddings(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\pydantic\main.py", line 214, in __init__
+    |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\embeddings.py", line 95, in validate_environment
+    |     self.client = build_generative_service(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\_genai_extension.py", line 276, in build_generative_service
+    |     return v1betaGenerativeServiceClient(**config)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 696, in __init__
+    |     self._transport = transport_init(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\grpc.py", line 235, in __init__
+    |     super().__init__(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\base.py", line 100, in __init__
+    |     credentials, _ = google.auth.default(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\auth\_default.py", line 719, in default
+    |     raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+    | google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+    +------------------------------------
+2026-08-27 17:02:00,006 - youtube-mcp - INFO - Starting YouTube MCP Server...
+2026-08-27 17:02:00,010 - youtube-mcp - INFO - Initializing YouTube MCP Server
+2026-08-27 17:02:00,010 - youtube-mcp - DEBUG - Created MCP Server instance
+2026-08-27 17:02:00,010 - youtube-mcp - DEBUG - Initialized YouTube Search Tool
+2026-08-27 17:02:12,095 - youtube-mcp - ERROR - Fatal error occurred: unhandled errors in a TaskGroup (1 sub-exception)
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 266, in main
+  |     async with stdio_server() as (read, write):
+  |   File "C:\Users\etechadmin\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\lib\contextlib.py", line 217, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 83, in stdio_server
+  |     async with anyio.create_task_group() as tg:
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 86, in stdio_server
+    |     yield read_stream, write_stream
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 267, in main
+    |     await serve(read, write, options)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 61, in serve
+    |     embeddings = GoogleGenerativeAIEmbeddings(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\pydantic\main.py", line 214, in __init__
+    |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\embeddings.py", line 95, in validate_environment
+    |     self.client = build_generative_service(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\_genai_extension.py", line 276, in build_generative_service
+    |     return v1betaGenerativeServiceClient(**config)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 696, in __init__
+    |     self._transport = transport_init(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\grpc.py", line 235, in __init__
+    |     super().__init__(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\base.py", line 100, in __init__
+    |     credentials, _ = google.auth.default(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\auth\_default.py", line 719, in default
+    |     raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+    | google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+    +------------------------------------
+2026-08-27 17:02:43,964 - youtube-mcp - INFO - Starting YouTube MCP Server...
+2026-08-27 17:02:43,968 - youtube-mcp - INFO - Initializing YouTube MCP Server
+2026-08-27 17:02:43,968 - youtube-mcp - DEBUG - Created MCP Server instance
+2026-08-27 17:02:43,968 - youtube-mcp - DEBUG - Initialized YouTube Search Tool
+2026-08-27 17:02:55,904 - youtube-mcp - ERROR - Fatal error occurred: unhandled errors in a TaskGroup (1 sub-exception)
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 266, in main
+  |     async with stdio_server() as (read, write):
+  |   File "C:\Users\etechadmin\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\lib\contextlib.py", line 217, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 83, in stdio_server
+  |     async with anyio.create_task_group() as tg:
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 86, in stdio_server
+    |     yield read_stream, write_stream
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 267, in main
+    |     await serve(read, write, options)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 61, in serve
+    |     embeddings = GoogleGenerativeAIEmbeddings(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\pydantic\main.py", line 214, in __init__
+    |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\embeddings.py", line 95, in validate_environment
+    |     self.client = build_generative_service(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\_genai_extension.py", line 276, in build_generative_service
+    |     return v1betaGenerativeServiceClient(**config)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 696, in __init__
+    |     self._transport = transport_init(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\grpc.py", line 235, in __init__
+    |     super().__init__(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\base.py", line 100, in __init__
+    |     credentials, _ = google.auth.default(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\auth\_default.py", line 719, in default
+    |     raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+    | google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+    +------------------------------------
+2026-08-27 17:05:02,730 - youtube-mcp - INFO - Starting YouTube MCP Server...
+2026-08-27 17:05:02,733 - youtube-mcp - INFO - Initializing YouTube MCP Server
+2026-08-27 17:05:02,733 - youtube-mcp - DEBUG - Created MCP Server instance
+2026-08-27 17:05:02,733 - youtube-mcp - DEBUG - Initialized YouTube Search Tool
+2026-08-27 17:05:14,672 - youtube-mcp - ERROR - Fatal error occurred: unhandled errors in a TaskGroup (1 sub-exception)
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 266, in main
+  |     async with stdio_server() as (read, write):
+  |   File "C:\Users\etechadmin\AppData\Roaming\uv\python\cpython-3.10-windows-x86_64-none\lib\contextlib.py", line 217, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 83, in stdio_server
+  |     async with anyio.create_task_group() as tg:
+  |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\mcp\server\stdio.py", line 86, in stdio_server
+    |     yield read_stream, write_stream
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 267, in main
+    |     await serve(read, write, options)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\server.py", line 61, in serve
+    |     embeddings = GoogleGenerativeAIEmbeddings(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\pydantic\main.py", line 214, in __init__
+    |     validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\embeddings.py", line 95, in validate_environment
+    |     self.client = build_generative_service(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\langchain_google_genai\_genai_extension.py", line 276, in build_generative_service
+    |     return v1betaGenerativeServiceClient(**config)
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 696, in __init__
+    |     self._transport = transport_init(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\grpc.py", line 235, in __init__
+    |     super().__init__(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\transports\base.py", line 100, in __init__
+    |     credentials, _ = google.auth.default(
+    |   File "C:\Users\etechadmin\.gemini\mcp-servers\youtube-mcp\.venv\lib\site-packages\google\auth\_default.py", line 719, in default
+    |     raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+    | google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+    +------------------------------------

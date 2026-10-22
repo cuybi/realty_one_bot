@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucerito CRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Lucerito</h2>
+                <p>CRM Gastronómico</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-view="sales">
+                    <i class="fas fa-cash-register"></i> Ventas
+                </a>
+                <a href="#" class="nav-item" data-view="expenses">
+                    <i class="fas fa-shopping-cart"></i> Compras/Gastos
+                </a>
+                <a href="#" class="nav-item" data-view="inventory">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+                <a href="#" class="nav-item" data-view="recipes">
+                    <i class="fas fa-book-open"></i> Recetas / Escandallos
+                </a>
+                <a href="#" class="nav-item" data-view="reports">
+                    <i class="fas fa-file-contract"></i> Reportes
+                </a>
+                <a href="#" class="nav-item" data-view="settings">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-content">
+                    <h1 id="page-title">Dashboard</h1>
+                    <div class="user-profile">
+                        <span id="current-date"></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                
+                <!-- View: Dashboard -->
+                <div id="view-dashboard" class="view active">
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon sales"><i class="fas fa-chart-line"></i></div>
+                            <div class="kpi-info">
+                                <h3>Ventas de Hoy</h3>
+                                <p class="kpi-value" id="kpi-today-sales">Bs 0.00</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon expenses"><i class="fas fa-file-invoice-dollar"></i></div>
+                            <div class="kpi-info">
+                                <h3>Gastos de Hoy</h3>
+                                <p class="kpi-value" id="kpi-today-expenses">Bs 0.00</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon profit"><i class="fas fa-wallet"></i></div>
+                            <div class="kpi-info">
+                                <h3>Ganancia Neta (Total)</h3>
+                                <p class="kpi-value" id="kpi-net-profit">Bs 0.00</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-icon dish"><i class="fas fa-utensils"></i></div>
+                            <div class="kpi-info">
+                                <h3>Plato Estrella</h3>
+                                <p class="kpi-value" id="kpi-top-dish">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View: Sales -->
+                <div id="view-sales" class="view">
+                    <div class="action-bar">
+                        <h2>Registro de Ventas</h2>
+                        <button class="btn btn-primary" onclick="openModal('modal-sale')"><i class="fas fa-plus"></i> Nueva Venta</button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="sales-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha</th>
+                                    <th>Plato</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio U.</th>
+                                    <th>Total</th>
+                                    <th>Método Pago</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Expenses -->
+                <div id="view-expenses" class="view">
+                    <div class="action-bar">
+                        <h2>Registro de Compras / Gastos</h2>
+                        <button class="btn btn-primary" onclick="openModal('modal-expense')"><i class="fas fa-plus"></i> Nuevo Gasto</button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="expenses-table">
+                            <thead>
+                                <tr>
+                                    <th>FECHA</th>
+                                    <th>INGREDIENTE / ÍTEM</th>
+                                    <th>CATEGORÍA</th>
+                                    <th>CANTIDAD (Peso)</th>
+                                    <th>PRECIO UNIT.</th>
+                                    <th>TOTAL</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-total-row">
+                                    <td colspan="5" style="text-align: right; font-weight: bold;">Saldo</td>
+                                    <td id="expenses-total-footer" style="font-weight: bold;">Bs. 0,00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Inventory -->
+                <div id="view-inventory" class="view">
+                    <div class="action-bar">
+                        <h2>Control de Inventario</h2>
+                        <div class="filter-group">
+                            <span class="badge badge-warning" id="low-stock-alert" style="display: none;">¡Alertas de Stock Bajo!</span>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Ingrediente</th>
+                                    <th>Stock Actual</th>
+                                    <th>Stock Mínimo</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Recipes -->
+                <div id="view-recipes" class="view">
+                    <div class="action-bar">
+                        <h2>Recetas y Escandallos</h2>
+                        <button class="btn btn-primary" onclick="openModal('modal-recipe')"><i class="fas fa-plus"></i> Nueva Receta</button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="recipes-table">
+                            <thead>
+                                <tr>
+                                    <th>Plato</th>
+                                    <th>Costo Producción</th>
+                                    <th>Precio Sugerido (30% Margen)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- View: Reports -->
+                <div id="view-reports" class="view">
+                    <div class="action-bar">
+                        <h2>Reportes y Resumen Financiero</h2>
+                        <button class="btn btn-success" onclick="exportToCSV()"><i class="fas fa-file-excel"></i> Exportar a Excel (CSV)</button>
+                    </div>
+                    
+                    <div class="kpi-grid" style="margin-bottom: 30px;">
+                        <div class="kpi-card">
+                            <div class="kpi-info">
+                                <h3>Total Ventas</h3>
+                                <p class="kpi-value" id="report-total-sales">Bs. 0.00</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-info">
+                                <h3>Total Gastos</h3>
+                                <p class="kpi-value" id="report-total-expenses">Bs. 0.00</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card" style="border-left: 5px solid var(--success-color);">
+                            <div class="kpi-info">
+                                <h3>Utilidad Neta</h3>
+                                <p class="kpi-value" id="report-net-profit" style="color: var(--success-color);">Bs. 0.00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="table-container">
+                            <h3 style="padding: 15px; border-bottom: 1px solid var(--border-color);">Ventas por Plato</h3>
+                            <table id="report-dishes-table">
+                                <thead><tr><th>Plato</th><th>Total Vendido</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="table-container">
+                            <h3 style="padding: 15px; border-bottom: 1px solid var(--border-color);">Ventas por Método de Pago</h3>
+                            <table id="report-payments-table">
+                                <thead><tr><th>Método</th><th>Total</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View: Settings -->
+                <div id="view-settings" class="view">
+                    <div class="action-bar">
+                        <h2>Configuración y Datos</h2>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-database"></i> Gestión de Datos</h3>
+                            <p>Descarga una copia de seguridad de todos tus datos o restaura una previa.</p>
+                            <div class="settings-actions">
+                                <button class="btn btn-primary" onclick="exportBackup()"><i class="fas fa-download"></i> Exportar Backup (JSON)</button>
+                                <div class="file-input-wrapper">
+                                    <button class="btn btn-success"><i class="fas fa-upload"></i> Importar Backup</button>
+                                    <input type="file" id="import-file" accept=".json" onchange="importBackup(event)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card danger">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Zona de Peligro</h3>
+                            <p>Borra permanentemente todos los datos del CRM. Esta acción no se puede deshacer.</p>
+                            <button class="btn btn-danger" onclick="clearAllData()"><i class="fas fa-trash-alt"></i> Borrar Todo</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal: Sale -->
+    <div id="modal-sale" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-sale')">&times;</span>
+            <h2>Nueva Venta</h2>
+            <form id="form-sale" onsubmit="submitSale(event)">
+                <div class="form-group">
+                    <label>Plato</label>
+                    <input type="text" id="sale-dish" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="number" id="sale-quantity" step="0.01" min="0.01" oninput="calculateSaleTotal()" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Precio Unitario (Bs)</label>
+                        <input type="number" id="sale-price" step="0.01" min="0" oninput="calculateSaleTotal()" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Total (Automático)</label>
+                    <input type="text" id="sale-total" disabled value="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Método de Pago</label>
+                    <select id="sale-payment" required>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="QR">QR</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Guardar Venta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Expense -->
+    <div id="modal-expense" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-expense')">&times;</span>
+            <h2>Nueva Compra / Gasto</h2>
+            <form id="form-expense" onsubmit="submitExpense(event)">
+                <div class="form-group">
+                    <label>Ítem / Ingrediente</label>
+                    <input type="text" id="expense-item" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select id="expense-category" required>
+                        <option value="Ingrediente">Ingrediente</option>
+                        <option value="Insumo">Insumo</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cantidad / Peso</label>
+                        <input type="number" id="expense-quantity" step="0.01" min="0.01" oninput="calculateExpenseTotal()" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Precio Unitario (Bs)</label>
+                        <input type="number" id="expense-price" step="0.01" min="0" oninput="calculateExpenseTotal()" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Total (Automático)</label>
+                    <input type="text" id="expense-total" disabled value="0.00">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Guardar Gasto</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Recipe -->
+    <div id="modal-recipe" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeModal('modal-recipe')">&times;</span>
+            <h2>Nueva Receta / Escandallo</h2>
+            <form id="form-recipe" onsubmit="submitRecipe(event)">
+                <div class="form-group">
+                    <label>Nombre del Plato</label>
+                    <input type="text" id="recipe-dish-name" required>
+                </div>
+                
+                <div id="recipe-ingredients-list">
+                    <label>Ingredientes e Insumos</label>
+                    <div class="ingredient-row-header" style="display: flex; gap: 10px; margin-bottom: 5px; font-weight: 600; font-size: 0.8rem;">
+                        <span style="flex: 2;">Ítem</span>
+                        <span style="flex: 1;">Cantidad</span>
+                        <span style="flex: 1;">Costo Est.</span>
+                        <span style="width: 30px;"></span>
+                    </div>
+                </div>
+                <button type="button" class="btn" style="margin-bottom: 20px;" onclick="addIngredientRow()">
+                    <i class="fas fa-plus"></i> Añadir Ingrediente
+                </button>
+
+                <div class="form-group">
+                    <label>Costo Total del Plato (Bs.)</label>
+                    <input type="text" id="recipe-total-cost" disabled value="0.00">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Guardar Receta</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
+

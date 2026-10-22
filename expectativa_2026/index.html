@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urubó Green Park - Campaña de Expectativa 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2.1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Admin Controls -->
+    <button id="admin-login-btn" title="Panel de Gestión">&#128274;</button>
+
+    <!-- Login Modal -->
+    <div id="admin-login-overlay">
+        <div id="admin-login-modal">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">Acceso de Administración</h3>
+            <input type="password" id="admin-pwd" placeholder="Contraseña">
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                <button id="admin-login-submit">Entrar</button>
+                <button id="admin-login-cancel">Cancelar</button>
+            </div>
+            <p id="admin-error" style="color: #e91e63; font-size: 0.85rem; margin-top: 1rem; display: none;">Contraseña incorrecta</p>
+        </div>
+    </div>
+
+    <!-- Admin Toolbar -->
+    <div id="admin-toolbar">
+        <span style="font-weight: 600; color: #fff;">Modo Edición Activo <span style="font-size:0.8rem;opacity:0.7;">(Haz clic en los textos para editar)</span></span>
+        <div style="display: flex; gap: 1rem;">
+            <button id="admin-save-btn" style="background: var(--accent); color: #000; border-color: var(--accent);">Guardar Cambios</button>
+            <button id="admin-exit-btn" style="border-color: rgba(255,255,255,0.5); color: #fff;">Salir</button>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+
+
+    <div class="logo-overlay">
+        <img src="assets/logo.png" alt="Urubó Green Park Logo">
+    </div>
+
+    <div id="presentation-container">
+        <!-- Slide 1: Portada -->
+        <section class="slide active" id="slide-1">
+            <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000')"></div>
+            <div class="overlay"></div>
+            <div class="content">
+                <p class="branding reveal reveal-1">CAMPAÑA DE EXPECTATIVA</p>
+                <h1 class="reveal reveal-2">URUBÓ<br><span class="accent">GREEN PARK</span></h1>
+                <div class="divider reveal reveal-3" style="margin: 2rem auto;"></div>
+                <p class="reveal reveal-4" style="font-size: 1.5rem; max-width: 800px; margin: 0 auto; opacity: 0.9;">
+                    Estrategia de Posicionamiento Digital y Teaser para el Lanzamiento Inmobiliario más Exclusivo de 2026.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Estrategia Mayo - Agosto -->
+        <section class="slide" id="slide-2">
+            <div class="split-layout">
+                <div class="split-left">
+                    <p class="branding">CRONOGRAMA</p>
+                    <h2>Estrategia Mayo - Agosto:<br><span class="accent">El Embudo de Intriga</span></h2>
+                    <div class="timeline-container reveal reveal-2">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>MAYO</h3>
+                                <p><strong>CURIOSIDAD</strong><br>El suelo, el origen, el misterio.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>JUNIO</h3>
+                                <p><strong>INTRIGA</strong><br>Estilo de vida y pinceladas de lujo.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>JULIO</h3>
+                                <p><strong>EXCLUSIVIDAD</strong><br>Acceso VIP y lista de espera.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>AGOSTO</h3>
+                                <p><strong>REVELACIÓN</strong><br>Gran Lanzamiento y Apertura.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-right" style="background-image: url('assets/slide2.jpg')">
+                    <div class="quote-box reveal reveal-3">
+                        <p>"No vendemos lotes, vendemos el privilegio de ser parte del secreto mejor guardado del Urubó."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Frecuencia de Publicación -->
+        <section class="slide" id="slide-3">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <h2>Frecuencia de <span class="accent">Publicación Sugerida</span></h2>
+
+                </div>
+                <div class="full-green-content">
+                    <table class="corporate-table reveal reveal-1">
+                        <thead>
+                            <tr>
+                                <th>Red Social</th>
+                                <th>Días Recomendados</th>
+                                <th>Frecuencia Semanal</th>
+                                <th>Enfoque Teaser</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Facebook</strong></td>
+                                <td>Mar, Jue, Sáb</td>
+                                <td>2-3 Orgánicos</td>
+                                <td>Comunidad e Inversión Segura.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instagram</strong></td>
+                                <td>Lun, Mié, Vie, Dom</td>
+                                <td>4+ Reels/Stories</td>
+                                <td>Estética, Lujo y Naturaleza.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LinkedIn</strong></td>
+                                <td>Mar, Jue</td>
+                                <td>1-2 Profesionales</td>
+                                <td>Plusvalía y Visión Empresarial.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="expert-tips reveal reveal-2">
+                        <h3>Consejos rápidos</h3>
+                        <div class="tips-row">
+                            <p>🌿 Publicar contenido de "textura" (naturaleza/luz) a inicios de semana.</p>
+                            <p>🎬 Usar Miércoles/Viernes para Reels cortos de intriga.</p>
+                            <p>👨‍👩‍👧‍👦 Los Domingos son para contenido emocional de familia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Mayo 2026 -->
+        <section class="slide" id="slide-4">
+            <div class="split-layout">
+                <div class="split-left">
+                    <p class="branding">MAYO 2026</p>
+                    <h2>El Despertar del <span class="accent">Misterio</span></h2>
+                    <div class="study-card reveal reveal-1">
+                        <h3>Campaña: "Algo está creciendo en el Urubó"</h3>
+                        <p>Inicia el interés sin revelar el nombre completo ni renders finales. Foco en la tierra y la ubicación estratégica.</p>
+                    </div>
+                    <div class="ads-list-container reveal reveal-2">
+                        <div class="ads-item">
+                            <h3>Guía de imagen</h3>
+                            <p>Macrofotografía de vegetación nativa, detalles de suelo fértil y luces de atardecer filtradas por los árboles.</p>
+                        </div>
+                        <div class="ads-item highlight">
+                            <h3>Frase de refuerzo</h3>
+                            <p>"La naturaleza está reclamando su lugar en el lujo."</p>
+                        </div>
+                    </div>
+                    <ul class="checklist reveal reveal-3">
+                        <li>Video corto con audio de bosque</li>
+                        <li>Post patrocinado localmente (Santa Cruz)</li>
+                        <li>Historias con encuestas de "Adivina el Lugar"</li>
+                    </ul>
+                </div>
+                <div class="split-right" style="background-image: url('assets/slide4.jpg')"></div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Junio 2026 -->
+        <section class="slide" id="slide-5">
+            <div class="split-layout">
+                <div class="split-right" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=2000')"></div>
+                <div class="split-left">
+                    <p class="branding">JUNIO 2026</p>
+                    <h2>Despertando el <span class="accent">Deseo</span></h2>
+                    <div class="study-card reveal reveal-1">
+                        <h3>Campaña: "El lujo cambia de color"</h3>
+                        <p>Introducción de elementos arquitectónicos abstractos. Siluetas de lo que será el Country Club o la piscina infinita.</p>
+                    </div>
+                    <div class="ads-list-container reveal reveal-2">
+                        <div class="ads-item">
+                            <h3>Guía de imagen</h3>
+                            <p>Vistas aéreas del Urubó con gráficos minimalistas. Detalles de materiales: mármol, madera y vidrio en entorno verde.</p>
+                        </div>
+                        <div class="ads-item highlight">
+                            <h3>Frase de refuerzo</h3>
+                            <p>"Diseño que respira. Exclusividad que se siente."</p>
+                        </div>
+                    </div>
+                    <ul class="checklist reveal reveal-3">
+                        <li>Reels de texturas arquitectónicas</li>
+                        <li>Infografía de conectividad (Puente Mario Foianini)</li>
+                        <li>Campaña de interacción "Tu Oasis Ideal"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Julio 2026 -->
+        <section class="slide" id="slide-6">
+            <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=2000')"></div>
+            <div class="overlay darker"></div>
+            <div class="content full-width">
+                <p class="branding">JULIO 2026</p>
+                <h2>La Cuenta Regresiva <span class="accent">VIP</span></h2>
+                <div class="countdown-header reveal reveal-1">
+                    <h1 class="accent" style="font-size: 5rem;">FALTAN 30 DÍAS</h1>
+                    <p style="font-size: 1.8rem; font-weight: 600;">El Secreto deja de serlo. Solo para visionarios.</p>
+                </div>
+                <div class="investment-matrix reveal reveal-2" style="margin-top: 3rem;">
+                    <div class="rule-card">
+                        <h3>Campaña</h3>
+                        <p style="font-size: 1.5rem; color: var(--accent);">"Cruza el puente a lo extraordinario"</p>
+                        <p style="margin-top: 1rem; opacity: 0.8;">Invitación directa a la lista de espera VIP para precios de Pre-Lanzamiento. Foco en la escasez (unidades limitadas).</p>
+                    </div>
+                    <div class="rule-card">
+                        <h3>Acciones Clave</h3>
+                        <ul class="checklist">
+                            <li>Anuncios de generación de leads (Facebook Ads)</li>
+                            <li>Countdown interactivo en Instagram Stories</li>
+                            <li>Email marketing para base de inversores</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ads-item highlight reveal reveal-3" style="max-width: 800px; margin: 2rem auto;">
+                    <p><strong>Frase de refuerzo:</strong> "El privilegio de llegar primero. Regístrate hoy."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Agosto 2026 -->
+        <section class="slide" id="slide-7">
+            <div class="split-layout">
+                <div class="split-left">
+                    <p class="branding">AGOSTO 2026</p>
+                    <h2>El Gran <span class="accent">Lanzamiento</span></h2>
+                    <div class="study-card reveal reveal-1">
+                        <h3>Campaña: "URUBÓ GREEN PARK: Tu Naturaleza, Tu Hogar"</h3>
+                        <p>Revelación completa. Apertura de la oficina de ventas y evento central Open House.</p>
+                    </div>
+                    <div class="ads-list-container reveal reveal-2">
+                        <div class="ads-item">
+                            <h3>Guía de imagen</h3>
+                            <p>Familias reales disfrutando del entorno (UGC). Renders finales hiperrealistas. La marca ya no es un misterio.</p>
+                        </div>
+                        <div class="ads-item highlight">
+                            <h3>Frase de refuerzo</h3>
+                            <p>"Bienvenido a la cima del bienestar."</p>
+                        </div>
+                    </div>
+                    <ul class="checklist reveal reveal-3">
+                        <li>Video de lanzamiento oficial (2 mins)</li>
+                        <li>Live desde el terreno / Showroom</li>
+                        <li>Anuncios dinámicos por catálogo de lotes</li>
+                    </ul>
+                </div>
+                <div class="split-right" style="background-image: url('assets/slide7.jpg')"></div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Directrices Visuales -->
+        <section class="slide" id="slide-8">
+            <div class="content full-width">
+                <p class="branding">BRANDING</p>
+                <h2>Directrices <span class="accent">Visuales y Tonos</span></h2>
+                <div class="investment-grid reveal reveal-1">
+                    <div class="budget-card">
+                        <div class="color-circle" style="background: #2e7e33;"></div>
+                        <h3>Pantone 7742 C</h3>
+                        <p class="accent">#2e7e33</p>
+                        <p>Base y autoridad.</p>
+                    </div>
+                    <div class="budget-card">
+                        <div class="color-circle" style="background: #549fd7;"></div>
+                        <h3>Pantone 660 C</h3>
+                        <p class="accent">#549fd7</p>
+                        <p>Lujo y detalle.</p>
+                    </div>
+                    <div class="budget-card">
+                        <div class="icon">☀️</div>
+                        <h3>Golden Hour</h3>
+                        <p>Iluminación cálida y aspiracional.</p>
+                    </div>
+                    <div class="budget-card">
+                        <div class="icon">🖋️</div>
+                        <h3>Tono</h3>
+                        <p>Elegante, reservado y exclusivo.</p>
+                    </div>
+                </div>
+                <p class="reveal reveal-2" style="margin-top: 3rem; font-style: italic; opacity: 0.8;">
+                    "Todas las imágenes de expectativa deben evitar el 'ruido visual'. Espacios limpios, tipografía minimalista y alta resolución son obligatorios para mantener el estatus de la marca."
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 9: Consejos de Implementación -->
+        <section class="slide" id="slide-9">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <h2>Consejos de <span class="accent">Implementación</span></h2>
+
+                </div>
+                <div class="full-green-content">
+                    <div class="gold-tips-container reveal reveal-1">
+                        <ul class="gold-tips-list">
+                            <li><strong>Presupuesto Progresivo:</strong> Destinar el 20% en Mayo, 30% en Junio, 50% entre Julio y Agosto para maximizar el impacto del Reveal.</li>
+                            <li><strong>Segmentación Dual:</strong> Crear audiencias de "Interés" (Golf, Lujo, Inversión) y "Afinidad" (Entorno familiar, Bienestar) en Facebook/Instagram Ads.</li>
+                            <li><strong>Respuesta Rápida:</strong> Al ser expectativa, los leads son de alta curiosidad. El equipo de ventas debe estar listo para invitarlos a la "Lista VIP" inmediatamente.</li>
+                            <li><strong>Uso de Influencers:</strong> Durante Julio, invitar a 2 micro-influencers de estilo de vida local para mostrar el "avance" secreto del proyecto.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Final -->
+        <section class="slide" id="slide-10">
+            <div class="bg-image" style="background-image: url('assets/slide10.jpg')"></div>
+            <div class="overlay darker"></div>
+            <div class="content">
+                <h1 class="reveal reveal-1" style="font-size: 5.5rem;">¿Listos para el <span class="accent">Reveal?</span></h1>
+                <div class="divider reveal reveal-2" style="margin: 2rem auto; width: 200px;"></div>
+                <p class="reveal reveal-3" style="font-size: 1.8rem; margin-bottom: 3rem;">Urubó Green Park - Gestión de Expectativa 2026</p>
+                <a href="mailto:contacto@urubogreenpark.com" class="cta-button reveal reveal-4">contacto@urubogreenpark.com</a>
+                <p class="reveal reveal-5" style="margin-top: 4rem; opacity: 0.6; font-size: 0.9rem;">Estrategia confidencial elaborada para el equipo comercial y de marketing.</p>
+            </div>
+        </section>
+    </div>
+
+    <nav class="navigation-controls">
+        <!-- Slide Search Button -->
+        <button id="search-btn" title="Buscar Slide" style="border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); padding: 0.8rem 1rem;">&#9776;</button>
+        <button id="prevBtn">ANTERIOR</button>
+        <div class="slide-numbers">
+            <span id="currentSlideNum">1</span> / 10
+        </div>
+        <button id="nextBtn">SIGUIENTE</button>
+    </nav>
+
+    <!-- Slide Search Panel -->
+    <div id="slide-search-panel">
+        <div id="slide-search-header">
+            <input type="text" id="slide-search-input" placeholder="Buscar slide por nombre..." autocomplete="off">
+            <button id="slide-search-close">&times;</button>
+        </div>
+        <ul id="slide-search-list"></ul>
+    </div>
+    <div id="slide-search-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

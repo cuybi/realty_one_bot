@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM & Panel de Administración - One Chatbot IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Sidebar de Navegación -->
+    <aside class="admin-sidebar">
+        <div class="admin-brand" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+            <img src="../assets/logo_horizontal.svg" alt="Realty ONE Group Bolivia" style="width: 100%; max-width: 210px; height: auto; object-fit: contain;">
+            <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.5px;">PANEL CRM IA</div>
+        </div>
+
+        <nav class="admin-nav">
+            <a class="nav-item active" data-tab="tab-leads">
+                <span>👥</span> Prospectos / Leads
+            </a>
+            <a class="nav-item" data-tab="tab-properties">
+                <span>🏡</span> Catálogo Inmuebles
+            </a>
+            <a href="../setup.php" class="nav-item" target="_blank">
+                <span>⚙️</span> Ajustes & Base de Datos
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="btn-back-web" target="_blank">
+                🌐 Ver Web & Chatbot
+            </a>
+        </div>
+    </aside>
+
+    <!-- Área Principal de Contenido -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div class="header-title">
+                <h1>Panel de Control Inmobiliario</h1>
+                <p>Gestión inteligente de prospectos, visitas y propiedades</p>
+            </div>
+            <div class="header-actions">
+                <a href="../api/leads.php?export=csv" class="btn-action btn-secondary" title="Descargar en formato Excel / CSV">
+                    📥 Exportar Leads CSV
+                </a>
+                <button class="btn-action" onclick="openNewPropertyModal()">
+                    ➕ Nueva Propiedad
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <!-- Tarjetas de Métricas / KPIs -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h4>Total Leads</h4>
+                        <div id="statTotalLeads" class="stat-number">0</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #60a5fa; background: rgba(59, 130, 246, 0.15);">✨</div>
+                    <div class="stat-info">
+                        <h4>Nuevos Hoy</h4>
+                        <div id="statTodayLeads" class="stat-number">0</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #34d399; background: rgba(16, 185, 129, 0.15);">🔥</div>
+                    <div class="stat-info">
+                        <h4>Alta Intención</h4>
+                        <div id="statQualifiedLeads" class="stat-number">0</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: var(--accent); background: rgba(212, 175, 55, 0.15);">📅</div>
+                    <div class="stat-info">
+                        <h4>Visitas Agendadas</h4>
+                        <div id="statScheduledVisits" class="stat-number">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESTAÑA 1: PROSPECTOS / LEADS CRM -->
+            <section id="tab-leads" class="tab-content active">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 style="font-size: 16px; font-weight: 800;">Prospectos Capturados por la IA</h3>
+                        <div class="filter-bar">
+                            <input type="text" id="searchLeadInput" class="admin-input" placeholder="Buscar por nombre, tel...">
+                            <select id="filterLeadStatus" class="admin-input">
+                                <option value="">Todos los Estados</option>
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Calificado">Calificado</option>
+                                <option value="Contactado">Contactado</option>
+                                <option value="Visita Agendada">Visita Agendada</option>
+                                <option value="Cerrado">Cerrado</option>
+                                <option value="Descartado">Descartado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>WhatsApp</th>
+                                    <th>Visita Agendada</th>
+                                    <th>Anuncio Origen</th>
+                                    <th>Score</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leadsTableBody">
+                                <!-- Se llena vía JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PESTAÑA 2: CATÁLOGO DE PROPIEDADES -->
+            <section id="tab-properties" class="tab-content">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 style="font-size: 16px; font-weight: 800;">Catálogo Inmobiliario</h3>
+                        <button class="btn-action" onclick="openNewPropertyModal()">
+                            ➕ Agregar Inmueble
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Título & Tipo</th>
+                                    <th>Precio</th>
+                                    <th>Zona</th>
+                                    <th>Distribución</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="propertiesTableBody">
+                                <!-- Se llena vía JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL DETALLE DE LEAD Y TRANSCRIPCIÓN -->
+    <div id="leadModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 style="font-size: 16px; font-weight: 800;">Detalle del Prospecto y Chat</h3>
+                <button class="btn-header-icon" onclick="closeLeadModal()" style="font-size: 18px; color: #fff; background: none; border: none; cursor: pointer;">✕</button>
+            </div>
+            <div id="leadModalContent" class="modal-body">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVA PROPIEDAD -->
+    <div id="propertyModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 style="font-size: 16px; font-weight: 800;">Registrar Nueva Propiedad</h3>
+                <button class="btn-header-icon" onclick="closePropertyModal()" style="font-size: 18px; color: #fff; background: none; border: none; cursor: pointer;">✕</button>
+            </div>
+            <form id="propertyForm" class="modal-body">
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Título de la Propiedad</label>
+                    <input type="text" id="propTitle" class="admin-input" style="width:100%;" placeholder="ej. Casa de 4 Dormitorios en Urubó con Piscina" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Tipo de Inmueble</label>
+                        <select id="propType" class="admin-input" style="width:100%;">
+                            <option value="Departamento">Departamento</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Penthouse">Penthouse</option>
+                            <option value="Terreno">Terreno</option>
+                            <option value="Oficina">Oficina</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Operación</label>
+                        <select id="propOperation" class="admin-input" style="width:100%;">
+                            <option value="Venta">Venta</option>
+                            <option value="Alquiler">Alquiler</option>
+                            <option value="Anticrético">Anticrético</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Precio</label>
+                        <input type="number" id="propPrice" class="admin-input" style="width:100%;" placeholder="ej. 150000" step="0.01" required>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Moneda</label>
+                        <select id="propCurrency" class="admin-input" style="width:100%;">
+                            <option value="USD">USD ($)</option>
+                            <option value="BOB">BOB (Bs)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Zona / Ubicación</label>
+                    <input type="text" id="propZone" class="admin-input" style="width:100%;" placeholder="ej. Urubó, Equipetrol, Sirari" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                    <div>
+                        <label style="font-size: 11px; font-weight: 700; display: block; margin-bottom: 4px;">Dormitorios</label>
+                        <input type="number" id="propBedrooms" class="admin-input" style="width:100%;" value="2">
+                    </div>
+                    <div>
+                        <label style="font-size: 11px; font-weight: 700; display: block; margin-bottom: 4px;">Baños</label>
+                        <input type="number" id="propBathrooms" class="admin-input" style="width:100%;" value="2">
+                    </div>
+                    <div>
+                        <label style="font-size: 11px; font-weight: 700; display: block; margin-bottom: 4px;">Área (m²)</label>
+                        <input type="number" id="propArea" class="admin-input" style="width:100%;" value="120" step="0.1">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">URL Imagen Principal</label>
+                    <input type="url" id="propImage" class="admin-input" style="width:100%;" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Características (separadas por coma)</label>
+                    <input type="text" id="propFeatures" class="admin-input" style="width:100%;" placeholder="Piscina, Churrasquera, Seguridad 24/7">
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 12px; font-weight: 700; display: block; margin-bottom: 4px;">Descripción Detallada</label>
+                    <textarea id="propDesc" class="admin-input" rows="2" style="width:100%;" placeholder="Escribe detalles del inmueble..."></textarea>
+                </div>
+
+                <div style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="propFeatured" style="width: 16px; height: 16px;">
+                    <label for="propFeatured" style="font-size: 13px; font-weight: 600; cursor: pointer;">⭐ Marcar como propiedad destacada</label>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-action btn-secondary" onclick="closePropertyModal()">Cancelar</button>
+                    <button type="submit" class="btn-action">Guardar Propiedad</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

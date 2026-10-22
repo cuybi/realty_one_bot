@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piscina Playa - Urubó Green Park</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .icon-dynamic {
+            animation: iconFloat 4s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            text-decoration: none !important;
+            display: block;
+        }
+        .icon-dynamic:hover {
+            transform: scale(1.15) !important;
+            animation-play-state: paused;
+        }
+        .icon-dynamic:hover .icon-circle {
+            background: var(--primary) !important;
+            box-shadow: 0 15px 30px rgba(46, 126, 51, 0.4) !important;
+        }
+        .icon-circle {
+            transition: all 0.4s ease !important;
+        }
+        .section-title {
+            font-size: 1.4rem !important;
+            letter-spacing: 5px !important;
+            font-weight: 700 !important;
+            margin-bottom: 15px !important;
+            text-transform: uppercase;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header id="header" class="scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Urubó Green Park">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="has-dropdown">
+                    <a href="index.html#acerca">Acerca de <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="piscina.html">Piscinas</a></li>
+                        <li><a href="piscina-playa.html">Piscina Playa</a></li>
+                        <li><a href="area-comercial.html">Área comercial</a></li>
+                        <li><a href="club-house.html">Club House</a></li>
+                        <li><a href="gimnasio.html">Gimnasio</a></li>
+                        <li><a href="saunas.html">Saunas</a></li>
+                        <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                        <li><a href="mirador.html">Mirador</a></li>
+                        <li><a href="area-verde.html">Áreas Verdes</a></li>
+                        <li><a href="churrasquera.html">Churrasqueras</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="index.html#plano-total">Plano Total <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#recreacion">Recreación</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li class="mobile-has-dropdown active">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Acerca de <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown active" id="mobileDropdown">
+                    <li><a href="piscina.html">Piscinas</a></li>
+                    <li><a href="piscina-playa.html" class="active">Piscina Playa</a></li>
+                    <li><a href="area-comercial.html">Área comercial</a></li>
+                    <li><a href="club-house.html">Club House</a></li>
+                    <li><a href="gimnasio.html">Gimnasio</a></li>
+                    <li><a href="saunas.html">Saunas</a></li>
+                    <li><a href="parque-infantil.html">Parque Infantil</a></li>
+                    <li><a href="mirador.html">Mirador</a></li>
+                    <li><a href="area-verde.html">Áreas Verdes</a></li>
+                    <li><a href="churrasquera.html">Churrasqueras</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-dropdown">
+                <a href="javascript:void(0)" class="mobile-dropdown-toggle">Plano Total <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="index.html#plano-total">Ver Plano</a></li>
+                    <li><a href="disponibilidad.html">Disponibilidad</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#recreacion">Recreación</a></li>
+            <li><a href="index.html#galeria">Galería</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+    </div>
+
+    <section class="amenity-hero" style="background-image: url('piscina_playa_hero.png');">
+        <div class="container">
+            <h1 class="reveal-init" data-cms-id="hero-title">PISCINA PLAYA</h1>
+            <p class="reveal-init" data-cms-id="hero-subtitle">Siente la suavidad de la arena blanca y la calma de nuestras aguas cristalinas.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="amenity-main-grid">
+                <div class="reveal-left">
+                    <img src="piscina_playa_hero.png" alt="Piscina Playa" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.2);" data-cms-id="section-img">
+                </div>
+                <div class="reveal-right">
+                    <h1 style="color: var(--primary); font-size: 1.8rem; line-height: 1.3; margin-bottom: 25px; font-family: var(--font-heading);" data-cms-id="section-title">Tu refugio costero en el corazón del Urubó</h1>
+                    <p style="font-size: 1rem; margin-bottom: 20px; color: #444;" data-cms-id="section-text">Disfruta de la exclusividad de una playa privada sin salir de casa. Nuestra piscina playa ha sido diseñada para recrear la atmósfera perfecta de relajación tropical.</p>
+                    <p style="font-weight: 700; margin-bottom: 20px; font-size: 0.95rem; color: #555;">Imagínate: arena suave, palmeras ondeando al viento y el sonido relajante de las olas.</p>
+                    
+                    <p style="font-weight: 700; margin-bottom: 15px; color: var(--text-dark); font-size: 0.95rem;">Aquí te contamos todo lo que encontrarás:</p>
+                    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.1s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Piscina con arena:</strong> Sumérgete en nuestra piscina con una suave pendiente de arena, ¡como si estuvieras en la playa de verdad!
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.2s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Palmeras y sombrillas:</strong> Relájate bajo la sombra de nuestras palmeras y sombrillas mientras disfrutas de una refrescante bebida.
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.3s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Área de juegos acuáticos:</strong> Los más pequeños se divertirán a lo grande con nuestros juegos acuáticos. ¡La risa está garantizada!
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.4s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Chiringuito:</strong> Disfruta de deliciosos cócteles y snacks en nuestro chiringuito. ¡El complemento perfecto para un día de playa!
+                        </li>
+                    </ul>
+                    
+                    <p style="font-weight: 700; margin-bottom: 15px; color: var(--text-dark); font-size: 0.95rem;">Además, en Urubó Green Park, te ofrecemos:</p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.5s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Seguridad:</strong> Nuestro equipo de salvavidas estará siempre atento para garantizar tu seguridad y la de tu familia.
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.6s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Comodidad:</strong> Contamos con vestuarios y duchas para que puedas cambiarte y refrescarte cómodamente.
+                        </li>
+                        <li class="reveal-init" style="margin-bottom: 15px; padding-left: 30px; position: relative; line-height: 1.5; font-size: 0.9rem; color: #666; transition-delay: 0.7s;">
+                            <i class="fas fa-square" style="position: absolute; left: 0; top: 6px; font-size: 0.5rem; color: #888;"></i>
+                            <strong style="color: #444;">Ambiente familiar:</strong> Disfruta de un ambiente cálido y acogedor, perfecto para compartir con amigos y familiares.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Additional Amenities Icons Row -->
+            <div class="additional-amenities-container">
+                <a href="piscina.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <span class="amenity-icon-label">Piscinas</span>
+                </a>
+                <a href="piscina-playa.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.2s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <span class="amenity-icon-label">Piscina Playa</span>
+                </a>
+                <a href="saunas.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.4s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-hot-tub"></i>
+                    </div>
+                    <span class="amenity-icon-label">Saunas</span>
+                </a>
+                <a href="churrasquera.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.6s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <span class="amenity-icon-label">Churrasqueras</span>
+                </a>
+                <a href="gimnasio.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 0.8s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <span class="amenity-icon-label">Gimnasio</span>
+                </a>
+                <a href="parque-infantil.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.0s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <span class="amenity-icon-label">Parque Infantil</span>
+                </a>
+                <a href="mirador.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.2s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <span class="amenity-icon-label">Mirador</span>
+                </a>
+                <a href="area-verde.html" class="icon-dynamic amenity-icon-box" style="animation-delay: 1.4s;">
+                    <div class="icon-circle amenity-icon-circle">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="amenity-icon-label">Áreas Verdes</span>
+                </a>
+            </div>
+
+            <div class="reveal-init" style="margin-top: 80px; text-align: center;">
+                <a href="index.html#recreacion" class="btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 12px 40px; border-radius: 50px; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
+                    <i class="fas fa-arrow-left"></i> Volver a Recreación
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: white; padding: 60px 0;">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <img src="logo.png" alt="Logo" style="height: 60px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p>Exclusividad y armonía con la naturaleza en el Urubó.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <p data-cms-id="global-phone">Móvil: +591 67866003</p>
+                <p data-cms-id="global-address">Santa Cruz de la Sierra - Bolivia</p>
+                <a href="admin.html" style="color: rgba(255,255,255,0.6); margin-top: 20px; display: inline-block; font-size: 0.8rem; text-decoration: none;"><i class="fas fa-lock"></i> Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="cms-engine.js"></script>
+</body>
+</html>

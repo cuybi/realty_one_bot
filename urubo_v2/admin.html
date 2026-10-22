@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urubó Admin | Gestión de Proyecto Total</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7e33;
+            --accent: #549fd7;
+            --dark: #111;
+            --darker: #000;
+            --gray: #222;
+            --text-light: #fdfdfd;
+            --text-gray: #888;
+            --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--darker); color: var(--text-light); height: 100vh; overflow: hidden; }
+
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #0a1f0b, #2e7e33, #0b1a27, #549fd7);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: 10000; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(20px); opacity: 0; transition: opacity 0.6s;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #login-overlay.show { opacity: 1; }
+        .login-card {
+            background: rgba(255, 255, 255, 0.98); padding: 60px 50px; border-radius: 40px; 
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5); text-align: center; max-width: 420px; width: 92%; color: #1a1a1a;
+            position: relative;
+            transform: translateY(50px) scale(0.9); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: float 8s ease-in-out infinite;
+        }
+        .login-card::after {
+            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+            background-size: 200% 200%;
+            z-index: -1; border-radius: 45px; opacity: 0.3; filter: blur(15px);
+            animation: glowMove 6s linear infinite;
+        }
+        @keyframes glowMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(1deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        #login-overlay.show .login-card { transform: translateY(0) scale(1); }
+        .login-icon { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; animation: iconDance 3s ease-in-out infinite; }
+        @keyframes iconDance {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            50% { transform: scale(1) rotate(0deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .login-input {
+            width: 100%; padding: 18px; border: 2px solid #eee; border-radius: 15px;
+            margin-bottom: 25px; text-align: center; font-size: 1.2rem; background: #f9f9f9;
+        }
+        .login-btn {
+            width: 100%; padding: 18px; background: var(--primary); color: white;
+            border: none; border-radius: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
+            transition: var(--transition);
+        }
+        .login-btn:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .back-to-site {
+            margin-top: 25px; display: inline-flex; align-items: center; gap: 8px;
+            color: #888; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            transition: var(--transition);
+        }
+        .back-to-site:hover { color: var(--primary); transform: translateX(-5px); }
+
+        /* Admin Layout */
+        .admin-container { display: none; height: 100vh; flex-direction: row; }
+        .sidebar { width: 320px; background: var(--dark); border-right: 1px solid var(--gray); padding: 30px 20px; overflow-y: auto; }
+        .sidebar h2 { font-size: 1rem; font-weight: 700; letter-spacing: 3px; color: var(--accent); margin-bottom: 30px; text-align: center; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .nav-group-title { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 2px; margin: 25px 0 10px 10px; font-weight: 800; border-left: 3px solid var(--primary); padding-left: 8px; }
+        .nav-item {
+            padding: 10px 15px; border-radius: 8px; margin-bottom: 4px; cursor: pointer;
+            transition: var(--transition); display: flex; align-items: center; gap: 10px;
+            color: var(--text-gray); font-weight: 600; font-size: 0.85rem;
+        }
+        .nav-item:hover { background: #1a1a1a; color: white; }
+        .nav-item.active { background: var(--primary); color: white; }
+
+        .main-content { flex: 1; padding: 40px 60px; overflow-y: auto; background: var(--darker); }
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; position: sticky; top: 0; background: var(--darker); z-index: 100; padding-bottom: 20px; border-bottom: 1px solid #222; }
+        .header-actions h1 { font-size: 1.6rem; font-weight: 700; color: white; }
+        .btn-save-global { background: var(--accent); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: var(--transition); box-shadow: 0 10px 30px rgba(84, 159, 215, 0.2); }
+
+        /* Form Elements */
+        .form-section { background: var(--dark); padding: 30px; border-radius: 20px; border: 1px solid var(--gray); margin-bottom: 30px; }
+        .form-section h3 { margin-bottom: 25px; color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: var(--text-gray); font-size: 0.75rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 14px; background: #070707; border: 1px solid #2a2a2a;
+            border-radius: 10px; color: white; outline: none; transition: var(--transition); font-family: 'Outfit', sans-serif;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); background: #000; }
+        
+        .img-preview {
+            width: 120px; height: 80px; object-fit: cover; border-radius: 10px;
+            border: 1px solid #333; margin-top: 10px; display: block;
+            background: #050505;
+        }
+        .field-container { display: flex; flex-direction: column; gap: 5px; }
+        .image-field-row { display: flex; gap: 20px; align-items: flex-start; }
+        .image-field-row .field-container { flex: 1; }
+        
+        .btn-action {
+            padding: 10px 15px; color: white; border: none; border-radius: 10px; cursor: pointer; transition: var(--transition);
+        }
+        .btn-action:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        #toast { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; padding: 15px 40px; border-radius: 50px; font-weight: 700; transform: translateY(150px); transition: transform 0.5s; z-index: 100000; }
+        #toast.show { transform: translateY(0); }
+
+        /* Responsive Admin */
+        @media (max-width: 768px) {
+            body { overflow: auto; height: auto; }
+            .admin-container { flex-direction: column; height: auto; }
+            
+            .admin-mobile-toggle {
+                display: flex !important;
+                background: var(--dark);
+                padding: 15px 20px;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid var(--gray);
+                position: sticky;
+                top: 0;
+                z-index: 1001;
+            }
+
+            .sidebar { 
+                width: 100%; 
+                border-right: none; 
+                border-bottom: 1px solid var(--gray);
+                padding: 20px;
+                height: auto;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+            
+            .sidebar.active {
+                max-height: 500px;
+                overflow-y: auto;
+            }
+
+            .sidebar h2 { display: none; }
+            .main-content { padding: 25px 20px; }
+            
+            .header-actions { 
+                flex-direction: column; 
+                gap: 20px; 
+                align-items: stretch;
+                text-align: center;
+                position: relative;
+                padding-bottom: 25px;
+                border-bottom: 1px solid #222;
+                margin-top: 20px;
+            }
+            .header-actions h1 { font-size: 1.3rem; }
+            .btn-save-global { width: 100%; order: -1; }
+
+            .image-field-row { flex-direction: column; align-items: stretch; }
+            .img-preview { width: 100%; height: 180px; margin-top: 15px; }
+
+            .login-card { padding: 40px 25px; border-radius: 30px; }
+            .login-icon { font-size: 2.5rem; }
+            .login-input { font-size: 1rem; padding: 15px; }
+        }
+
+        .admin-mobile-toggle { display: none; }
+
+        @media (max-width: 480px) {
+            .sidebar { max-height: 300px; }
+            .nav-item { font-size: 0.75rem; padding: 8px 12px; }
+            .form-section { padding: 20px; }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+    <div id="login-overlay" class="show">
+        <div class="login-card" id="login-card">
+            <div class="login-icon"><i class="fas fa-lock"></i></div>
+            <h2>URUBÓ ADMIN PRO</h2>
+            <p style="margin-bottom: 30px; opacity: 0.6; font-weight: 300;">Gestión Integral de Urubó Green Park.</p>
+            <input type="password" id="admin-pass" class="login-input" placeholder="••••••••">
+            <button class="login-btn" onclick="validateLogin()">ACCEDER AL PANEL</button>
+            <br>
+            <a href="index.html" class="back-to-site"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+        </div>
+    </div>
+
+    <div class="admin-mobile-toggle" id="adminMobileToggle">
+        <span style="font-weight: 700; letter-spacing: 2px; color: var(--accent); font-size: 0.8rem;">URUBÓ ADMIN</span>
+        <button style="background: none; border: 1px solid #333; color: white; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+            <i class="fas fa-bars"></i> Menú
+        </button>
+    </div>
+
+    <div class="admin-container" id="admin-container">
+        <div class="sidebar">
+            <h2>URUBÓ ADMIN PRO</h2>
+            
+            <div class="nav-group-title">Página Principal</div>
+            <div class="nav-item active" data-tab="inicio"><i class="fas fa-home"></i> Inicio / Banner</div>
+            <div class="nav-item" data-tab="filosofia"><i class="fas fa-leaf"></i> Nuestra Filosofía</div>
+            <div class="nav-item" data-tab="recreacion_inicio"><i class="fas fa-swimmer"></i> Recreación (Home)</div>
+            <div class="nav-item" data-tab="disponibilidad"><i class="fas fa-map-marked-alt"></i> Plano / Disponibilidad</div>
+
+            <div class="nav-group-title">Amenidades</div>
+            <div class="nav-item" data-tab="piscinas"><i class="fas fa-swimmer"></i> Piscinas</div>
+            <div class="nav-item" data-tab="piscina-playa"><i class="fas fa-umbrella-beach"></i> Piscina Playa</div>
+            <div class="nav-item" data-tab="area-comercial"><i class="fas fa-shopping-cart"></i> Área Comercial</div>
+            <div class="nav-item" data-tab="club-house"><i class="fas fa-glass-cheers"></i> Club House</div>
+            <div class="nav-item" data-tab="gimnasio"><i class="fas fa-dumbbell"></i> Gimnasio</div>
+            <div class="nav-item" data-tab="saunas"><i class="fas fa-hot-tub"></i> Saunas</div>
+            <div class="nav-item" data-tab="parque-infantil"><i class="fas fa-child"></i> Parque Infantil</div>
+            <div class="nav-item" data-tab="mirador"><i class="fas fa-mountain"></i> Mirador</div>
+            <div class="nav-item" data-tab="areas-verdes"><i class="fas fa-tree"></i> Áreas Verdes</div>
+            <div class="nav-item" data-tab="churrasqueras"><i class="fas fa-fire"></i> Churrasqueras</div>
+
+            <div class="nav-group-title">Secciones Extra</div>
+            <div class="nav-item" data-tab="recreacion"><i class="fas fa-volleyball-ball"></i> Recreación</div>
+            <div class="nav-item" data-tab="galeria"><i class="fas fa-images"></i> Galería</div>
+            <div class="nav-item" data-tab="faq"><i class="fas fa-question-circle"></i> FAQ</div>
+            <div class="nav-item" data-tab="contacto"><i class="fas fa-envelope"></i> Contacto</div>
+            <div class="nav-item" data-tab="footer"><i class="fas fa-info"></i> Footer / Info Global</div>
+
+            <div class="nav-item" style="margin-top: 30px; color: #ff4b2b;" onclick="window.location.href='index.html'"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</div>
+        </div>
+
+        <div class="main-content">
+            <div class="header-actions">
+                <h1 id="tab-title">Gestión de Inicio</h1>
+                <button class="btn-save-global" onclick="saveCurrentData()">GUARDAR CAMBIOS</button>
+            </div>
+
+            <!-- Dynamic Content Area -->
+            <div id="dynamic-fields">
+                <!-- Fields will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">¡CAMBIOS GUARDADOS EXITOSAMENTE!</div>
+
+    <script>
+        const CMS_STORAGE_KEY = 'urubo_cms_data_v2';
+        let currentTabId = 'inicio';
+        
+        // Initial Data structure covering everything
+        let CMS_DATA = {
+            inicio: { 
+                hero_title: "VIVE EN EL CORAZÓN <br> DEL URUBÓ", 
+                hero_subtitle: "Imagina despertar cada mañana...",
+                hero_btn_dispo: "Solicitar Disponibilidad",
+                hero_btn_conocer: "Conocer Más",
+                hero_slides: ["hero_urubo_1.png", "hero_urubo_2.png", "hero_urubo_3.png", "hero_urubo_4.png", "hero_urubo_5.png", "hero_urubo_6.png"]
+            },
+            filosofia: { 
+                "about-label": "Nuestra Filosofía", 
+                "about-title": "LA CONEXIÓN PERFECTA...", 
+                "about-text": "Vive en un paraíso verde donde el aire es fresco, la paz es palpable y la armonía es la norma. Nuestra urbanización, un oasis de lujo y confort, te ofrece la oportunidad de conectar con la naturaleza sin renunciar a las comodidades de la vida moderna. Rodeado de árboles centenarios y exuberante vegetación, encontrarás el equilibrio perfecto entre bienestar y sofisticación. ¡Tu sueño de un hogar ideal se hace realidad aquí!", 
+                "about-img": "aerial_urubo.jpg",
+                "icon1_label": "Naturaleza",
+                "icon2_label": "Paz Total",
+                "icon3_label": "Bienestar",
+                "about_btn": "Ver Plano",
+                "mission-text": "La misión de Urubó Green Park es construir una comunidad vibrante y unida donde nuestros residentes puedan prosperar y crecer juntos. Nos dedicamos a ofrecer espacios y actividades que fomenten la interacción social, el sentido de pertenencia y el apoyo mutuo, creando un hogar donde cada persona se sienta valorada y conectada.",
+                "vision-text": "Ser una comunidad residencial unida y próspera, donde nuestros residentes se sientan orgullosos de llamar hogar. Visualizamos un entorno donde las familias crecen juntas, los vecinos se apoyan mutuamente y la naturaleza florece en armonía, creando un legado de bienestar y felicidad para las generaciones futuras."
+            },
+            recreacion_inicio: {
+                card1_title: "Piscinas",
+                card1_text: "¡La diversión está garantizada en nuestra área de piscinas! Un espacio diseñado para toda la familia...",
+                card1_img: "recreacion_piscinas.png",
+                card2_title: "Áreas deportivas",
+                card2_text: "¡La diversión y el espíritu de equipo te esperan en nuestra área deportiva!",
+                card2_img: "recreacion_deportes.png",
+                card3_title: "Camping",
+                card3_text: "Desconecta del mundo y reconecta con la naturaleza en nuestra área de camping.",
+                card3_img: "recreacion_camping.png"
+            },
+            disponibilidad: { link: "https://e-realtor.e-tech.com.bo/Proyectoes/VistaCliente/5", "dispo-text": "Ubicación privilegiada..." },
+            piscinas: { 
+                hero_title: "PISCINAS DE LUJO", 
+                hero_subtitle: "Un oasis de frescura y diversión...", 
+                section_title: "¡Tenemos todo lo que necesitas para un día perfecto!", 
+                section_text: "¿Listo para escapar del calor? Nuestra área de piscinas es el lugar perfecto...", 
+                section_img: "piscina_familia_urubo.png" 
+            },
+            "piscina-playa": { 
+                hero_title: "PISCINA PLAYA", 
+                hero_subtitle: "Siente la arena bajo tus pies...", 
+                section_title: "Experiencia de Costa Privada", 
+                section_text: "Disfruta de la exclusividad de una playa privada sin salir de casa...", 
+                section_img: "piscina_playa_hero.png" 
+            },
+            "area-comercial": { 
+                hero_title: "ÁREA COMERCIAL", 
+                hero_subtitle: "Todo lo que necesitas a un paso...", 
+                section_title: "Conveniencia y Estilo", 
+                section_text: "Tiendas, cafés y servicios esenciales dentro de tu urbanización...", 
+                section_img: "area_comercial_hero.png" 
+            },
+            "club-house": { 
+                hero_title: "CLUB HOUSE", 
+                hero_subtitle: "El corazón social del Urubó...", 
+                section_title: "Espacios de Encuentro", 
+                section_text: "Diseñado para eventos memorables y tardes de relax...", 
+                section_img: "club_house_hero.png" 
+            },
+            gimnasio: { 
+                hero_title: "GIMNASIO PROFESIONAL", 
+                hero_subtitle: "Entrena con la mejor vista...", 
+                section_title: "Salud y Bienestar", 
+                section_text: "Equipamiento de última generación para mantenerte en forma...", 
+                section_img: "gym_hero.png" 
+            },
+            saunas: { 
+                hero_title: "SAUNAS Y RELAX", 
+                hero_subtitle: "Relajación total para cuerpo y mente...", 
+                section_title: "Tu Santuario Personal", 
+                section_text: "Sauna seco y vapor para desintoxicar y relajar cada músculo...", 
+                section_img: "sauna_hero.png" 
+            },
+            "parque-infantil": { 
+                hero_title: "PARQUE INFANTIL", 
+                hero_subtitle: "Diversión segura para los más pequeños...", 
+                section_title: "Aventuras al Aire Libre", 
+                section_text: "Juegos modulares y áreas protegidas para la tranquilidad de los padres...", 
+                section_img: "kids_hero.png" 
+            },
+            mirador: { 
+                hero_title: "EL MIRADOR", 
+                hero_subtitle: "Contempla la belleza del Urubó...", 
+                section_title: "Vistas Incomparables", 
+                section_text: "El punto más alto para disfrutar de los atardeceres cruceños...", 
+                section_img: "mirador_hero.png" 
+            },
+            "areas-verdes": { 
+                hero_title: "ÁREAS VERDES", 
+                hero_subtitle: "Pulmones naturales para tu hogar...", 
+                section_title: "Naturaleza en cada Paso", 
+                section_text: "Senderos ecológicos y bosques preservados para tu familia...", 
+                section_img: "areas verdes.png" 
+            },
+            churrasqueras: { 
+                hero_title: "CHURRASQUERAS", 
+                hero_subtitle: "Momentos inolvidables entre amigos...", 
+                section_title: "Tradición y Confort", 
+                section_text: "Espacios equipados para tus parrilladas y reuniones sociales...", 
+                section_img: "churrasquera_hero.png" 
+            },
+            recreacion: { title: "RECREACIÓN", text: "Actividades para todos los gustos...", fotos: ["recreacion_deportes.png", "recreacion_piscinas.png"] },
+            galeria: { title: "GALERÍA", fotos: ["01.jpeg","02.jpeg","03.jpeg","04.jpeg","05.jpeg","06.jpeg","07.jpeg","08.jpeg","09.jpeg","010.jpeg","011.jpeg","012.jpeg","013.jpeg","014.jpeg","015.jpeg","016.jpeg","017.jpeg","018.jpeg","019.jpeg","020.jpeg","021.jpeg","022.jpeg","023.jpeg","024.jpeg","025.jpeg","026.jpeg","027.jpeg","028.jpeg","029.jpeg","030.jpeg"] },
+            faq: { 
+                title: "PREGUNTAS FRECUENTES", 
+                subtitle: "Resolvemos tus dudas",
+                items: [
+                    { q: "¿Cuál es el precio por metro cuadrado?", a: "Los precios comienzan desde los 70 USD/m², variando según la ubicación y el tamaño del lote." },
+                    { q: "¿Ofrecen planes de financiamiento?", a: "Sí, contamos con planes de financiamiento directo y facilidades de pago ajustadas a tus necesidades." },
+                    { q: "¿Qué seguridad ofrece la urbanización?", a: "Contamos con seguridad privada las 24 horas, acceso controlado y cámaras de vigilancia en todo el perímetro." },
+                    { q: "¿Cuándo se entregan los lotes?", a: "La entrega está programada para finales de este año, con toda la documentación en orden." }
+                ]
+            },
+            contacto: { 
+                title: "CONTACTO", 
+                phone: "+591 67866003", 
+                email: "info@urubogreenpark.com", 
+                whatsapp: "59167866003",
+                facebook: "#",
+                instagram: "#",
+                tiktok: "#",
+                youtube: "#"
+            },
+            footer: { address: "Barrio Equipetrol, Calle Lugones N° 10", copyright: "2026 e-tech Group" }
+        };
+
+        // ========================
+        // JSONBIN CONFIG
+        // ========================
+
+
+        function validateLogin() {
+            if (document.getElementById('admin-pass').value === "urubo2026") {
+                document.getElementById('login-overlay').classList.remove('show');
+                setTimeout(() => {
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('admin-container').style.display = 'flex';
+                    initCMS();
+                }, 600);
+            } else alert("Clave incorrecta");
+        }
+
+        // Helper: Sanitize strings for safe HTML attribute injection
+        function escapeAttr(str) {
+            if (str == null) return '';
+            return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/`/g,'&#96;');
+        }
+
+        // Helper: Check if a value is a base64 data URI
+        function isBase64(val) {
+            return typeof val === 'string' && val.startsWith('data:');
+        }
+
+        // Helper: Display label for base64 images
+        function displayValue(val) {
+            if (isBase64(val)) return '[Imagen Base64 cargada]';
+            return val || '';
+        }
+
+        // Helper: Convert Firebase object-with-numeric-keys back to array
+        function fixFirebaseArrays(obj) {
+            if (obj == null || typeof obj !== 'object') return obj;
+            if (Array.isArray(obj)) return obj.map(fixFirebaseArrays);
+            // Check if all keys are numeric (Firebase converts arrays to objects)
+            const keys = Object.keys(obj);
+            const allNumeric = keys.length > 0 && keys.every(k => /^\d+$/.test(k));
+            if (allNumeric) {
+                const arr = [];
+                keys.sort((a,b) => Number(a) - Number(b)).forEach(k => {
+                    arr.push(fixFirebaseArrays(obj[k]));
+                });
+                return arr;
+            }
+            // Recurse into nested objects
+            const result = {};
+            keys.forEach(k => { result[k] = fixFirebaseArrays(obj[k]); });
+            return result;
+        }
+
+        function initCMS() {
+            // STEP 1: Render immediately with local/default data
+            try {
+                renderTab(currentTabId);
+            } catch(e) {
+                console.error("Error al renderizar tab:", e);
+                document.getElementById('dynamic-fields').innerHTML = '<p style="color:orange; padding:20px;">Error al cargar: ' + e.message + '</p>';
+            }
+            
+            // STEP 2: Set up navigation click handlers immediately
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    currentTabId = this.dataset.tab;
+                    try {
+                        renderTab(currentTabId);
+                    } catch(e) {
+                        console.error("Error al renderizar tab:", e);
+                        document.getElementById('dynamic-fields').innerHTML = '<p style="color:orange; padding:20px;">Error al cargar esta sección: ' + e.message + '</p>';
+                    }
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.sidebar').classList.remove('active');
+                    }
+                });
+            });
+
+            // Mobile Toggle Logic
+            const mobileToggle = document.getElementById('adminMobileToggle');
+            const sidebar = document.querySelector('.sidebar');
+            if (mobileToggle) {
+                mobileToggle.onclick = () => {
+                    sidebar.classList.toggle('active');
+                };
+            }
+
+            // STEP 3: Load Firebase data in background (non-blocking)
+            loadFirebaseData();
+        }
+
+        async function loadFirebaseData() {
+            const firebaseUrl = 'https://urubo-green-park-default-rtdb.firebaseio.com/cms_data.json';
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 10000);
+                const res = await fetch(firebaseUrl, { signal: controller.signal });
+                clearTimeout(timeout);
+                if (res.ok) {
+                    let firebaseData = await res.json();
+                    if (firebaseData) {
+                        firebaseData = fixFirebaseArrays(firebaseData);
+                        Object.keys(firebaseData).forEach(key => {
+                            if (CMS_DATA[key]) {
+                                CMS_DATA[key] = { ...CMS_DATA[key], ...firebaseData[key] };
+                            }
+                        });
+                        // Re-render current tab with cloud data
+                        try { renderTab(currentTabId); } catch(e) { console.error(e); }
+                    }
+                }
+            } catch(e) { 
+                console.warn("Firebase no disponible, usando datos locales:", e.message); 
+            }
+        }
+
+        function renderTab(tabId) {
+            const container = document.getElementById('dynamic-fields');
+            const titleEl = document.getElementById('tab-title');
+            titleEl.textContent = 'Gestión de ' + tabId.replace('-', ' ').toUpperCase();
+            
+            const data = CMS_DATA[tabId];
+            if (!data) {
+                container.innerHTML = '<p style="color:red; padding:20px;">Error: No hay datos para esta sección.</p>';
+                return;
+            }
+            
+            let html = '<div class="form-section">';
+            
+            Object.keys(data).forEach(key => {
+                const label = key.replace(/_/g, ' ').toUpperCase();
+                const value = data[key];
+                
+                if (value == null) {
+                    html += '<div class="form-group"><label>' + label + '</label><input type="text" id="field-' + key + '" value=""></div>';
+                    return;
+                }
+                
+                if (Array.isArray(value)) {
+                    html += '<div class="form-group">';
+                    html += '<label>' + label + '</label>';
+                    html += '<div id="list-' + key + '" style="display:flex; flex-direction:column; gap: 15px; margin-top:10px;">';
+                    value.forEach(function(item, index) {
+                        if (typeof item === 'object' && item !== null) {
+                            var qVal = escapeAttr(item.q || '');
+                            var aVal = item.a || '';
+                            html += '<div class="form-section" style="padding:20px; margin-bottom:0; position:relative; background:#0a0a0a; border: 1px solid #333;">';
+                            html += '<button onclick="removeFromList(\'' + key + '\', ' + index + ')" style="position:absolute; top:-10px; right:-10px; background:#ff4b2b; color:white; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; font-weight:bold; z-index:10;"><i class="fas fa-times"></i></button>';
+                            html += '<div class="form-group" style="margin-bottom:10px;"><label>PREGUNTA #' + (index + 1) + '</label><input type="text" id="field-' + key + '-' + index + '-q" value="' + qVal + '"></div>';
+                            html += '<div class="form-group"><label>RESPUESTA</label><textarea id="field-' + key + '-' + index + '-a" rows="3">' + aVal + '</textarea></div>';
+                            html += '</div>';
+                        } else {
+                            var itemStr = String(item || '');
+                            var imgSrc = itemStr;
+                            var displayVal = isBase64(itemStr) ? '[Base64]' : escapeAttr(itemStr);
+                            html += '<div class="form-section" style="padding:15px; margin-bottom:0; position:relative; background:#0a0a0a; display:flex; align-items:center; gap:20px;">';
+                            html += '<button onclick="removeFromList(\'' + key + '\', ' + index + ')" style="position:absolute; top:-10px; right:-10px; background:#ff4b2b; color:white; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; font-weight:bold; z-index:10;"><i class="fas fa-times"></i></button>';
+                            html += '<img src="' + escapeAttr(imgSrc) + '" class="img-preview" style="width:100px; height:60px; margin-bottom:0; border-radius:10px;">';
+                            html += '<div style="flex:1; display:flex; gap:10px;">';
+                            html += '<input type="text" value="' + displayVal + '" readonly style="flex:1; opacity:0.5; font-size:0.7rem;">';
+                            html += '<button onclick="triggerUpload(\'' + key + '\', ' + index + ')" style="padding:10px 20px; font-size:0.7rem; background:var(--accent); color:white; border:none; border-radius:5px; cursor:pointer;"><i class="fas fa-sync"></i> Cambiar Foto</button>';
+                            html += '</div></div>';
+                        }
+                    });
+                    html += '</div>';
+                    html += '<button onclick="addToList(\'' + key + '\')" style="margin-top:20px; padding:15px; background:var(--primary); color:white; border:none; border-radius:12px; cursor:pointer; width:100%; font-weight:700; letter-spacing:1px;">+ AGREGAR NUEVO ELEMENTO A ' + label + '</button>';
+                    html += '<input type="file" id="upload-' + key + '" style="display:none" onchange="handleUpload(event, \'' + key + '\')">';
+                    html += '</div>';
+                } 
+                else if (key.toLowerCase().includes('img') || (typeof value === 'string' && value.match(/\.(jpg|jpeg|png|webp|gif)$/i)) || isBase64(value)) {
+                    var imgDisplayVal = isBase64(value) ? '[Imagen Base64 cargada]' : escapeAttr(value);
+                    html += '<div class="form-group image-field-row">';
+                    html += '<div class="field-container">';
+                    html += '<label>' + label + ' (RUTA)</label>';
+                    html += '<div style="display:flex; gap:10px;">';
+                    html += '<input type="text" id="field-' + key + '" value="' + imgDisplayVal + '" oninput="updatePreview(\'' + key + '\', this.value)" style="flex:1">';
+                    html += '<button onclick="triggerUpload(\'' + key + '\')" class="btn-action" style="background:var(--accent);" title="Subir"><i class="fas fa-upload"></i></button>';
+                    html += '<button onclick="clearImage(\'' + key + '\')" class="btn-action" style="background:#ff4b2b;" title="Borrar"><i class="fas fa-trash"></i></button>';
+                    html += '</div>';
+                    html += '<input type="file" id="upload-' + key + '" style="display:none" onchange="handleUpload(event, \'' + key + '\')">';
+                    html += '</div>';
+                    html += '<img src="' + escapeAttr(value) + '" id="preview-' + key + '" class="img-preview" onerror="this.src=\'https://via.placeholder.com/150?text=Error+Imagen\'">';
+                    html += '</div>';
+                } else if (key.includes('text') || key.includes('subtitle') || key.includes('intro') || (typeof value === 'string' && value.length > 50)) {
+                    html += '<div class="form-group"><label>' + label + '</label><textarea id="field-' + key + '" rows="5">' + (value || '') + '</textarea></div>';
+                } else {
+                    html += '<div class="form-group"><label>' + label + '</label><input type="text" id="field-' + key + '" value="' + escapeAttr(value) + '"></div>';
+                }
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function updatePreview(key, value) {
+            const img = document.getElementById('preview-' + key);
+            if (img) img.src = value;
+        }
+
+        let currentUploadIndex = -1;
+        function triggerUpload(key, index = -1) {
+            currentUploadIndex = index;
+            document.getElementById('upload-' + key).click();
+        }
+
+        function handleUpload(event, key) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                if (currentUploadIndex === -1) {
+                    document.getElementById('field-' + key).value = base64;
+                    updatePreview(key, base64);
+                } else {
+                    CMS_DATA[currentTabId][key][currentUploadIndex] = base64;
+                    renderTab(currentTabId);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function addToList(key) {
+            if (key === 'items') {
+                CMS_DATA[currentTabId][key].push({ q: "Nueva Pregunta", a: "Respuesta aquí" });
+            } else {
+                CMS_DATA[currentTabId][key].push('https://via.placeholder.com/600x400?text=Nueva+Imagen');
+            }
+            renderTab(currentTabId);
+        }
+
+        function removeFromList(key, index) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta imagen de la lista?')) {
+                CMS_DATA[currentTabId][key].splice(index, 1);
+                renderTab(currentTabId);
+            }
+        }
+
+        function clearImage(key) {
+            if (confirm('¿Quieres borrar esta imagen? Se mostrará un marcador de posición.')) {
+                document.getElementById('field-' + key).value = '';
+                updatePreview(key, 'https://via.placeholder.com/600x400?text=Sin+Imagen');
+            }
+        }
+
+        function clearField(key) {
+            if (confirm('¿Deseas borrar la imagen de esta sección?')) {
+                document.getElementById('field-' + key).value = '';
+                updatePreview(key, '');
+            }
+        }
+
+        function updateListItem(key, index, value) {
+            CMS_DATA[currentTabId][key][index] = value;
+        }
+
+        function collectCurrentTabData() {
+            if (currentTabId === '__config__') return;
+            const data = CMS_DATA[currentTabId];
+            if (!data) return;
+            Object.keys(data).forEach(key => {
+                const val = data[key];
+                if (Array.isArray(val)) {
+                    val.forEach((item, index) => {
+                        if (typeof item === 'object' && item !== null) {
+                            const qEl = document.getElementById(`field-${key}-${index}-q`);
+                            const aEl = document.getElementById(`field-${key}-${index}-a`);
+                            if (qEl) item.q = qEl.value;
+                            if (aEl) item.a = aEl.value;
+                        }
+                    });
+                } else {
+                    const el = document.getElementById('field-' + key);
+                    if (el) data[key] = el.value;
+                }
+            });
+        }
+
+        async function saveCurrentData() {
+            if (currentTabId === '__config__') return;
+            collectCurrentTabData();
+
+            const toast = document.getElementById('toast');
+            toast.textContent = 'Guardando cambios en la nube...';
+            toast.style.background = 'var(--accent)';
+            toast.classList.add('show');
+
+            try {
+                const firebaseUrl = 'https://urubo-green-park-default-rtdb.firebaseio.com/cms_data.json';
+                
+                const res = await fetch(firebaseUrl, {
+                    method: 'PUT', // Firebase REST API usa PUT para sobrescribir
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(CMS_DATA)
+                });
+
+                if (res.ok) {
+                    toast.textContent = '✅ ¡CAMBIOS GUARDADOS EXITOSAMENTE EN LA NUBE!';
+                    toast.style.background = 'var(--primary)';
+                } else {
+                    throw new Error('Error al guardar en Firebase');
+                }
+            } catch (err) {
+                console.error(err);
+                toast.innerHTML = `❌ ERROR DE CONEXIÓN A LA NUBE.<br><small style="font-size:0.7rem;opacity:0.8;">Verifica tu conexión a internet.</small>`;
+                toast.style.background = '#ff4b2b';
+            }
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        document.getElementById('admin-pass').addEventListener('keypress', (e) => { if (e.key === 'Enter') validateLogin(); });
+    </script>
+</body>
+</html>

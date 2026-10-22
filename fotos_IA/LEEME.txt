@@ -1,0 +1,8 @@
+En esta carpeta se organizarán las fotos generadas por la IA para evitar tocar los archivos del proyecto.
+
+Las fotos actuales están guardadas en la carpeta de la conversación:
+C:\Users\etechadmin\.gemini\antigravity\brain\f3278800-4ab5-4b4c-a3a3-fafc1f788d98\
+
+Archivos:
+- aura_towers_enhanced_1778867736617.png
+- aura_towers_photorealistic_edit_1778867808091.png

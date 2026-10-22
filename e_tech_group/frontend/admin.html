@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Tech Group | Admin Inbox</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e14;
+            --bg-card: rgba(18, 26, 38, 0.6);
+            --bg-input: rgba(30, 41, 59, 0.4);
+            --primary: #00f2fe;
+            --primary-rgb: 0, 242, 254;
+            --secondary: #4facfe;
+            --text-1: #ffffff;
+            --text-2: #cbd5e1;
+            --text-3: #94a3b8;
+            --border: rgba(0, 242, 254, 0.15);
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(79, 172, 254, 0.05) 0%, transparent 40%);
+        }
+
+        /* ── PANTALLA LOGIN ── */
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .login-logo {
+            max-width: 150px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+        }
+
+        .login-title {
+            font-family: 'Michroma', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-1);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-3);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-3);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-3);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.8rem;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: var(--text-1);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #05070a;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* ── DASHBOARD CONTAINER ── */
+        .dashboard-container {
+            width: 95%;
+            max-width: 1200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: none;
+            flex-direction: column;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-brand img {
+            max-width: 120px;
+        }
+
+        .header-title {
+            font-family: 'Michroma', sans-serif;
+            font-size: 1rem;
+            color: var(--text-1);
+            border-left: 2px solid var(--primary);
+            padding-left: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            width: auto;
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--danger);
+            color: #f87171;
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-secondary-outline {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-2);
+        }
+
+        .btn-secondary-outline:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--text-3);
+        }
+
+        .dashboard-body {
+            padding: 2rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.92rem;
+        }
+
+        th {
+            background: rgba(18, 26, 38, 0.9);
+            color: var(--text-1);
+            font-weight: 600;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-2);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .msg-text {
+            max-width: 400px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            color: var(--text-3);
+        }
+
+        .msg-name {
+            font-weight: 600;
+            color: var(--text-1);
+        }
+
+        .msg-meta {
+            font-size: 0.8rem;
+            color: var(--text-3);
+        }
+
+        .table-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-3);
+        }
+
+        .table-empty i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.6;
+        }
+
+        .action-cell {
+            text-align: center;
+            width: 60px;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            color: var(--text-3);
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .badge {
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-sync {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── PANTALLA LOGIN ── -->
+    <div class="login-container" id="login-screen">
+        <img src="images/logo.png" alt="E-Tech Group Logo" class="login-logo">
+        <h2 class="login-title">Administración</h2>
+        <p class="login-subtitle">Bandeja de Entrada de Contactos</p>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="password">Contraseña de acceso</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required autofocus>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Entrar <i class="fas fa-arrow-right"></i>
+            </button>
+            <div class="error-message" id="login-error">Contraseña incorrecta. Por favor intente de nuevo.</div>
+        </form>
+    </div>
+
+    <!-- ── PANTALLA DASHBOARD ── -->
+    <div class="dashboard-container" id="dashboard-screen">
+        <div class="dashboard-header">
+            <div class="header-brand">
+                <img src="images/logo.png" alt="E-Tech Group Logo">
+                <div class="header-title">Inbox de Contacto</div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary-outline btn-sm" onclick="loadMessages()">
+                    <i class="fas fa-sync-alt"></i> Actualizar
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-body">
+            <div class="table-responsive">
+                <table id="messages-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre Completo</th>
+                            <th>Correo Electrónico</th>
+                            <th>Teléfono / WhatsApp</th>
+                            <th>Mensaje</th>
+                            <th>Estado</th>
+                            <th class="action-cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los mensajes se cargarán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AUTH_TOKEN_KEY = 'etech_auth_token';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            if (token) {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+        });
+
+        function showLogin() {
+            document.getElementById('login-screen').style.display = 'block';
+            document.getElementById('dashboard-screen').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard-screen').style.display = 'flex';
+            loadMessages();
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('login-error');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Verificando...';
+            errorMsg.style.display = 'none';
+
+            // 1. Intento de autenticación vía API
+            let authenticated = false;
+            let failureReason = 'Contraseña incorrecta. Por favor intente de nuevo.';
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    localStorage.setItem(AUTH_TOKEN_KEY, data.token);
+                    authenticated = true;
+                } else if (res.status === 401) {
+                    failureReason = 'Contraseña incorrecta.';
+                } else {
+                    failureReason = 'Error en el servidor (' + res.status + '). Intente más tarde.';
+                }
+            } catch(e) {
+                console.error('Fallo en la comunicación con el servidor', e);
+                failureReason = 'No se pudo conectar con el servidor backend. Verifique que la API esté encendida.';
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Entrar <i class="fas fa-arrow-right"></i>';
+
+            if (authenticated) {
+                showDashboard();
+            } else {
+                errorMsg.textContent = failureReason;
+                errorMsg.style.display = 'block';
+                const container = document.getElementById('login-screen');
+                container.style.animation = 'none';
+                requestAnimationFrame(() => { container.style.animation = 'shake 0.4s ease'; });
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            showLogin();
+        }
+
+        async function loadMessages() {
+            const tbody = document.querySelector('#messages-table tbody');
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin"></i> Cargando mensajes...</td></tr>';
+
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            
+            // Unir mensajes locales guardados temporalmente en localStorage y mensajes del servidor
+            let serverMessages = [];
+            let offlineMessages = JSON.parse(localStorage.getItem('etech_messages') || '[]');
+
+            if (navigator.onLine) {
+                try {
+                    const res = await fetch('/api/messages', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.status === 401) {
+                        logout();
+                        return;
+                    }
+                    if (res.ok) {
+                        serverMessages = await res.json();
+                    }
+                } catch (e) {
+                    console.warn('Servidor no disponible para listar mensajes. Mostrando locales.');
+                }
+            }
+
+            // Combinar y ordenar
+            // Los mensajes offline pendientes van arriba, luego los del servidor ordenados por fecha desc.
+            tbody.innerHTML = '';
+            
+            // Filtrar del local storage los que están pendientes de sincronizar
+            const pendingMessages = offlineMessages.filter(m => !m.synced);
+            
+            // Combinar para mostrar todo en el dashboard local si estamos offline o mixtos
+            const allMessages = [...pendingMessages.map(m => ({ ...m, isPending: true })), ...serverMessages.map(m => ({ ...m, isPending: false }))];
+
+            if (allMessages.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="table-empty"><i class="fas fa-envelope-open"></i><p>No se encontraron mensajes de contacto.</p></td></tr>`;
+                return;
+            }
+
+            allMessages.forEach(msg => {
+                const tr = document.createElement('tr');
+                const dateStr = new Date(msg.created_at || msg.date).toLocaleString('es-BO');
+                
+                tr.innerHTML = `
+                    <td class="msg-meta">${dateStr}</td>
+                    <td class="msg-name">${escapeHTML(msg.name)}</td>
+                    <td><a href="mailto:${escapeHTML(msg.email)}" style="color:var(--primary);text-decoration:none;">${escapeHTML(msg.email)}</a></td>
+                    <td>${msg.phone ? `<a href="https://wa.me/${msg.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--text-2);text-decoration:none;"><i class="fab fa-whatsapp" style="color:#25d366;margin-right:4px;"></i> ${escapeHTML(msg.phone)}</a>` : '-'}</td>
+                    <td class="msg-text">${escapeHTML(msg.message || '(Sin mensaje)')}</td>
+                    <td>
+                        <span class="badge ${msg.isPending ? 'badge-pending' : 'badge-sync'}">
+                            ${msg.isPending ? 'Pendiente' : 'Sincronizado'}
+                        </span>
+                    </td>
+                    <td class="action-cell">
+                        ${msg.isPending ? '' : `<button class="btn-icon" onclick="deleteMessage(${msg.id})" title="Eliminar mensaje"><i class="fas fa-trash-alt"></i></button>`}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function deleteMessage(id) {
+            if (!confirm('¿Estás seguro de que deseas eliminar este mensaje?')) return;
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            
+            if (navigator.onLine) {
+                try {
+                    const res = await fetch(`/api/messages/${id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        loadMessages();
+                    } else {
+                        alert('Error al intentar eliminar el mensaje.');
+                    }
+                } catch (e) {
+                    alert('No se pudo establecer conexión para eliminar el mensaje.');
+                }
+            } else {
+                alert('No se pueden eliminar mensajes del servidor en modo offline.');
+            }
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>

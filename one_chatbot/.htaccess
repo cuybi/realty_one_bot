@@ -1,0 +1,30 @@
+# ==========================================================
+# ONE CHATBOT - REGLAS DE SERVIDOR APACHE (SITEGROUND)
+# ==========================================================
+
+# 1. Juego de caracteres predeterminado
+AddDefaultCharset UTF-8
+
+# 2. Desactivar listado de directorios
+Options -Indexes
+
+# 3. Proteger archivos sensibles y bases de datos locales
+<FilesMatch "\.(sqlite|db|log|sql|env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 4. Cabeceras CORS y Seguridad
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# 5. Reescribir URLs limpias si mod_rewrite está activo
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>

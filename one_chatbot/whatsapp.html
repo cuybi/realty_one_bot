@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Flujo Inmobiliario - Facebook Ad & Formulario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wa-bg: #0b141a;
+            --wa-panel: #111b21;
+            --wa-header: #202c33;
+            --wa-bubble-bot: #202c33;
+            --wa-bubble-user: #005c4b;
+            --wa-green: #25d366;
+            --wa-green-dark: #00a884;
+            --text-main: #e9edef;
+            --text-muted: #8696a0;
+            --accent-gold: #d4af37;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+
+        body {
+            background: #060a0d;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
+        }
+
+        .phone-wrapper {
+            width: 100%;
+            max-width: 480px;
+            height: 880px;
+            max-height: 94vh;
+            background: var(--wa-panel);
+            border-radius: 28px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 0 8px #1f2c34;
+            position: relative;
+        }
+
+        /* Top Simulation Bar (Facebook Ad Source) */
+        .ad-source-bar {
+            background: #1877f2;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ad-source-bar select {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* WhatsApp Header */
+        .wa-header {
+            background: var(--wa-header);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .wa-avatar {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-gold), #f39c12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .online-status {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 11px;
+            height: 11px;
+            background: var(--wa-green);
+            border-radius: 50%;
+            border: 2px solid var(--wa-header);
+        }
+
+        .wa-header-info h3 { font-size: 15px; font-weight: 700; }
+        .wa-header-info p { font-size: 11px; color: var(--wa-green-dark); font-weight: 600; }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-header-tool {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-header-tool:hover { background: rgba(255, 255, 255, 0.15); }
+
+        /* WhatsApp Chat Body */
+        .wa-chat-body {
+            flex: 1;
+            background-color: var(--wa-bg);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .wa-chat-body::-webkit-scrollbar { width: 5px; }
+        .wa-chat-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+
+        /* Message Bubbles */
+        .bubble-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 88%;
+        }
+
+        .bubble-row.bot { align-self: flex-start; }
+        .bubble-row.user { align-self: flex-end; }
+
+        .wa-bubble {
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            line-height: 1.45;
+            word-break: break-word;
+            position: relative;
+        }
+
+        .bubble-row.bot .wa-bubble {
+            background: var(--wa-bubble-bot);
+            color: var(--text-main);
+            border-top-left-radius: 2px;
+        }
+
+        .bubble-row.user .wa-bubble {
+            background: var(--wa-bubble-user);
+            color: #fff;
+            border-top-right-radius: 2px;
+        }
+
+        .bubble-time {
+            font-size: 10px;
+            color: var(--text-muted);
+            float: right;
+            margin-top: 4px;
+            margin-left: 10px;
+        }
+
+        /* Interactive Widgets inside Chat */
+        .card-form-cta {
+            background: rgba(17, 27, 33, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-fill-form {
+            background: linear-gradient(135deg, var(--accent-gold), #f39c12);
+            color: #0b132b;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-fill-form:hover { opacity: 0.95; }
+
+        /* Interactive Date and Time Selectors (Image 3) */
+        .schedule-picker {
+            background: rgba(17, 27, 33, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 8px;
+        }
+
+        .picker-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .pills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .pill-btn {
+            background: #2a3942;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .pill-btn:hover, .pill-btn.active {
+            background: #00a884;
+            color: #fff;
+            border-color: var(--wa-green);
+        }
+
+        .btn-confirm-schedule {
+            width: 100%;
+            background: var(--wa-green);
+            color: #0b141a;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Web Link Card */
+        .website-link-box {
+            background: rgba(0, 168, 132, 0.15);
+            border: 1px solid var(--wa-green-dark);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .website-link-box:hover { background: rgba(0, 168, 132, 0.25); }
+
+        /* WhatsApp Input Footer */
+        .wa-footer {
+            background: var(--wa-header);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wa-input-wrap {
+            flex: 1;
+            background: #2a3942;
+            border-radius: 24px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .wa-input-wrap input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .btn-wa-send {
+            width: 40px;
+            height: 40px;
+            background: var(--wa-green);
+            color: #0b141a;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* Modal Online Form */
+        .form-modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+
+        .form-modal-backdrop.active { opacity: 1; visibility: visible; }
+
+        .form-modal-card {
+            background: var(--wa-panel);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            width: 100%;
+            max-height: 90%;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .form-modal-card h3 { font-size: 18px; margin-bottom: 6px; }
+        .form-modal-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+
+        .f-group { margin-bottom: 12px; }
+        .f-group label { display: block; font-size: 12px; font-weight: 600; color: #cbd5e1; margin-bottom: 4px; }
+        .f-input {
+            width: 100%;
+            background: #202c33;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+        }
+        .f-input:focus { border-color: var(--wa-green); }
+
+        .btn-submit-modal {
+            width: 100%;
+            background: var(--wa-green);
+            color: #0b141a;
+            font-weight: 800;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-close-modal {
+            width: 100%;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-wrapper">
+    <!-- Top Facebook Ad Bar -->
+    <div class="ad-source-bar">
+        <span>📢 Origen: Anuncio de Facebook</span>
+        <select id="selectAdSource" onchange="resetChatWithAd(this.value)">
+            <option value="Publicación Facebook #1 - Casas Urubó">Publicación #1 (Urubó)</option>
+            <option value="Publicación Facebook #2 - Dptos Equipetrol">Publicación #2 (Equipetrol)</option>
+            <option value="Publicación Facebook #3 - Inversión Airbnb">Publicación #3 (Inversión)</option>
+            <option value="Publicación Facebook #4 - Terrenos">Publicación #4 (Terrenos)</option>
+        </select>
+    </div>
+
+    <!-- WhatsApp Header -->
+    <div class="wa-header">
+        <div class="wa-avatar" style="background: none; overflow: hidden; padding: 0;">
+            <img src="assets/logo_circle.svg" alt="Realty ONE Group" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            <div class="online-status"></div>
+        </div>
+        <div class="wa-header-info">
+            <h3 style="letter-spacing: -0.3px;">Realty ONE Group Bolivia</h3>
+            <p>en línea</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn-header-tool" onclick="sendReminderSim()" title="Simular recordatorio si no completó">🔔 Recordatorio</button>
+            <a href="admin/index.html" class="btn-header-tool" target="_blank" title="Ver en CRM">📊 CRM</a>
+        </div>
+    </div>
+
+    <!-- Chat Messages Body -->
+    <div id="waChatBody" class="wa-chat-body">
+        <!-- Renderizado dinámicamente -->
+    </div>
+
+    <!-- Input Footer -->
+    <form id="waInputForm" class="wa-footer">
+        <div class="wa-input-wrap">
+            <input type="text" id="waMessageInput" placeholder="Escribe un mensaje..." autocomplete="off">
+        </div>
+        <button type="submit" class="btn-wa-send">➤</button>
+    </form>
+
+    <!-- Modal Formulario en Línea -->
+    <div id="formModal" class="form-modal-backdrop">
+        <div class="form-modal-card">
+            <h3>📋 Formulario de Registro</h3>
+            <p>Completa tus datos para coordinar la visita y registrarte en el sistema.</p>
+
+            <form id="onlineModalForm">
+                <div class="f-group">
+                    <label>Nombre y Apellido</label>
+                    <input type="text" id="modalFullName" class="f-input" placeholder="ej. Juan Pérez" required>
+                </div>
+                <div class="f-group">
+                    <label>Número de Celular / WhatsApp</label>
+                    <input type="tel" id="modalPhone" class="f-input" placeholder="ej. +591 70012345" required>
+                </div>
+                <div class="f-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="modalEmail" class="f-input" placeholder="ej. juan@correo.com" required>
+                </div>
+                <div class="f-group">
+                    <label>Fecha de la Visita (Calendario o Rápido)</label>
+                    <input type="date" id="modalDay" class="f-input" required>
+                    <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;">
+                        <button type="button" class="pill-btn" onclick="setQuickDate('Hoy')" style="font-size: 11px; padding: 4px 8px;">Hoy</button>
+                        <button type="button" class="pill-btn" onclick="setQuickDate('Mañana')" style="font-size: 11px; padding: 4px 8px;">Mañana</button>
+                        <button type="button" class="pill-btn" onclick="setQuickDate('Sábado')" style="font-size: 11px; padding: 4px 8px;">Sábado</button>
+                        <button type="button" class="pill-btn" onclick="setQuickDate('Domingo')" style="font-size: 11px; padding: 4px 8px;">Domingo</button>
+                    </div>
+                </div>
+                <div class="f-group">
+                    <label>Hora de Preferencia</label>
+                    <select id="modalTime" class="f-input">
+                        <optgroup label="🌅 Mañana">
+                            <option value="08:30 AM">08:30 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="09:30 AM">09:30 AM</option>
+                            <option value="10:00 AM" selected>10:00 AM</option>
+                            <option value="10:30 AM">10:30 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="11:30 AM">11:30 AM</option>
+                            <option value="12:00 PM">12:00 PM (Mediodía)</option>
+                        </optgroup>
+                        <optgroup label="☀️ Tarde">
+                            <option value="01:30 PM">01:30 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="02:30 PM">02:30 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="03:30 PM">03:30 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="04:30 PM">04:30 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="05:30 PM">05:30 PM</option>
+                            <option value="06:00 PM">06:00 PM</option>
+                            <option value="06:30 PM">06:30 PM</option>
+                            <option value="07:00 PM">07:00 PM</option>
+                            <option value="07:30 PM">07:30 PM</option>
+                            <option value="08:00 PM">08:00 PM</option>
+                        </optgroup>
+                        <optgroup label="💬 Flexibilidad">
+                            <option value="Horario a convenir por WhatsApp">Horario a convenir por WhatsApp</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit-modal">✅ Enviar y Agendar Visita</button>
+                <button type="button" class="btn-close-modal" onclick="closeFormModal()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let sessionId = 'wa_' + Math.random().toString(36).substring(2, 9);
+    let selectedAdSource = 'Publicación Facebook #1 - Casas Urubó';
+    let currentStep = 'name';
+    let leadData = {
+        full_name: '',
+        phone: '',
+        email: '',
+        visit_date: getFormattedDate(0),
+        visit_time: '10:00 AM'
+    };
+
+    function getFormattedDate(daysOffset = 0) {
+        const d = new Date();
+        d.setDate(d.getDate() + daysOffset);
+        return d.toISOString().split('T')[0];
+    }
+
+    function getFriendlyDateLabel(dateStr) {
+        if (!dateStr) return 'Próximamente';
+        const d = new Date(dateStr + 'T00:00:00');
+        const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        return `${days[d.getDay()]} ${d.getDate()} de ${months[d.getMonth()]}`;
+    }
+
+    const chatBody = document.getElementById('waChatBody');
+    const inputForm = document.getElementById('waInputForm');
+    const msgInput = document.getElementById('waMessageInput');
+
+    function setQuickDate(type) {
+        const modalDay = document.getElementById('modalDay');
+        if (!modalDay) return;
+        const now = new Date();
+        if (type === 'Hoy') modalDay.value = getFormattedDate(0);
+        if (type === 'Mañana') modalDay.value = getFormattedDate(1);
+        if (type === 'Sábado') {
+            const dayOfWeek = now.getDay();
+            const daysUntilSat = (6 - dayOfWeek + 7) % 7 || 7;
+            modalDay.value = getFormattedDate(daysUntilSat);
+        }
+        if (type === 'Domingo') {
+            const dayOfWeek = now.getDay();
+            const daysUntilSun = (7 - dayOfWeek) % 7 || 7;
+            modalDay.value = getFormattedDate(daysUntilSun);
+        }
+    }
+
+    function getTimeStr() {
+        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function addBotBubble(htmlContent) {
+        const row = document.createElement('div');
+        row.className = 'bubble-row bot';
+        row.innerHTML = `
+            <div class="wa-bubble">
+                ${htmlContent}
+                <span class="bubble-time">${getTimeStr()}</span>
+            </div>
+        `;
+        chatBody.appendChild(row);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function addUserBubble(textContent) {
+        const row = document.createElement('div');
+        row.className = 'bubble-row user';
+        row.innerHTML = `
+            <div class="wa-bubble">
+                ${escapeHTML(textContent)}
+                <span class="bubble-time">${getTimeStr()} ✓✓</span>
+            </div>
+        `;
+        chatBody.appendChild(row);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Inicializar Flujo Oficial
+    async function startFlow() {
+        chatBody.innerHTML = '';
+        currentStep = 'name';
+
+        // Pre-cargar fecha en modal
+        const modalDayInput = document.getElementById('modalDay');
+        if (modalDayInput) {
+            modalDayInput.min = getFormattedDate(0);
+            modalDayInput.value = getFormattedDate(1); // Mañana por defecto
+        }
+
+        // Habilitar entrada de texto
+        msgInput.disabled = false;
+        msgInput.placeholder = "Escribe un mensaje...";
+        const sendBtn = document.querySelector('.btn-wa-send');
+        if (sendBtn) {
+            sendBtn.disabled = false;
+            sendBtn.style.opacity = '1';
+            sendBtn.style.cursor = 'pointer';
+        }
+
+        // 1. Saludo y bienvenida
+        addBotBubble(`¡Hola! 👋 Te damos una cordial bienvenida a <strong>Realty ONE Group Bolivia</strong>.`);
+        
+        // 2. Solicitud de datos / formulario
+        setTimeout(() => {
+            addBotBubble(`
+                Para empezar y asignarte a un asesor especializado, por favor indícame tu 👤 <strong>Nombre y Apellido</strong> (o completa el formulario directo):
+                <div class="card-form-cta">
+                    <span style="font-size: 11px; color: var(--text-muted);">📋 ¿Prefieres elegir fecha exacta y horario cómodo?</span>
+                    <button type="button" class="btn-fill-form" onclick="openFormModal()">Abrir Formulario & Elegir Horario</button>
+                </div>
+            `);
+        }, 600);
+    }
+
+    // Procesar mensaje del usuario
+    inputForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // 1. Si la conversación ya finalizó, no hacer nada
+        if (currentStep === 'finished') {
+            return;
+        }
+
+        const text = msgInput.value.trim();
+        if (!text) return;
+
+        addUserBubble(text);
+        msgInput.value = '';
+
+        // 2. Si el formulario aún no ha sido llenado, exigir completarlo primero (Diagrama Oficial)
+        setTimeout(() => {
+            addBotBubble(`
+                🔔 Por favor, primero llena el <strong>formulario de registro</strong> para poder asignarte a un asesor y agendar tu visita con éxito. ¡Muchas gracias! 🙏
+                <div class="card-form-cta">
+                    <button type="button" class="btn-fill-form" onclick="openFormModal()">📋 Abrir Formulario & Elegir Horario</button>
+                </div>
+            `);
+        }, 500);
+    });
+
+    // Selector interactivo de Fecha y Hora amplio y flexible
+    function showSchedulePicker() {
+        const todayStr = getFormattedDate(0);
+        const tomStr = getFormattedDate(1);
+        const satStr = getFormattedDate(2);
+
+        addBotBubble(`
+            📅 <strong>Agendar visita:</strong> Elige tu día y horario de mayor comodidad:
+            <div class="schedule-picker">
+                <div class="picker-title">1. Elige la Fecha:</div>
+                <div class="pills-grid" id="dayPills">
+                    <button type="button" class="pill-btn active" onclick="selectDate(this, '${todayStr}', 'Hoy')">⚡ Hoy</button>
+                    <button type="button" class="pill-btn" onclick="selectDate(this, '${tomStr}', 'Mañana')">📅 Mañana</button>
+                    <button type="button" class="pill-btn" onclick="selectDate(this, '${getFormattedDate(2)}', 'Pasado Mañana')">📆 Pasado Mañana</button>
+                    <button type="button" class="pill-btn" onclick="selectDate(this, '${getFormattedDate(3)}', 'Fin de Semana')">🏖️ Fin de Semana</button>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">O selecciona una fecha específica en el calendario:</label>
+                    <input type="date" id="chatDateInput" min="${todayStr}" value="${todayStr}" class="f-input" style="padding: 6px 10px; font-size: 12px;" onchange="leadData.visit_date = this.value">
+                </div>
+
+                <div class="picker-title">2. Elige el Horario:</div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">🌅 Mañana:</div>
+                <div class="pills-grid" id="morningPills">
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '08:30 AM')">08:30 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '09:00 AM')">09:00 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '09:30 AM')">09:30 AM</button>
+                    <button type="button" class="pill-btn active" onclick="selectTime(this, '10:00 AM')">10:00 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '10:30 AM')">10:30 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '11:00 AM')">11:00 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '11:30 AM')">11:30 AM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '12:00 PM')">12:00 PM</button>
+                </div>
+
+                <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">☀️ Tarde / Noche:</div>
+                <div class="pills-grid" id="afternoonPills">
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '02:00 PM')">02:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '02:30 PM')">02:30 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '03:00 PM')">03:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '03:30 PM')">03:30 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '04:00 PM')">04:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '04:30 PM')">04:30 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '05:00 PM')">05:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '05:30 PM')">05:30 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '06:00 PM')">06:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '06:30 PM')">06:30 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '07:00 PM')">07:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, '08:00 PM')">08:00 PM</button>
+                    <button type="button" class="pill-btn" onclick="selectTime(this, 'A convenir por WhatsApp')">💬 A convenir por WhatsApp</button>
+                </div>
+
+                <button type="button" class="btn-confirm-schedule" onclick="confirmFullSchedule()">Confirmar y Agendar Visita</button>
+            </div>
+        `);
+    }
+
+    window.selectDate = function(el, dateStr, label) {
+        document.querySelectorAll('#dayPills .pill-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        leadData.visit_date = dateStr;
+        const chatDate = document.getElementById('chatDateInput');
+        if (chatDate) chatDate.value = dateStr;
+    };
+
+    window.selectTime = function(el, time) {
+        document.querySelectorAll('.schedule-picker .pill-btn').forEach(b => {
+            if (b.innerText.includes('AM') || b.innerText.includes('PM') || b.innerText.includes('convenir')) {
+                b.classList.remove('active');
+            }
+        });
+        el.classList.add('active');
+        leadData.visit_time = time;
+    };
+
+    // Envío y Confirmación Final (Flujo Verde de Imágenes 1, 2 y 3)
+    window.confirmFullSchedule = function() {
+        currentStep = 'finished'; // Cierre total del flujo
+        const name = leadData.full_name || 'Juan Pérez';
+        const phone = leadData.phone || '+591 70012345';
+        const email = leadData.email || 'juan@correo.com';
+        const vDate = leadData.visit_date || 'Lunes';
+        const vTime = leadData.visit_time || '10:00 AM';
+
+        // Guardar respaldo local para que el CRM funcione incluso abriendo el archivo localmente
+        const localLead = {
+            id: Date.now(),
+            full_name: name,
+            phone: phone,
+            email: email,
+            visit_date: vDate,
+            visit_time: vTime,
+            ad_source: selectedAdSource,
+            lead_score: 95,
+            status: 'Visita Agendada',
+            created_at: new Date().toISOString()
+        };
+        const existingLeads = JSON.parse(localStorage.getItem('one_chatbot_leads') || '[]');
+        existingLeads.unshift(localLead);
+        localStorage.setItem('one_chatbot_leads', JSON.stringify(existingLeads));
+
+        // Enviar en segundo plano al backend PHP si está disponible
+        fetch('api/flow.php?action=submit_form', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                session_id: sessionId,
+                full_name: name,
+                phone: phone,
+                email: email,
+                visit_date: vDate,
+                visit_time: vTime,
+                ad_source: selectedAdSource
+            })
+        }).catch(err => console.log('Sincronización local activa:', err));
+
+        // 1. Confirmación de WhatsApp (Imagen 1, 2 y 3)
+        const friendlyDate = getFriendlyDateLabel(vDate);
+        setTimeout(() => {
+            addBotBubble(`✅ <strong>¡Recibido!</strong> Todos tus datos han sido enviados y tu visita está agendada para el <strong>${friendlyDate} a las ${vTime}</strong>.`);
+        }, 500);
+
+        // 2. Aviso de Agente
+        setTimeout(() => {
+            addBotBubble(`🎧 <strong>Aviso de agente:</strong> En breve un agente se pondrá en contacto.`);
+        }, 1500);
+
+        // 3. Más Opciones / Sitio Web
+        setTimeout(() => {
+            addBotBubble(`
+                🔗 Mientras tanto, puedes ver más opciones aquí:
+                <a href="https://realyonegroupbolivia.e-techgroupbolivia.com" target="_blank" class="website-link-box">
+                    <img src="assets/logo_circle.svg" alt="ONE" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div>
+                        <strong style="font-size: 13px; color: #fff;">[Sitio Web Oficial Realty ONE Group]</strong>
+                        <div style="font-size: 11px; color: var(--text-muted);">realyonegroupbolivia.e-techgroupbolivia.com</div>
+                    </div>
+                </a>
+            `);
+        }, 2600);
+
+        // 4. Despedida Cordial y Cierre del Chat
+        setTimeout(() => {
+            addBotBubble(`👋 <strong>¡Despedida cordial!</strong> ¡Muchas gracias por tu tiempo y que tengas un excelente día!`);
+            
+            // Desactivar campo de texto
+            msgInput.disabled = true;
+            msgInput.placeholder = "Conversación finalizada ✓";
+            const sendBtn = document.querySelector('.btn-wa-send');
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                sendBtn.style.opacity = '0.3';
+                sendBtn.style.cursor = 'not-allowed';
+            }
+        }, 3600);
+    };
+
+    // Simular Recordatorio (Flujo Rojo de Imágenes 1 y 2)
+    window.sendReminderSim = function() {
+        addBotBubble(`🔔 <strong>Recordatorio / Asistencia:</strong> Notamos que aún no has completado el formulario. Por favor completa tus datos para confirmar tu visita.`);
+    };
+
+    // Modal Formulario
+    window.openFormModal = function() {
+        document.getElementById('formModal').classList.add('active');
+    };
+
+    window.closeFormModal = function() {
+        document.getElementById('formModal').classList.remove('active');
+    };
+
+    document.getElementById('onlineModalForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        leadData.full_name = document.getElementById('modalFullName').value.trim();
+        leadData.phone = document.getElementById('modalPhone').value.trim();
+        leadData.email = document.getElementById('modalEmail').value.trim();
+        leadData.visit_date = document.getElementById('modalDay').value || getFormattedDate(0);
+        leadData.visit_time = document.getElementById('modalTime').value;
+
+        closeFormModal();
+        const friendlyDate = getFriendlyDateLabel(leadData.visit_date);
+        addUserBubble(`Formulario completado: ${leadData.full_name}, ${leadData.phone}, ${friendlyDate} ${leadData.visit_time}`);
+        confirmFullSchedule();
+    });
+
+    window.resetChatWithAd = function(adName) {
+        selectedAdSource = adName;
+        sessionId = 'wa_' + Math.random().toString(36).substring(2, 9);
+        startFlow();
+    };
+
+    function escapeHTML(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag));
+    }
+
+    // Iniciar al cargar
+    startFlow();
+</script>
+
+</body>
+</html>

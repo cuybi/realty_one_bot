@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Real Estate IA - Encuentra tu Inmueble Ideal con Asistencia Inteligente</title>
+    <meta name="description" content="Descubre las mejores casas, departamentos y terrenos con nuestro asistente virtual inmobiliario con IA. Respuestas instantáneas y agenda de visitas por WhatsApp.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Fondos Decorativos con Luces -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Barra de Navegación Principal -->
+    <header class="app-header">
+        <a href="index.html" class="brand">
+            <img src="assets/logo_horizontal.svg" alt="Realty ONE Group Bolivia" style="height: 38px; object-fit: contain;">
+        </a>
+
+        <div class="nav-actions">
+            <a href="admin/index.html" class="btn-nav-admin" title="Panel de Gestión y Leads">
+                📊 Panel CRM
+            </a>
+            <a href="whatsapp.html" class="btn-nav-admin" style="color: #25d366; border-color: rgba(37, 211, 102, 0.4);" title="Simulador WhatsApp Oficial">
+                📲 WhatsApp Flow
+            </a>
+            <button class="btn-nav-chat" data-open-chat>
+                💬 Chatear con Asesora IA
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección Principal Hero -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-badge">
+                ✨ Realty ONE Group Bolivia • Inteligencia Inmobiliaria
+            </div>
+            <h1 class="hero-title">
+                Encuentra tu próximo hogar o inversión con <span class="gradient-text">Realty ONE Group</span>
+            </h1>
+            <p class="hero-desc">
+                Explora las propiedades más exclusivas en Santa Cruz, Urubó y Equipetrol. Pregúntale a nuestra IA para recibir recomendaciones a medida y coordinar visitas directas por WhatsApp.
+            </p>
+
+            <!-- Buscador Rápido -->
+            <form id="searchForm" class="search-container">
+                <div class="search-input-wrap">
+                    <span>🔍</span>
+                    <input type="text" id="searchInput" placeholder="Buscar por zona, palabra clave (ej. Urubó, piscina, penthouse)...">
+                </div>
+
+                <select id="filterOperation" class="search-select">
+                    <option value="">Todas las Operaciones</option>
+                    <option value="Venta">En Venta</option>
+                    <option value="Alquiler">En Alquiler</option>
+                </select>
+
+                <select id="filterType" class="search-select">
+                    <option value="">Todos los Inmuebles</option>
+                    <option value="Casa">Casas</option>
+                    <option value="Departamento">Departamentos</option>
+                    <option value="Penthouse">Penthouses</option>
+                    <option value="Terreno">Terrenos</option>
+                </select>
+
+                <button type="submit" class="btn-search">Filtrar</button>
+            </form>
+
+            <!-- Grid de Inmuebles Destacados -->
+            <div class="section-header">
+                <div>
+                    <h2>Propiedades Destacadas</h2>
+                    <p>Seleccionadas cuidadosamente por rentabilidad y plusvalía</p>
+                </div>
+            </div>
+
+            <div id="propertiesGrid" class="properties-grid">
+                <!-- Se llena dinámicamente vía JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Botón Flotante del Chatbot Widget -->
+    <div id="chatWidgetTrigger" class="chat-widget-trigger" title="Hablar con Asesora Virtual Realty ONE Group" style="overflow: hidden; padding: 0;">
+        <img src="assets/logo_circle.svg" alt="Realty ONE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        <div class="trigger-badge">1</div>
+    </div>
+
+    <!-- Ventana Flotante del Chatbot -->
+    <aside id="chatWindow" class="chat-window" aria-label="Asistente Inmobiliario Virtual">
+        <!-- Encabezado del Chat -->
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar" style="background: none; overflow: hidden; padding: 0;">
+                    <img src="assets/logo_circle.svg" alt="Realty ONE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    <div class="online-dot" title="En línea"></div>
+                </div>
+                <div class="chat-title">
+                    <h3>Valeria - Asesora IA</h3>
+                    <p>● En línea | Realty ONE Group Bolivia</p>
+                </div>
+            </div>
+            <div class="chat-header-controls">
+                <button id="btnCloseChat" class="btn-header-icon" title="Cerrar chat">✕</button>
+            </div>
+        </div>
+
+        <!-- Área de Conversación -->
+        <div id="chatMessages" class="chat-messages">
+            <!-- Mensaje Inicial de Bienvenida -->
+            <div class="message-row bot">
+                <div class="bubble">
+                    ¡Hola! Bienvenid@ a <strong>Realty ONE Group Bolivia</strong>. Soy <strong>Valeria</strong>, tu asesora inmobiliaria virtual. 🏡✨
+                    <br><br>
+                    ¿Qué tipo de propiedad estás buscando hoy? (Casa, Departamento o Terreno) ¿O te gustaría conocer nuestras mejores oportunidades de inversión en Santa Cruz?
+                    <div class="quick-replies-wrap">
+                        <button type="button" class="btn-quick-reply" data-quick-text="Quiero comprar una casa en Urubó">🏡 Casa en Urubó</button>
+                        <button type="button" class="btn-quick-reply" data-quick-text="Busco departamento en alquiler en Equipetrol">🏢 Dpto en Equipetrol</button>
+                        <button type="button" class="btn-quick-reply" data-quick-text="Opciones para inversión o Airbnb">📈 Inversión / Airbnb</button>
+                        <button type="button" class="btn-quick-reply" data-quick-text="Quiero vender o tasar mi inmueble">🏷️ Vender mi Inmueble</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra Inferior de Entrada de Texto -->
+        <div class="chat-footer">
+            <form id="chatForm" class="chat-input-form">
+                <input type="text" id="chatInput" class="chat-input-field" placeholder="Escribe tu consulta o presupuesto..." autocomplete="off">
+                <button type="submit" class="btn-send-message" title="Enviar mensaje">
+                    ➤
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <script src="js/chat.js"></script>
+</body>
+</html>

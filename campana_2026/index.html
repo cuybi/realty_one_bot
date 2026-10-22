@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urubó Green Park | Estudio de Campaña 2026-2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .funnel-img-mock {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 1rem;
+        }
+        .funnel-row-yellow { background-color: #d4e157 !important; color: #1b4332 !important; }
+        .funnel-row-green { background-color: #aed581 !important; color: #1b4332 !important; }
+        .funnel-graphic-refined {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 1rem;
+        }
+        .funnel-tier {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+        .tier-tofu { background: #673ab7; width: 100%; }
+        .tier-mofu { background: #03a9f4; width: 85%; }
+        .tier-bofu { background: #e91e63; width: 70%; }
+        .tier-label { font-size: 0.7rem; opacity: 0.8; font-weight: 400; }
+    </style>
+</head>
+<body>
+    <!-- Admin Controls -->
+    <button id="admin-login-btn" title="Panel de Gestión">&#128274;</button>
+
+    <!-- Login Modal -->
+    <div id="admin-login-overlay">
+        <div id="admin-login-modal">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">Acceso de Administración</h3>
+            <input type="password" id="admin-pwd" placeholder="Contraseña">
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                <button id="admin-login-submit">Entrar</button>
+                <button id="admin-login-cancel">Cancelar</button>
+            </div>
+            <p id="admin-error" style="color: #e91e63; font-size: 0.85rem; margin-top: 1rem; display: none;">Contraseña incorrecta</p>
+        </div>
+    </div>
+
+    <!-- Admin Toolbar -->
+    <div id="admin-toolbar">
+        <span style="font-weight: 600; color: #fff;">Modo Edición Activo <span style="font-size:0.8rem;opacity:0.7;">(Haz clic en los textos para editar)</span></span>
+        <div style="display: flex; gap: 1rem;">
+            <button id="admin-save-btn" style="background: var(--accent); color: #000; border-color: var(--accent);">Guardar Cambios</button>
+            <button id="admin-exit-btn" style="border-color: rgba(255,255,255,0.5); color: #fff;">Salir</button>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div id="presentation-container">
+        <!-- Slide 1: Portada Corporativa -->
+        <section class="slide active" id="slide-1">
+            <div class="split-layout">
+                <div class="split-left" style="background: #2d6a4f; align-items: center; justify-content: center; text-align: center;">
+                    <div class="reveal reveal-1" style="margin-bottom: 2rem;">
+                        <img src="assets/logo.png" alt="Urubó Green Park Logo" style="max-width: 80%; height: auto;">
+                    </div>
+                    <div class="reveal reveal-2">
+                        <div style="width: 60%; height: 2px; background: white; margin: 2rem auto; opacity: 0.5;"></div>
+                        <h3 style="color: white; font-size: 2.2rem; font-weight: 600; line-height: 1.2;">Estudio de campaña<br>para Redes Sociales</h3>
+                        <h1 class="accent" style="font-size: 4rem; margin-top: 1rem; color: #a3cf62;">2026-2027</h1>
+                    </div>
+                </div>
+                <div class="split-right reveal reveal-3" style="background-image: url('assets/aerial_urubo.jpg');">
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: 1. Calendario Anual -->
+        <section class="slide" id="slide-2">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>1. Calendario Anual de Campañas (Vista General)</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content">
+                    <div class="bottom-left-img reveal reveal-3" style="background-image: url('assets/urubo_familia_donut_white.png');"></div>
+                    <div class="bottom-right-table reveal reveal-4">
+                        <table class="corporate-table">
+                            <thead><tr><th>Trimestre</th><th>Enfoque Principal</th><th>Objetivo (KPI)</th><th>Formato</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Q1 (May-Jun)</td><td>Lanzamiento y Reconocimiento</td><td>Alcance / Impresiones</td><td>Video corto (Reels/TikTok)</td></tr>
+                                <tr><td>Q2 (Ago-Oct)</td><td>Consideración y Tráfico</td><td>Clics / Visitas a Web</td><td>Carruseles educativos</td></tr>
+                                <tr class="table-yellow"><td>Q3 (Nov-Ene)</td><td>Captación de Leads</td><td>Conversión / Leads</td><td>Anuncios de formulario</td></tr>
+                                <tr><td>Q4 (Mar-Jun)</td><td>Ventas Directas</td><td>ROI / Ventas</td><td>UGC y ofertas dinámicas</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: 2. Matriz de Inversión -->
+        <section class="slide" id="slide-3">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>2. Matriz de Inversión por Etapa del Funnel</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content">
+                    <div class="bottom-left-img reveal reveal-3" style="background-image: url('assets/urubo_familia_bbq_white.png');"></div>
+                    <div class="bottom-right-table reveal reveal-4">
+                        <table class="corporate-table">
+                            <thead><tr><th>Etapa</th><th>% Presupuesto</th><th>Tipo de Publicación</th><th>Meta del Anuncio</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Top (TOFU)</td><td>40%</td><td>Contenido viral, tips rápidos.</td><td>Atraer gente nueva.</td></tr>
+                                <tr><td>Middle (MOFU)</td><td>30%</td><td>Casos de éxito, beneficios.</td><td>Generar confianza y deseo.</td></tr>
+                                <tr class="table-yellow"><td>Bottom (BOFU)</td><td>20%</td><td>Ofertas, descuentos, remarketing.</td><td>Cerrar la venta.</td></tr>
+                                <tr><td>Fidelización</td><td>10%</td><td>Contenido exclusivo clientes.</td><td>Re-compra y recomendación.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: 3. Consejos & 4. Cuadro de Control -->
+        <section class="slide" id="slide-4">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>3. Consejos Estratégicos & 4. Cuadro de Control</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content">
+                    <div class="reveal reveal-3" style="margin-bottom: 3rem;">
+                        <ul style="list-style: disc; padding-left: 2rem; line-height: 1.8; font-size: 0.95rem;">
+                            <li><strong>El Video Corto es el "Peaje":</strong> En 2026, los algoritmos priorizan videos de menos de 30 segundos que no parezcan anuncios. Usa un tono humano.</li>
+                            <li><strong>Aprovecha el UGC (User Generated Content):</strong> Los anuncios grabados por clientes reales convierten hasta un 30% más.</li>
+                            <li><strong>Social SEO:</strong> Usa palabras clave en tus "copies", ya que las redes funcionan cada vez más como buscadores.</li>
+                            <li><strong>IA para Optimizar, no para Reemplazar:</strong> Usa la IA para crear variaciones de texto, pero asegúrate de que el mensaje tenga "alma".</li>
+                            <li><strong>Pruebas A/B Semanales:</strong> Prueba dos imágenes o ganchos diferentes cada semana y apaga el que no rinda.</li>
+                        </ul>
+                    </div>
+                    <div class="reveal reveal-4">
+                        <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--yellow-text);">4. Cuadro de control mensual (plantilla)</h2>
+                        <p style="opacity: 0.8; margin-bottom: 1.5rem; font-size: 0.9rem;">Este cuadro es para cada mes y lleva el registro de tus campañas pagadas:</p>
+                        <table class="corporate-table">
+                            <thead><tr><th>Campaña</th><th>Red Social</th><th>Presupuesto</th><th>Resultado Real</th><th>Aprendizaje</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Ej: Promo Verano</td><td>Instagram</td><td>$200</td><td>15 ventas</td><td>El video funcionó mejor que la foto.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Calendario Detallado -->
+        <section class="slide" id="slide-5">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>Planificación Detallada Q1 - Q3</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content">
+                    <div class="reveal reveal-3" style="margin-bottom: 2rem;">
+                        <h3 class="accent" style="margin-bottom: 0.5rem;">Q1: Enero - Marzo (Arranque y Conexión)</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem;">Enfoque: Captar propósitos de año nuevo y aprovechar las rebajas.</p>
+                        <table class="corporate-table" style="font-size: 0.75rem;">
+                            <thead><tr><th>Mes</th><th>Fecha Clave</th><th>Festivo / Evento</th><th>Estrategia de Publicación Pagada</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Enero</td><td>1, 6, 7 y 19</td><td>Año Nuevo, Reyes, Rebajas, Blue Monday</td><td>Liquidación: Anuncios de retargeting para carritos llenos en Navidad.</td></tr>
+                                <tr><td>Febrero</td><td>14 y 17</td><td>San Valentín, Carnaval / Año Nuevo Chino</td><td>Regalos y Experiencias: Campañas de "Regalos para él/ella".</td></tr>
+                                <tr class="table-yellow"><td>Marzo</td><td>8 y 19</td><td>Día de la Mujer, Día del Padre (ES/IT)</td><td>Valores y Homenaje: Publicaciones que resalten el rol de la mujer.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="reveal reveal-4" style="margin-bottom: 2rem;">
+                        <h3 class="accent" style="margin-bottom: 0.5rem;">Q2: Abril - Junio (Crecimiento y Maduración)</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem;">Enfoque: Preparar el terreno para las vacaciones y fechas familiares fuertes.</p>
+                        <table class="corporate-table" style="font-size: 0.75rem;">
+                            <thead><tr><th>Mes</th><th>Fecha Clave</th><th>Festivo / Evento</th><th>Estrategia de Publicación Pagada</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Abril</td><td>2 al 5, 23</td><td>Semana Santa (Pascua), Día del Libro</td><td>Turismo y Ocio: Ads enfocados en "escapadas de último minuto".</td></tr>
+                                <tr><td>Mayo</td><td>1, 3 o 10</td><td>Día del Trabajo, Día de la Madre (España/Latam)</td><td>Venta Directa (BOFU): El Día de la Madre es de los más rentables.</td></tr>
+                                <tr class="table-yellow"><td>Junio</td><td>21, 28, 30</td><td>Día del Padre (Latam), Día de las RRSS</td><td>Engagement y Comunidad: Campañas de conciencia social (Pride).</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="reveal reveal-5">
+                        <h3 class="accent" style="margin-bottom: 0.5rem;">Q3: Julio - Septiembre (Mantenimiento y "Vuelta al Cole")</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem;">Enfoque: Fidelización durante las vacaciones y preparación para el regreso a la rutina.</p>
+                        <table class="corporate-table" style="font-size: 0.75rem;">
+                            <thead><tr><th>Mes</th><th>Fecha Clave</th><th>Festivo / Evento</th><th>Estrategia de Publicación Pagada</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Julio</td><td>1, 26</td><td>Rebajas de Verano, Día de los Abuelos</td><td>Tráfico (MOFU): Llevar gente a la web con las rebajas de verano.</td></tr>
+                                <tr><td>Agosto</td><td>15, 29</td><td>Asunción de la Virgen, Día del Videojuego</td><td>Nicho: Mes de baja competencia. Aprovecha visibilidad barata (TOFU).</td></tr>
+                                <tr class="table-yellow"><td>Septiembre</td><td>15, 21</td><td>Independencia (MXVCA), Día de la Paz</td><td>Back to School: Campañas agresivas de "Vuelta a la rutina/clases".</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: El Embudo de Marketing (Funnel) - REFINED -->
+        <section class="slide" id="slide-6">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">El Embudo de Marketing (Funnel)</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="display: flex; gap: 2rem; align-items: flex-start; overflow-y: auto; padding: 2rem 4rem;">
+                    <div class="reveal reveal-3" style="flex: 1.2; text-align: left; color: white;">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: #a3cf62;">1. TOFU (Top of the Funnel - Parte superior)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.9; margin-bottom: 0.8rem;">Es la etapa de <strong>Atracción</strong>. Aquí el usuario no necesariamente sabe quién eres, o quizás ni siquiera sabe que tiene un problema que tú puedes resolver.</p>
+                        <ul style="font-size: 0.9rem; margin-bottom: 2rem; list-style: disc; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Objetivo:</strong> Que te conozcan (Branding).</li>
+                            <li><strong>Contenido:</strong> Videos virales, consejos útiles, memes relacionados con tu industria o noticias.</li>
+                            <li><strong>En anuncios:</strong> Pagas para que tu marca aparezca frente a personas que tienen intereses similares a tu cliente ideal.</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: #a3cf62;">2. MOFU (Middle of the Funnel - Parte media)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.9; margin-bottom: 0.8rem;">Es la etapa de <strong>Consideración</strong>. Aquí el usuario ya sabe que tiene una necesidad y está evaluando opciones. Ya te conoce y te está comparando.</p>
+                        <ul style="font-size: 0.9rem; margin-bottom: 2rem; list-style: disc; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Objetivo:</strong> Generar confianza y captar sus datos (Leads).</li>
+                            <li><strong>Contenido:</strong> Guías descargables, comparativas, "cómo funciona mi producto", testimonios de otros clientes.</li>
+                            <li><strong>En anuncios:</strong> Retargeting (anuncios dirigidos a quienes ya vieron tus videos anteriores) invitándolos a registrarse o ver un catálogo.</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: #a3cf62;">3. BOFU (Bottom of the Funnel - Parte inferior)</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.9; margin-bottom: 0.8rem;">Es la etapa de <strong>Decisión</strong>. El usuario está a un clic de comprar, solo necesita un último empujón.</p>
+                        <ul style="font-size: 0.9rem; list-style: disc; padding-left: 1.5rem; line-height: 1.5;">
+                            <li><strong>Objetivo:</strong> Cerrar la venta (Conversión).</li>
+                            <li><strong>Contenido:</strong> Cupones de descuento, demostraciones gratuitas, ofertas por tiempo limitado, garantías.</li>
+                            <li><strong>En anuncios:</strong> Anuncios directos al carrito de compra o mensajes directos para cerrar el trato.</li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-4" style="flex: 1; display: flex; flex-direction: column; align-items: center; background: white; padding: 1.5rem; border-radius: 10px; color: #1b4332;">
+                        <div style="width: 100%; position: relative; margin-bottom: 1.5rem;">
+                            <!-- Mocking the visual graphic with connected labels -->
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                                    <div style="background: #673ab7; color: white; padding: 10px; width: 150px; text-align: center; font-weight: 800; border-radius: 5px;">TOFU <br><small style="font-weight: 400;">Top of the funnel</small></div>
+                                    <div style="flex: 1; height: 1px; background: #ddd; margin: 0 10px;"></div>
+                                    <div style="text-align: right; font-size: 0.75rem;"><strong>Descubrimiento</strong><br>Interés</div>
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                                    <div style="background: #03a9f4; color: white; padding: 10px; width: 130px; text-align: center; font-weight: 800; border-radius: 5px;">MOFU <br><small style="font-weight: 400;">Middle of the funnel</small></div>
+                                    <div style="flex: 1; height: 1px; background: #ddd; margin: 0 10px;"></div>
+                                    <div style="text-align: right; font-size: 0.75rem;"><strong>Consideración</strong><br>Intención</div>
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                                    <div style="background: #e91e63; color: white; padding: 10px; width: 110px; text-align: center; font-weight: 800; border-radius: 5px;">BOFU <br><small style="font-weight: 400;">Bottom of the funnel</small></div>
+                                    <div style="flex: 1; height: 1px; background: #ddd; margin: 0 10px;"></div>
+                                    <div style="text-align: right; font-size: 0.75rem;"><strong>Evaluación</strong><br>Compra</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="corporate-table" style="font-size: 0.7rem; color: #1b4332; width: 100%;">
+                            <thead style="background: #0d2a1f; color: white;">
+                                <tr><th>Sigla</th><th>Traducción</th><th>Estado del Cliente</th><th>Mentalidad del anuncio</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157;"><td>TOFU</td><td>Inicio del embudo</td><td>"No te conozco"</td><td>"Mira, esto te interesa"</td></tr>
+                                <tr style="background: #aed581;"><td>MOFU</td><td>Mitad del embudo</td><td>"Te estoy evaluando"</td><td>"Mira por qué soy tu mejor opción"</td></tr>
+                                <tr style="background: #aed581;"><td>BOFU</td><td>Fondo del embudo</td><td>"Estoy listo para comprar"</td><td>"Compra ahora con este beneficio"</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <p style="font-size: 0.8rem; font-weight: 800; margin-bottom: 0.5rem;">¿Por qué es importante para tus anuncios pagados?</p>
+                            <p style="font-size: 0.7rem; line-height: 1.4; font-style: italic;">Porque el error más común es intentar venderle a alguien en TOFU. Es como pedir matrimonio a alguien en la primera cita. Lo ideal es usar el dinero para "calentar" a la audiencia: atraerlos con TOFU, convencerlos con MOFU y venderles con BOFU.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Q4 y Consejos de Oro -->
+        <section class="slide" id="slide-7">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>Q4: Planificación & Consejos de Oro</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content">
+                    <div class="reveal reveal-3" style="margin-bottom: 2rem;">
+                        <h3 class="accent" style="margin-bottom: 0.5rem;">Q4: Octubre - Diciembre (Cosecha y Ventas Masivas)</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1rem;">Enfoque: Conversión máxima. Es el trimestre donde los costos de publicidad suben, pero el retorno es mayor.</p>
+                        <table class="corporate-table" style="font-size: 0.75rem;">
+                            <thead><tr><th>Mes</th><th>Fecha Clave</th><th>Festivo / Evento</th><th>Estrategia de Publicación Pagada</th></tr></thead>
+                            <tbody>
+                                <tr class="table-yellow"><td>Octubre</td><td>12, 19, 31</td><td>Día de la Hispanidad, Cáncer de Mama, Halloween</td><td>Expectativa: Campañas de intriga para lo que viene en noviembre.</td></tr>
+                                <tr><td>Noviembre</td><td>11, 27, 30</td><td>Día del Soltero, Black Friday, Cyber Monday</td><td>Conversión Total: Es el mes más importante. Debes subir el presupuesto al menos un 50%.</td></tr>
+                                <tr class="table-yellow"><td>Diciembre</td><td>24, 25, 31</td><td>Nochebuena, Navidad, Nochevieja</td><td>Urgencia: Anuncios de "Tarjetas de regalo" para los que compran a última hora.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="split-layout" style="width: 100%;">
+                        <div class="split-left reveal reveal-4" style="background: transparent; padding: 0;">
+                            <h3 class="accent" style="margin-bottom: 1.5rem;">Consejos de Oro para tu Plan Anual:</h3>
+                            <ul style="font-size: 0.85rem; line-height: 1.5; list-style: disc; padding-left: 1.5rem;">
+                                <li style="margin-bottom: 1rem;"><strong>Regla de los 15 días:</strong> Lanza tus campañas de "Reconocimiento" (TOFU) 15 días antes de la fecha festiva.</li>
+                                <li style="margin-bottom: 1rem;"><strong>Ajuste de Presupuesto:</strong> Reserva el 40% de tu presupuesto anual para el Q4 (Octubre-Diciembre).</li>
+                                <li style="margin-bottom: 1rem;"><strong>Contenido Local:</strong> Si vendes en varios países, ajusta el Día del Padre y de la Madre según el calendario local.</li>
+                                <li style="margin-bottom: 1rem;"><strong>No satures:</strong> No todas las fechas festivas sirven para tu marca. Elige las 5 o 6 más relevantes.</li>
+                            </ul>
+                        </div>
+                        <div class="split-right reveal reveal-5" style="background-image: url('assets/urubo_ninos_jugando_white_final.png'); border-radius: 10px; min-height: 250px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Plan 2027 -->
+        <section class="slide" id="slide-8">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>8. Plan Estratégico de Ads: Junio - Diciembre 2026</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 2rem; overflow-y: auto;">
+                        <h3 class="accent" style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--yellow-text);">Plan Estratégico de Ads: Junio - Diciembre 2026</h3>
+                        
+                        <div style="font-size: 0.75rem; line-height: 1.4;">
+                            <p><strong>JUNIO: El Mes de la Comunidad</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 21 (Día del Padre - LATAM).</li>
+                                <li>Estrategia: Captación de Leads (MOFU).</li>
+                                <li>Consejo de Ads: Lanza un sorteo pagado para captar correos electrónicos o seguidores. Esto te servirá para tener a quién venderle en las rebajas de julio.</li>
+                            </ul>
+
+                            <p><strong>JULIO: El Mes del Descuento</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 1 (Inicio Rebajas de Verano).</li>
+                                <li>Estrategia: Campañas de ventas por catálogo.</li>
+                                <li>Consejo de Ads: Usa el "Retargeting". Muestra anuncios específicamente a personas que visitaron tu web en mayo y junio pero no compraron.</li>
+                            </ul>
+
+                            <p><strong>AGOSTO: El Mes de la Visibilidad Barata</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: Todo el mes (Vacaciones).</li>
+                                <li>Estrategia: Generación de Alcance (TOFU).</li>
+                                <li>Consejo de Ads: Las grandes marcas bajan su inversión. Es el momento de comprar publicidad barata para que gente nueva te conozca.</li>
+                            </ul>
+
+                            <p><strong>SEPTIEMBRE: El Mes de la Rutina</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 1 (Vuelta al cole/oficina).</li>
+                                <li>Estrategia: Campañas de solución de problemas.</li>
+                                <li>Consejo de Ads: El mensaje debe ser "Te ayudamos a organizar tu nueva etapa". Usa anuncios de búsqueda (SEO/SEM).</li>
+                            </ul>
+
+                            <p><strong>OCTUBRE: El Mes de la Intriga</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 31 (Halloween).</li>
+                                <li>Estrategia: Campañas de interacción.</li>
+                                <li>Consejo de Ads: Empieza a segmentar a tu "Audiencia VIP" para el Black Friday. Crea anuncios de "Únete a la lista de espera".</li>
+                            </ul>
+
+                            <p><strong>NOVIEMBRE: El Mes de la Cosecha (Máximo Presupuesto)</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 27 (Black Friday), 30 (Cyber Monday).</li>
+                                <li>Estrategia: Conversión Directa (BOFU).</li>
+                                <li>Consejo de Ads: No experimentes. Ve a lo seguro. Usa tus mejores productos y ofrece el mayor descuento del año.</li>
+                            </ul>
+
+                            <p><strong>DICIEMBRE: El Mes de la Fidelización</strong></p>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1rem;">
+                                <li>Fechas Clave: 24 (Navidad), 31 (Fin de Año).</li>
+                                <li>Estrategia: Campañas de regalos y agradecimiento.</li>
+                                <li>Consejo de Ads: Del 1 al 20, anuncios de "Regalos de última hora". Del 21 al 31, anuncios de branding agradeciendo el año.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_strategy_hand_cloud.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: FAQ -->
+        <section class="slide" id="slide-9">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">Plan de Publicaciones Pagadas: Junio - Diciembre 2026</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="padding: 2rem 4rem;">
+                    <table class="corporate-table reveal reveal-3" style="font-size: 0.75rem; width: 100%;">
+                        <thead style="background: #0d2a1f; color: #a3cf62;">
+                            <tr>
+                                <th>Mes</th>
+                                <th>Días Clave / Festivos</th>
+                                <th>Estrategia de Ads (Funnel)</th>
+                                <th>Formato y Consejo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #d4e157; color: #1b4332;">
+                                <td><strong>JUNIO</strong></td>
+                                <td>21: Día del Padre</td>
+                                <td>MOFU / Leads: Captar correos antes de las rebajas de verano.</td>
+                                <td>Lead Magnets: "Suscríbete para recibir un cupón exclusivo para las rebajas de julio".</td>
+                            </tr>
+                            <tr style="background: #aed581; color: #1b4332;">
+                                <td><strong>JULIO</strong></td>
+                                <td>1: Inicio Rebajas Verano</td>
+                                <td>BOFU / Retargeting: Liquidar stock de temporada.</td>
+                                <td>Anuncios de Oferta: Usa etiquetas de precio tachado y "Últimas unidades".</td>
+                            </tr>
+                            <tr style="background: #d4e157; color: #1b4332;">
+                                <td><strong>AGOSTO</strong></td>
+                                <td>Todo el mes Patrio</td>
+                                <td>TOFU / Alcance: Mantener la marca presente con bajo costo.</td>
+                                <td>Contenido Lifestyle: Fotos de tus productos en situaciones de vacaciones. Menos "compra" y más "disfruta".</td>
+                            </tr>
+                            <tr style="background: #aed581; color: #1b4332;">
+                                <td><strong>SEPTIEMBRE</strong></td>
+                                <td>Todo el mes de la primavera</td>
+                                <td>MOFU / Consideración: Soluciones para el nuevo curso o rutina.</td>
+                                <td>Tutoriales / How-to: "¿Cómo organizar tu oficina/estudio este septiembre?".</td>
+                            </tr>
+                            <tr style="background: #d4e157; color: #1b4332;">
+                                <td><strong>OCTUBRE</strong></td>
+                                <td>19: Cáncer de Mama<br>31: Halloween</td>
+                                <td>TOFU / Interacción: Preparar audiencias para el Q4 (Black Friday).</td>
+                                <td>Encuestas / Quizzes: Usa anuncios de historias con encuestas para segmentar intereses.</td>
+                            </tr>
+                            <tr style="background: #aed581; color: #1b4332;">
+                                <td><strong>NOVIEMBRE</strong></td>
+                                <td>27: Black Friday</td>
+                                <td>BOFU / Conversión Agresiva: El pico más alto de inversión.</td>
+                                <td>Video de Producto: Muestra el beneficio directo y el descuento gigante. Usa anuncios de cuenta atrás.</td>
+                            </tr>
+                            <tr style="background: #d4e157; color: #1b4332;">
+                                <td><strong>DICIEMBRE</strong></td>
+                                <td>24-25: Navidad<br>31: Fin de Año</td>
+                                <td>BOFU / Fidelización: Regalos y cierre de año.</td>
+                                <td>Anuncios de Retargeting: Impacta a quienes no compraron en Black Friday con una oferta de Navidad.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Matriz Táctica Final -->
+        <section class="slide" id="slide-10">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">10. Consejos de Implementación para todos los meses</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 2rem; overflow-y: auto; text-align: left;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--yellow-text);">Consejos de Implementación para todos los meses:</h3>
+                        
+                        <div style="font-size: 0.7rem; line-height: 1.3; color: white;">
+                            <p><strong>1. La Regla del 70/20/10:</strong></p>
+                            <ul style="margin-bottom: 0.8rem; list-style: circle; padding-left: 1.2rem;">
+                                <li>70% del presupuesto en lo que ya te funciona (ventas directas).</li>
+                                <li>20% en probar audiencias nuevas (gente que no te conoce).</li>
+                                <li>10% en experimentos (nuevos formatos de video o inteligencia artificial).</li>
+                            </ul>
+
+                            <p><strong>2. Preparación de Arte (Creativos):</strong></p>
+                            <p style="margin-bottom: 0.8rem;">No esperes al día 1 del mes. Debes tener los diseños de Marzo listos en la última semana de Febrero.</p>
+
+                            <p><strong>3. Monitorización de "Costo por Resultado":</strong></p>
+                            <p style="margin-bottom: 1rem;">En meses como Mayo y Noviembre, el costo de la publicidad sube porque todos quieren anunciar. Si tu costo por venta sube demasiado, enfócate en hacer Retargeting (venderle a quien ya te conoce) que es más barato que buscar clientes nuevos.</p>
+
+                            <h3 style="font-size: 0.9rem; color: white; margin-bottom: 0.5rem; text-transform: uppercase;">El Embudo de Ventas</h3>
+                            <ul style="margin-bottom: 1rem; list-style: disc; padding-left: 1.2rem;">
+                                <li>60% Aspiracional: Renders de alta calidad, familias, naturaleza, lujo.</li>
+                                <li>20% Urgencia: "Quedan pocos lotes", "Cambio de precio el próximo mes".</li>
+                                <li>20% Informativo: Ubicación exacta, seguridad jurídica, planes de pago.</li>
+                            </ul>
+
+                            <h3 style="font-size: 0.9rem; color: white; margin-bottom: 0.5rem; text-transform: uppercase;">Consejos Visuales por Red Social</h3>
+                            <p><strong>1. Instagram y Facebook (Aspiracional)</strong></p>
+                            <ul style="margin-bottom: 0.8rem; list-style: disc; padding-left: 1.2rem;">
+                                <li>Imagen: Usa renders 3D que parezcan reales. La iluminación debe ser "Golden Hour" (atardecer).</li>
+                                <li>Reels: Videos de 15 segundos con música de tendencia (tipo "Luxury Real Estate") mostrando los lujos de la urbanización.</li>
+                            </ul>
+
+                            <p><strong>2. TikTok (Educativo y Detrás de Escena)</strong></p>
+                            <ul style="margin-bottom: 0.8rem; list-style: disc; padding-left: 1.2rem;">
+                                <li>Video: Tú o un asesor explicando: "¿Por qué invertir en el Urubó hoy?" o "3 cosas que no sabías de Green Park".</li>
+                                <li>Factor Humano: Muestra a los ingenieros trabajando en el terreno para dar confianza de que el proyecto avanza.</li>
+                            </ul>
+
+                            <p><strong>3. WhatsApp (Venta Directa)</strong></p>
+                            <ul style="list-style: disc; padding-left: 1.2rem;">
+                                <li>Estado: Publica fotos los Domingos, que es cuando la gente tiene tiempo de soñar con su futura casa.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_familia_pool_grill_final.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <section class="slide" id="slide-11">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">11. Estrategias de Contenido: Enero - Febrero 2027</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="padding: 1rem 4rem; overflow-y: auto;">
+                    <div class="reveal reveal-3" style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1rem; color: white; margin-bottom: 0.3rem;">Mes 1: Enero - Campaña "Inversión y Nuevas Metas"</h3>
+                        <p style="font-size: 0.8rem; color: white; opacity: 0.9; margin-bottom: 0.8rem;"><strong>Objetivo:</strong> Captar a personas que quieren invertir sus ahorros de inicio de año.</p>
+                        <table class="corporate-table" style="font-size: 0.75rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: #a3cf62;">
+                                <tr><th style="width: 25%;">Elemento</th><th>Contenido Sugerido</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Imagen/Video</td><td>Render del Portal de Ingreso imponente. Debe transmitir seguridad y estatus.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Título del Anuncio</td><td>El Urubó a precio de preventa: ¡Tu inversión segura!</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Texto Principal</td><td style="text-align: left; padding: 1rem;">¿Tu meta para 2026 es asegurar el futuro de tu familia?<br>En Green Park Urbanización, abrimos la preventa exclusiva de lotes en la zona de mayor crecimiento del Urubó.<br>✅ Terrenos desde [X] m2.<br>✅ Financiamiento directo y bancario.<br>✅ Áreas sociales de lujo (Piscina, Club House y más).<br>No esperes a que esté construido para comprar, ¡compra hoy y gana plusvalía inmediata!</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Botón (CTA)</td><td>Más Información / Registrarse</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="reveal reveal-4">
+                        <h3 style="font-size: 1rem; color: white; margin-bottom: 0.3rem;">Mes 2: Febrero - Campaña "Estilo de Vida y Relax"</h3>
+                        <p style="font-size: 0.8rem; color: white; opacity: 0.9; margin-bottom: 0.8rem;"><strong>Objetivo:</strong> Aprovechar el feriado de Carnaval para vender la idea de "vacaciones perpetuas".</p>
+                        <table class="corporate-table" style="font-size: 0.75rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: #a3cf62;">
+                                <tr><th style="width: 25%;">Elemento</th><th>Contenido Sugerido</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Imagen/Video</td><td>Render de la Piscina Infinita con personas relajadas y el entorno lleno de árboles.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Título del Anuncio</td><td>🌴 Vive como si estuvieras de vacaciones todo el año.</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Texto Principal</td><td style="text-align: left; padding: 1rem;">¿Cansado del ruido y el estrés de la ciudad? 🧘‍♂️🔥<br>Imagina pasar tus fines de semana en Green Park. Una urbanización diseñada para conectar con la naturaleza sin alejarte de Santa Cruz.<br>• Bosques preservados.<br>• Seguridad 24/7.<br>• A pocos minutos de los puentes principales.<br>¡Este Carnaval, asegura el lugar donde construirás tus mejores recuerdos!</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Botón (CTA)</td><td>Ver Catálogo de Lotes</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="slide" id="slide-12">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">12. Estrategia de Urgencia: Marzo 2027</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="padding: 1.5rem 4rem; overflow-y: auto;">
+                    <div class="reveal reveal-3" style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.1rem; color: white; margin-bottom: 0.5rem;">Mes 3: Marzo - Campaña "Urgencia y Plusvalía"</h3>
+                        <p style="font-size: 0.85rem; color: white; opacity: 0.9; margin-bottom: 1rem;"><strong>Objetivo:</strong> Empujar a los indecisos a comprar antes de que los precios suban.</p>
+                        <table class="corporate-table" style="font-size: 0.8rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: #a3cf62;">
+                                <tr><th style="width: 25%;">Elemento</th><th>Contenido Sugerido</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Imagen/Video</td><td>Mapa de ubicación resaltando la cercanía con la ciudad y fotos del inicio de movimiento de tierras.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Título del Anuncio</td><td>🚨 ÚLTIMOS DÍAS con precio de lanzamiento.</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Texto Principal</td><td style="text-align: left; padding: 1.2rem;">¡El momento es AHORA!<br>La primera fase de Green Park Urbanización está agotándose. Quienes compraron en enero ya vieron crecer su inversión. No te quedes fuera de la zona más exclusiva del Urubó.<br>• Ubicación estratégica.<br>• Alta rentabilidad garantizada.<br>• Cuotas que se ajustan a tu bolsillo.<br>Haz clic abajo y solicita el plano de lotes disponibles antes del cambio de precio.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Botón (CTA)</td><td>Enviar Mensaje de WhatsApp</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="reveal reveal-4" style="background: rgba(0,0,0,0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #a3cf62;">
+                        <h4 style="color: #a3cf62; margin-bottom: 1rem; font-size: 0.95rem;">• 3 Consejos de Oro para tus Anuncios:</h4>
+                        <ul style="font-size: 0.8rem; line-height: 1.6; color: white; list-style: none;">
+                            <li style="margin-bottom: 0.8rem;"><strong>Segmentación:</strong> En Facebook Ads, segmenta a personas interesadas en: <em>Bienes raíces, Inversiones, Golf, Vehículos de lujo y Familias con hijos pequeños.</em></li>
+                            <li style="margin-bottom: 0.8rem;"><strong>Prueba Social:</strong> Si ya tienes los primeros compradores, coloca un texto pequeño que diga: <em>"¡Más del 30% de la Fase 1 vendida en tiempo récord!"</em></li>
+                            <li style="margin-bottom: 0.8rem;"><strong>Respuesta Rápida:</strong> La preventa genera muchas dudas. Asegúrate de que el botón de WhatsApp lleve a un mensaje automático: <em>"Hola, quiero recibir el catálogo de precios y el plano de Green Park".</em></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="slide" id="slide-13">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">13. FAQ Estratégico & Plan de Referidos</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="padding: 1.5rem 4rem; overflow-y: auto;">
+                    <div class="reveal reveal-3" style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1rem; color: white; margin-bottom: 0.3rem;">Preguntas Frecuentes (FAQ) para WhatsApp y Messenger</h3>
+                        <p style="font-size: 0.75rem; color: white; opacity: 0.9; margin-bottom: 1rem;">Estas respuestas están diseñadas para generar confianza y eliminar las objeciones más comunes.</p>
+                        <table class="corporate-table" style="font-size: 0.7rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: #a3cf62;">
+                                <tr><th style="width: 25%;">Pregunta del Cliente</th><th>Respuesta Sugerida (Copy para Ventas)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>¿Dónde está ubicado exactamente?</td><td>¡Excelente ubicación! Green Park se encuentra en la zona de mayor crecimiento del Urubó, a solo [X] minutos de los puentes principales. Es el equilibrio perfecto: cerca del equipamiento urbano pero rodeado de naturaleza.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>¿Tienen papeles al día?</td><td>Totalmente. Contamos con toda la documentación legal en orden, aprobación de planos y registro correspondiente. La transparencia es nuestro pilar; si gustas, podemos agendar una reunión para mostrarte los documentos.</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>¿Cuáles son las áreas comunes?</td><td>El lujo es nuestro estándar. Tendremos Club House privado, piscina infinita, canchas deportivas, senderos ecológicos, parques infantiles y seguridad 24/7 con acceso controlado.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>¿Si es preventa, cuándo entregan?</td><td>Al comprar en preventa obtienes el precio más bajo del mercado. La entrega de lotes con servicios básicos está programada para [Mes/Año]. ¡Es el momento ideal para que tu inversión gane valor mientras construimos!</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>¿Hay financiamiento?</td><td>¡Sí! Tenemos planes flexibles. Contamos con financiamiento directo a sola firma con cuotas cómodas o crédito bancario. ¿Te gustaría que te envíe una simulación de cuotas?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; align-items: flex-start;">
+                        <div class="reveal reveal-4" style="flex: 1.2; text-align: left; color: white;">
+                            <h4 style="color: #a3cf62; font-size: 0.9rem; margin-bottom: 0.5rem;">• Plan de Referidos: "Embajadores Green Park"</h4>
+                            <p style="font-size: 0.75rem; margin-bottom: 1rem; opacity: 0.9;">Incentiva a tus clientes actuales. Un referido tiene un <strong>80% más de probabilidad</strong> de compra.</p>
+                            <div style="font-size: 0.7rem; line-height: 1.4;">
+                                <p><strong>Estructura del Programa:</strong></p>
+                                <ul style="list-style: disc; padding-left: 1.2rem; margin-bottom: 1rem;">
+                                    <li><strong>Nombre:</strong> "Cosecha tus sueños con Green Park".</li>
+                                    <li><strong>Mecánica:</strong> Por cada persona que refieras y concrete la compra de su lote, recibes un beneficio directo.</li>
+                                    <li><strong>Premios Sugeridos:</strong>
+                                        <ul style="list-style: circle; padding-left: 1.2rem; margin-top: 0.3rem;">
+                                            <li>Opción A: Descuento directo de <strong>$us 500</strong> en tu última cuota.</li>
+                                            <li>Opción B: Gift Card de <strong>$us 300</strong> para equipar tu futura casa.</li>
+                                            <li>Opción C: Un año de mantenimiento/expensas <strong>gratis</strong>.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="reveal reveal-5" style="flex: 1;">
+                            <h4 style="color: #a3cf62; font-size: 0.9rem; margin-bottom: 0.5rem; text-align: center;">Publicidad para el Plan de Referidos</h4>
+                            <table class="corporate-table" style="font-size: 0.7rem; width: 100%;">
+                                <thead style="background: #0d2a1f; color: #a3cf62;">
+                                    <tr><th>Elemento</th><th>Detalle</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: #d4e157; color: #1b4332;"><td>Imagen Sugerida</td><td>Dos amigos riendo y brindando en una terraza, con el texto: "Elige a tus propios vecinos".</td></tr>
+                                    <tr style="background: #aed581; color: #1b4332;"><td>Frase de Refuerzo</td><td>"Lo bueno se comparte. Refiere a un amigo a Green Park y recibe un bono de $us 500 cuando concrete su compra."</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="slide" id="slide-14">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2 style="color: #a3cf62;">14. Script de Ventas: "El Camino al Cierre"</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #1b4332; padding: 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #a3cf62;">Script de Ventas: "El Camino al Cierre"</h3>
+                        <p style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 1.5rem;">Este guion está diseñado para llevar al cliente de la curiosidad a la reserva.</p>
+                        
+                        <div style="font-size: 0.75rem; line-height: 1.4;">
+                            <p style="color: #a3cf62; font-weight: bold; margin-bottom: 0.3rem;">Nivel 1: El Saludo y Calificación (El Gancho)</p>
+                            <p style="font-style: italic; opacity: 0.8; margin-bottom: 0.5rem;">Cuando el cliente escribe por WhatsApp o Messenger.</p>
+                            <p style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 5px; margin-bottom: 0.5rem;">
+                                "¡Hola! Qué gusto saludarte. Soy [Nombre], asesor de <strong>Green Park Urbanización</strong>. 🌿 Gracias por consultarnos sobre el proyecto más exclusivo del Urubó. Para enviarte los lotes que mejor se ajustan a lo que buscas, ¿prefieres un terreno cerca de las áreas sociales (piscina/club house) o buscas algo con más privacidad cerca de los senderos ecológicos?"
+                            </p>
+                            <ul style="margin-bottom: 1.5rem; list-style: disc; padding-left: 1.2rem; font-size: 0.7rem; opacity: 0.9;">
+                                <li><strong>Por qué funciona:</strong> No das solo el precio, das a elegir entre dos beneficios, obligando al cliente a interactuar.</li>
+                            </ul>
+
+                            <p style="color: #a3cf62; font-weight: bold; margin-bottom: 0.3rem;">Nivel 2: Rebatiendo Objeciones (El Escudo)</p>
+                            <p style="font-style: italic; opacity: 0.8; margin-bottom: 0.5rem;">Si el cliente dice: "Está muy lejos" o "Aún no hay nada construido".</p>
+                            <p style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 5px; margin-bottom: 1.5rem;">
+                                "Te entiendo perfectamente. De hecho, la magia de la <strong>preventa</strong> es precisamente esa: hoy estás comprando 'tierra virgen' a precio de oportunidad. En el Urubó, lo que hoy parece lejos, en 2 años duplica su valor. Estás comprando <strong>plusvalía garantizada</strong>. Una vez que las máquinas entran y el asfalto llega, el precio sube un 30%. ¿Prefieres comprar al precio de hoy o cuando ya todo esté terminado y caro?"
+                            </p>
+
+                            <p style="color: #a3cf62; font-weight: bold; margin-bottom: 0.3rem;">Nivel 3: El Cierre de Reserva (La Acción)</p>
+                            <p style="font-style: italic; opacity: 0.8; margin-bottom: 0.5rem;">Cuando el cliente ya tiene la información.</p>
+                            <p style="background: rgba(255,255,255,0.05); padding: 0.8rem; border-radius: 5px;">
+                                "Tengo este lote específico en la Fase 1 que es de los últimos con vista al bosque. Podemos reservarlo hoy mismo con solo <strong>$us [Monto de reserva]</strong> mientras revisas el contrato con calma. ¿Te gustaría que te envíe la ubicación por Google Maps para que pases a verlo este fin de semana?"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_familia_playground_final.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 15: Presupuesto y Estrategia de Inversión -->
+        <section class="slide" id="slide-15">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>15. Presupuesto Publicitario y Estrategia de Inversión</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 2rem; overflow-y: auto; text-align: left; color: white;">
+                        <h3 class="accent" style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--yellow-text);">Presupuesto Estimado de Publicidad (Facebook/Instagram Ads)</h3>
+                        <p style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 1rem;">Para una urbanización en el Urubó, sugiero un presupuesto que permita "bombardear" el mercado local (Santa Cruz) y el mercado nacional (La Paz/Cochabamba para inversores).</p>
+                        
+                        <table class="corporate-table" style="font-size: 0.65rem; margin-bottom: 1.5rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: var(--yellow-text);">
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th>Inversión Mensual Sugerida (Bs/USD)</th>
+                                    <th>Objetivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;">
+                                    <td>Campaña de Tráfico (WhatsApp)</td>
+                                    <td>$us 300 - 500</td>
+                                    <td>Generar mensajes diarios constantes.</td>
+                                </tr>
+                                <tr style="background: #aed581; color: #1b4332;">
+                                    <td>Campaña de Reconocimiento (Video)</td>
+                                    <td>$us 100 - 150</td>
+                                    <td>Que todo Santa Cruz conozca la marca Green Park.</td>
+                                </tr>
+                                <tr style="background: #d4e157; color: #1b4332;">
+                                    <td>Retargeting (Volver a mostrar)</td>
+                                    <td>$us 100</td>
+                                    <td>Aparecerle de nuevo a quien ya vio la web o el video.</td>
+                                </tr>
+                                <tr style="background: #1b4332; color: var(--yellow-text); font-weight: bold;">
+                                    <td>TOTAL ESTIMADO</td>
+                                    <td>$us 500 - 750 / mes</td>
+                                    <td>Meta: 10 a 20 prospectos calificados por día.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <h4 style="color: var(--yellow-text); font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase;">• Herramienta de Cierre: El "Pack de Bienvenida"</h4>
+                                <p style="font-size: 0.65rem; margin-bottom: 0.5rem; opacity: 0.9;">Para que el cliente sienta que la urbanización es real, te sugiero enviarle por WhatsApp un <strong>PDF interactivo</strong> que contenga:</p>
+                                <ul style="font-size: 0.65rem; list-style: disc; padding-left: 1rem; opacity: 0.9;">
+                                    <li><strong>Plano de Lotes Actualizado</strong> (marcando los "Vendidos" en rojo para crear urgencia).</li>
+                                    <li><strong>Renders en Alta Definición</strong> (la imagen de la familia en la piscina).</li>
+                                    <li><strong>Ubicación de Google Maps.</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--yellow-text); font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase;">• Estrategia para Inversores: "Rendimiento Green Park"</h4>
+                                <p style="font-size: 0.65rem; margin-bottom: 0.5rem; opacity: 0.9;">Al inversor no le importa el color de las flores, le importa el <strong>ROI</strong> (Retorno de Inversión).</p>
+                                <ul style="font-size: 0.65rem; list-style: disc; padding-left: 1rem; opacity: 0.9;">
+                                    <li><strong>Plusvalía Proyectada:</strong> Compra en preventa a $us 80/m2 (ejemplo). Valor proyectado al finalizar: $us 120/m2. <strong>Ganancia neta del 50%</strong> en menos de 24 meses.</li>
+                                    <li><strong>Zona Estratégica:</strong> El Urubó es el área de mayor valorización de Bolivia.</li>
+                                    <li><strong>Activo Refugio:</strong> Ante la inflación, la tierra es el activo más seguro.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_entrance_final_text.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 16: Estructura del PDF de Bienvenida -->
+        <section class="slide" id="slide-16">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>16. Estructura del PDF de Bienvenida (Brochure Digital)</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content">
+                    <div class="reveal reveal-3">
+                        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 2rem;">Este documento debe ser visual, ligero (máximo 5 MB) y profesional.</p>
+                        
+                        <table class="corporate-table" style="width: 100%; border-radius: 10px; overflow: hidden;">
+                            <thead style="background: #0d2a1f; color: var(--yellow-text);">
+                                <tr>
+                                    <th style="width: 20%; text-align: center;">Página</th>
+                                    <th style="width: 40%;">Contenido Visual</th>
+                                    <th style="width: 40%;">Texto Clave</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 1: Portada</td>
+                                    <td>Render de impacto (Piscina + Atardecer).</td>
+                                    <td>Green Park Urbanización: Tu inversión en el nuevo corazón del Urubó.</td>
+                                </tr>
+                                <tr style="background: #aed581; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 2: El Proyecto</td>
+                                    <td>Masterplan (Plano general de la urbanización).</td>
+                                    <td>Un santuario privado de [X] hectáreas con seguridad integral.</td>
+                                </tr>
+                                <tr style="background: #d4e157; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 3: Ubicación</td>
+                                    <td>Mapa con tiempos de llegada (10 min del puente).</td>
+                                    <td>Cerca de la ciudad, dentro de la exclusividad.</td>
+                                </tr>
+                                <tr style="background: #aed581; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 4: Áreas Sociales</td>
+                                    <td>Galería de renders (Gym, Spa, Parques).</td>
+                                    <td>Amenidades de clase mundial para un estilo de vida premium.</td>
+                                </tr>
+                                <tr style="background: #d4e157; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 5: Inversión</td>
+                                    <td>Cuadro de precios de preventa y facilidades.</td>
+                                    <td>Sé parte de la Fase 1. El momento de mayor ganancia es ahora.</td>
+                                </tr>
+                                <tr style="background: #aed581; color: #1b4332;">
+                                    <td style="text-align: center; font-weight: bold;">Pág. 6: Contacto</td>
+                                    <td>Foto del equipo comercial y QR de WhatsApp.</td>
+                                    <td>Tu terreno te espera. Agenda una visita al terreno hoy mismo.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 17: Resumen Final y Hoja de Ruta -->
+        <section class="slide" id="slide-17">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>17. Resumen Estratégico y Hoja de Ruta Final</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="full-green-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 2rem 4rem; overflow-y: auto;">
+                    <!-- Columna Izquierda -->
+                    <div class="reveal reveal-3">
+                        <h3 class="accent" style="font-size: 1.3rem; margin-bottom: 1.5rem;">Resumen de la "Frase de Oro"</h3>
+                        <ul style="font-size: 0.9rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 2.5rem; opacity: 0.9; line-height: 1.6;">
+                            <li style="margin-bottom: 0.8rem;"><strong>Instagram:</strong> "Donde el lujo encuentra su naturaleza." (Estilo de vida).</li>
+                            <li style="margin-bottom: 0.8rem;"><strong>Facebook:</strong> "La inversión más segura para tu familia en el Urubó." (Seguridad).</li>
+                            <li style="margin-bottom: 0.8rem;"><strong>TikTok:</strong> "¿Cómo ganar $us 10.000 invirtiendo en preventa? Te explico..." (Inversión).</li>
+                        </ul>
+
+                        <h3 class="accent" style="font-size: 1.3rem; margin-bottom: 0.8rem;">1. Evento de Lanzamiento: "Open House Green Park"</h3>
+                        <p style="font-size: 0.85rem; font-style: italic; margin-bottom: 1.5rem; opacity: 0.8;">Hacer que el cliente "sienta" que ya vive ahí.</p>
+                        <ul style="font-size: 0.9rem; list-style: disc; padding-left: 1.5rem; opacity: 0.9; line-height: 1.6;">
+                            <li style="margin-bottom: 1rem;"><strong>Lugar:</strong> En el mismo terreno (Urubó) bajo una carpa de lujo o en hotel 5 estrellas en Equipetrol.</li>
+                            <li style="margin-bottom: 1rem;"><strong>Experiencia:</strong>
+                                <ul style="list-style: circle; padding-left: 1.5rem; margin-top: 0.5rem;">
+                                    <li>Maqueta 3D detallada del proyecto.</li>
+                                    <li>Lentes VR para "caminar" por su futura calle.</li>
+                                    <li>Catering gourmet y ambiente de negocios.</li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 1rem;"><strong>El "Gancho":</strong> Bono de descuento de <strong>$us 1.000</strong> o <strong>Cocina Equipada</strong> solo por las 4 horas del evento.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="reveal reveal-4">
+                        <h3 class="accent" style="font-size: 1.1rem; margin-bottom: 0.5rem;">2. Guía para el Contrato de Reserva</h3>
+                        <table class="corporate-table" style="font-size: 0.6rem; margin-bottom: 1.5rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: var(--yellow-text);">
+                                <tr><th>Punto Clave</th><th>Descripción para el Cliente</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Objeto</td><td>Identificación precisa del lote (Manzana, Nro y superficie).</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Precio</td><td>Monto pactado, reserva y plan de cuotas.</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>Plazo</td><td>Fecha estimada de entrega de servicios básicos.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>Garantía</td><td>Declaración de libertad de gravámenes (Derechos Reales).</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h3 class="accent" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Resumen Ejecutivo: Hoja de Ruta Final</h3>
+                        <p style="font-size: 0.65rem; font-style: italic; margin-bottom: 1rem; opacity: 0.8;">"No vendemos lotes, vendemos el lugar donde sus hijos aprenderán a nadar."</p>
+                        <table class="corporate-table" style="font-size: 0.6rem; width: 100%;">
+                            <thead style="background: #0d2a1f; color: var(--yellow-text);">
+                                <tr><th>Fase</th><th>Acción Principal</th><th>Meta</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>1 (Mes 1-3)</td><td>Ads y Captación de Leads.</td><td>500 prospectos.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>2 (Mes 4)</td><td>Evento Lanzamiento Presencial.</td><td>Cerrar 20% Fase 1.</td></tr>
+                                <tr style="background: #d4e157; color: #1b4332;"><td>3 (Mes 5-12)</td><td>Seguimiento y Avance de Obras.</td><td>Fidelización.</td></tr>
+                                <tr style="background: #aed581; color: #1b4332;"><td>4 (Año 2)</td><td>Ajuste Precios y Venta Fase 2.</td><td>Agotar proyecto.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 18: Calendario Junio 2026 -->
+        <section class="slide" id="slide-18">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>18. Junio 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>02/06 — Mar</li><li>04/06 — Jue</li>
+                            <li>06/06 — Sáb</li><li>09/06 — Mar</li>
+                            <li>11/06 — Jue</li><li>13/06 — Sáb</li>
+                            <li>16/06 — Mar</li><li>18/06 — Jue</li>
+                            <li>21/06 — Jue (Feriado: Año Nuevo Andino Amazónico y del Chaco)</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional (familia/piscina) en inicios de semana para inspirar decisiones.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios cortos.</li>
+                            <li>Sábados publica historias y carruseles de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">21/06 — Año Nuevo Andino Amazónico y del Chaco</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Contenido sobre cómo preparar casas y espacios comunes para el frío.<br>
+                        • Informativo sostenibilidad<br>
+                        <em style="opacity: 0.8;">Sugerencia: usa esta fecha para un post dedicado (imagen familiar junto a la piscina sugerida).</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Eventos importantes y tradiciones:</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">06/06 — Día del Maestro</p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Inspección y calidad en obra (preventa) — facebook, Instagram</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Hablamos de los materiales y controles de calidad proyectados. Al reservar en preventa tendrás prioridad en unidades con mejores vistas y ubicación.<br>
+                        <strong>Guía de imagen:</strong> Detalle de materiales y planos junto a área verde con piscina<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Calidad y prioridad para compradores tempranos.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Reporte de avance (preventa) — linkedin, facebook</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Actualización del proyecto: etapas de diseño y próximos hitos. Mantente informado y asegura tu lote en preventa.<br>
+                        <strong>Guía de imagen:</strong> Imagen técnica del avance con representación de piscina y árboles</p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_family_pool_luxury.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 19: Calendario Julio 2026 -->
+        <section class="slide" id="slide-19">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>19. Julio 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (Incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>02/07 — Jue</li><li>04/07 — Sáb</li>
+                            <li>07/07 — Mar</li><li>09/07 — Jue</li>
+                            <li>11/07 — Sáb</li><li>14/07 — Mar</li>
+                            <li>16/07 — Jue</li><li>18/07 — Sáb</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional inicios de semana.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios.</li>
+                            <li>Sábados publica historias de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Encuesta y oferta especial (preventa)</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Queremos saber qué espacios valoras más: completa la encuesta y recibe beneficios.<br>
+                        <strong>Guía de imagen:</strong> Vecinos imaginarios en la maqueta junto a piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Tu opinión define las mejoras, participa y gana.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Post de concurso con hashtag</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Evento deportivo: estilo de vida Green Park.<br>
+                        Promovemos vida activa: conoce nuestras canchas y áreas recreativas.<br>
+                        <strong>Guía de imagen:</strong> Familia jugando en áreas verdes con piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Vive en un lugar que fomenta la salud.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_lifestyle_park_running.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 20: Calendario Agosto 2026 -->
+        <section class="slide" id="slide-20">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>20. Agosto 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/08 — Sáb</li><li>04/08 — Mar</li>
+                            <li>06/08 — Jue (Independencia)</li><li>08/08 — Sáb</li>
+                            <li>11/08 — Mar</li><li>13/08 — Jue</li>
+                            <li>15/08 — Sáb</li><li>18/08 — Mar</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional inicios de semana.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios.</li>
+                            <li>Sábados publica historias de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">06/08 — Día de la Independencia de Bolivia</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Campaña de donación o apoyo comunitario.<br>
+                        <em style="opacity: 0.8;">Sugerencia: post dedicado con imagen patriótica.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña solidaria y compromiso social</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Green Park promoverá iniciativas sociales. Reserva en preventa para apoyar programas comunitarios.<br>
+                        <strong>Guía de imagen:</strong> Voluntarios en jardín comunitario con piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Construimos comunidad desde la preventa.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Seguridad vial interna</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Diseño prioriza seguridad peatonal y límites de velocidad: ideal para niños y mascotas.<br>
+                        <strong>Guía de imagen:</strong> Camino interno con señalética y familias.<br>
+                        <em style="opacity: 0.8;">Frase: Ubicación estratégica para tu tranquilidad.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_bolivia_independence_day.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 21: Calendario Septiembre 2026 -->
+        <section class="slide" id="slide-21">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>21. Septiembre 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/09 — Mar</li><li>03/09 — Jue</li>
+                            <li>05/09 — Sáb</li><li>08/09 — Mar</li>
+                            <li>10/09 — Jue</li><li>12/09 — Sáb</li>
+                            <li>15/09 — Mar</li><li>17/09 — Jue</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional inicios de semana.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios.</li>
+                            <li>Sábados publica historias de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Eventos importantes y tradiciones:</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">21/09 — Día de la Primavera<br>24/09 — Aniversario de Santa Cruz de la Sierra</p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Primavera: dale vida a tu futuro hogar</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Participa en el concurso de diseño de frentes y gana beneficios de preventa.<br>
+                        <strong>Guía de imagen:</strong> Frentes decorados con flores frente a piscina pequeña.<br>
+                        <em style="opacity: 0.8;">Frase: Aprovecha la preventa y crea tu frente ideal.</em><br>
+                        Tipos: • Carrusel de fotos | • Stories en vivo | • Evento Facebook</p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Mantenimiento planificado (preventa)</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Te explicamos los planes que garantizan áreas comunes siempre cuidadas.<br>
+                        <strong>Guía de imagen:</strong> Equipo de mantenimiento junto a áreas verdes y piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Planificación que protege tu inversión.</em><br>
+                        Tipos: • Foto de avance | • Before/after | • Boletín LinkedIn</p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_family_palm_park_sunset.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 22: Calendario Octubre 2026 -->
+        <section class="slide" id="slide-22">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>22. Octubre 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/10 — Jue</li><li>03/10 — Sáb</li>
+                            <li>06/10 — Mar</li><li>08/10 — Jue</li>
+                            <li>10/10 — Sáb</li><li>13/10 — Mar</li>
+                            <li>15/10 — Jue</li><li>17/10 — Sáb</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional inicios de semana.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios.</li>
+                            <li>Sábados publica historias de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Eventos importantes y tradiciones:</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">31/10 — Halloween</p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Halloween familiar en preventa</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Organiza actividades en espacios comunes proyectados: reserva cerca de la plaza central.<br>
+                        <strong>Guía de imagen:</strong> Familias con disfraces junto a la piscina en ambiente festivo.<br>
+                        <em style="opacity: 0.8;">Frase: Reserva para vivir los mejores momentos en comunidad.</em><br>
+                        Tipos: • Carrusel de fotos | • Stories en vivo | • Evento Facebook</p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Prevención de incendios y seguridad</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Conoce las medidas de prevención que se incorporan al diseño del proyecto.<br>
+                        <strong>Guía de imagen:</strong> Cartel informativo junto a áreas verdes y piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Decide con información y seguridad.</em><br>
+                        Tipos: • Infografía | • Video corto checklist | • Post patrocinado</p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_father_kids_playing_livingroom.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 23: Calendario Noviembre 2026 -->
+        <section class="slide" id="slide-23">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>23. Noviembre 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>02/11 — Mar Jue (Feriado)</li><li>03/11 — Mar</li>
+                            <li>05/11 — Jue</li><li>07/11 — Sáb</li>
+                            <li>10/11 — Mar</li><li>12/11 — Jue</li>
+                            <li>14/11 — Sáb</li><li>17/11 — Mar</li>
+                            <li>19/11 — Jue</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional inicios de semana.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios.</li>
+                            <li>Sábados publica historias de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">02/11 — Día de todos los difuntos</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Acciones preventivas y talleres informativos.<br>
+                        <em style="opacity: 0.8;">Sugerencia: usa esta fecha para un post dedicado.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Acciones comunitarias y seguridad (preventa)</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Impulsaremos talleres y espacios seguros para todas las vecinas. Reserva en preventa para ser parte de una comunidad comprometida.<br>
+                        <strong>Guía de imagen:</strong> Taller comunitario en espacio verde con piscina al fondo.<br>
+                        <em style="opacity: 0.8;">Frase: Compra con propósito: comunidad que protege.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Preparativos para temporada alta</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Consejos para mantener todo listo en áreas comunes: conoce cómo impacta la preventa en la planificación de servicios.<br>
+                        <strong>Guía de imagen:</strong> Administración organizando eventos frente a área de piscina.<br>
+                        <em style="opacity: 0.8;">Frase: Planifica con ventaja: accede a información exclusiva.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_couple_luxury_pool_lifestyle.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 24: Calendario Diciembre 2026 -->
+        <section class="slide" id="slide-24">
+            <div class="top-bar-layout" style="overflow: hidden;">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>24. Diciembre 2026 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white; overflow: hidden;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white; min-height: 0; flex: 1;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/12 — Mar</li><li>03/12 — Jue</li>
+                            <li>05/12 — Sáb</li><li>08/12 — Mar</li>
+                            <li>10/12 — Jue</li><li>12/12 — Sáb</li>
+                            <li>15/12 — Mar</li><li>17/12 — Jue</li>
+                            <li>25/12 — Jue (Feriado: Navidad)</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Publica contenido emocional (familia/piscina) en inicios de semana para inspirar decisiones.</li>
+                            <li>Usa miércoles/viernes para reels y testimonios cortos.</li>
+                            <li>Sábados publica historias y carruseles de estilo de vida.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">25/12 — Navidad</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Eventos familiares, regulaciones sobre decoración y seguridad.<br>
+                        <em style="opacity: 0.8;">Sugerencia: usa esta fecha para un post dedicado (imagen familiar junto a la piscina sugerida).</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">31/12 — Nochevieja</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Recomendaciones para uso de pirotecnia y horarios de convivencia nocturna.<br>
+                        <em style="opacity: 0.8;">Sugerencia: usa esta fecha para un post dedicado (imagen familiar junto a la piscina sugerida).</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Guía de convivencia navideña (preventa) — facebook, instagram</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Comparte cómo imaginas las celebraciones en tu futuro hogar en Green Park: participa y recibe beneficios por reservar en preventa.<br>
+                        <strong>Guía de imagen:</strong> Familia decorando cerca de una piscina con árboles iluminados<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Anticipa las celebraciones: reserva y celebra en tu propio espacio.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Fin de año responsable y oportunidad de compra — facebook, instagram, twitter</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Cierra el año tomando una decisión para tu familia: consulta las condiciones de preventa y asegura una mejor ubicación en el proyecto.<br>
+                        <strong>Guía de imagen:</strong> Pareja brindando junto a la piscina con árboles y fuegos artificiales lejanos (sugerencia de seguridad)<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Cambia de año y cambia de vida: asegura tu lote en preventa.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_christmas_clubhouse_houses.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 25: Calendario Enero 2027 -->
+        <section class="slide" id="slide-25">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>25. Enero 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/01 — Vie (Año Nuevo)</li><li>05/01 — Mar</li>
+                            <li>07/01 — Jue</li><li>10/01 — Dom</li>
+                            <li>12/01 — Mar</li><li>14/01 — Jue</li>
+                            <li>19/01 — Mar</li><li>21/01 — Jue</li>
+                            <li>22/01 — Vie (Día del Estado Plurinacional)</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Enfoque en propósitos de año nuevo: "Invertir en mi futuro hogar".</li>
+                            <li>Usa miércoles/viernes para reels mostrando el avance real del proyecto.</li>
+                            <li>Sábados publica historias con testimonios de familias que ya reservaron.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">01/01 — Año Nuevo</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Mensaje aspiracional de nuevos comienzos y metas cumplidas.<br>
+                        <em style="opacity: 0.8;">Sugerencia: usa esta fecha para un post dedicado (imagen del amanecer sobre el proyecto).</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "Año Nuevo, Lote Nuevo" (preventa) — facebook, instagram</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Motiva a los clientes a usar sus ahorros de fin de año en una inversión segura.<br>
+                        <strong>Guía de imagen:</strong> Render del portal de ingreso con luz de mañana y familias entrando.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Tu meta de 2027 empieza aquí: asegura tu patrimonio.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Estrategia de Plusvalía (preventa) — linkedin, facebook</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Muestra cómo ha crecido el valor del terreno desde el lanzamiento en 2026.<br>
+                        <strong>Guía de imagen:</strong> Gráfico comparativo de precios sobre fondo de áreas verdes.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: El mejor momento para invertir fue ayer; el segundo mejor es HOY.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_january_2027_new_beginnings.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 26: Calendario Febrero 2027 -->
+        <section class="slide" id="slide-26">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>26. Febrero 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>02/02 — Mar</li><li>04/02 — Jue</li>
+                            <li>08/02 — Lun (Feriado: Carnaval)</li><li>09/02 — Mar (Feriado: Carnaval)</li>
+                            <li>11/02 — Jue</li><li>14/02 — Dom (San Valentín)</li>
+                            <li>16/02 — Mar</li><li>18/02 — Jue</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Carnaval: "Escapa del ruido, vive en tu propio refugio".</li>
+                            <li>San Valentín: "El mejor regalo es un futuro juntos".</li>
+                            <li>Usa reels para mostrar la paz y el silencio del proyecto vs la ciudad.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "Regala un Futuro" (San Valentín)</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Convierte el romanticismo en una decisión patrimonial sólida.<br>
+                        <strong>Guía de imagen:</strong> Pareja disfrutando de una cena romántica junto a la piscina iluminada.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Construyan sus sueños en el lugar más exclusivo del Urubó.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Post de Carnaval: Relax y Naturaleza</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Enfocado en quienes buscan tranquilidad durante el feriado largo.<br>
+                        <strong>Guía de imagen:</strong> Render de las áreas de descanso rodeadas de bosque.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Tu propio santuario privado te espera en Green Park.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_february_2027_romance.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 27: Calendario Marzo 2027 -->
+        <section class="slide" id="slide-27">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>27. Marzo 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>02/03 — Mar</li><li>04/03 — Jue</li>
+                            <li>09/03 — Mar</li><li>11/03 — Jue</li>
+                            <li>16/03 — Mar</li><li>19/03 — Vie (Día del Padre)</li>
+                            <li>23/03 — Mar (Día del Mar - Bolivia)</li><li>25/03 — Jue</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Día del Padre: "El legado que dejas a tu familia".</li>
+                            <li>Enfoque en seguridad y bienestar para los hijos.</li>
+                            <li>Muestra las canchas deportivas y áreas de recreación.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "El Legado de Papá"</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Resalta la inversión inmobiliaria como una herencia de valor.<br>
+                        <strong>Guía de imagen:</strong> Padre jugando con sus hijos en el parque de la urbanización.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Dale a tu familia el entorno que siempre soñaste.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Post: Seguridad y Convivencia</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Explicamos los sistemas de seguridad de última generación proyectados.<br>
+                        <strong>Guía de imagen:</strong> Infografía limpia sobre render del pórtico de ingreso.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Tu tranquilidad no tiene precio, tu inversión sí.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_march_2027_family.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 28: Calendario Abril 2027 -->
+        <section class="slide" id="slide-28">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>28. Abril 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/04 — Jue</li><li>06/04 — Mar</li>
+                            <li>08/04 — Jue</li><li>12/04 — Lun (Día del Niño - Bolivia)</li>
+                            <li>15/04 — Jue</li><li>20/04 — Mar</li>
+                            <li>22/04 — Jue (Día de la Tierra)</li><li>27/04 — Mar</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Día del Niño: "Un parque gigante como patio trasero".</li>
+                            <li>Día de la Tierra: "Lujo que respeta la naturaleza".</li>
+                            <li>Usa videos de los senderos ecológicos y áreas verdes preservadas.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "Un Mundo Verde para Ellos"</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Enfocado en la sostenibilidad y el futuro de las nuevas generaciones.<br>
+                        <strong>Guía de imagen:</strong> Primer plano de la flora del proyecto con una casa moderna de fondo.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: El lujo más grande es vivir en equilibrio con el planeta.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Evento Digital: Día del Niño</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Sorteo de experiencias familiares para prospectos registrados.<br>
+                        <strong>Guía de imagen:</strong> Niños explorando los senderos ecológicos (renders).<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Deja que descubran la magia de la naturaleza en casa.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_april_2027_nature.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 29: Calendario Mayo 2027 -->
+        <section class="slide" id="slide-29">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>29. Mayo 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/05 — Sáb (Día del Trabajo)</li><li>04/05 — Mar</li>
+                            <li>06/05 — Jue</li><li>11/05 — Mar</li>
+                            <li>13/05 — Jue</li><li>18/05 — Mar</li>
+                            <li>20/05 — Jue</li><li>27/05 — Jue (Día de la Madre - Bolivia)</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>Día de la Madre: El mes de mayor conversión emocional.</li>
+                            <li>Campaña: "El refugio que mamá merece".</li>
+                            <li>Muestra el Club House, el Spa y las áreas de relajación.</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "El Refugio de Mamá"</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Posicionamos la urbanización como un espacio de bienestar absoluto.<br>
+                        <strong>Guía de imagen:</strong> Madre e hija relajadas en el interior del Club House con vista a la piscina.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Regálale la paz que solo Green Park puede ofrecer.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Post: Inversión con Propósito</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Enfoque en el esfuerzo del trabajo convertido en patrimonio familiar.<br>
+                        <strong>Guía de imagen:</strong> Render de la entrada principal al atardecer.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Tu trabajo merece un lugar como este.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_may_2027_mother.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 30: Calendario Junio 2027 -->
+        <section class="slide" id="slide-30">
+            <div class="top-bar-layout">
+                <div class="top-bar">
+                    <div class="reveal reveal-1"><h2>30. Junio 2027 - Calendario sugerido de publicación</h2></div>
+                    <div class="reveal reveal-2"><img src="assets/logo.png" alt="Logo" style="height: 60px;"></div>
+                </div>
+                <div class="bottom-content" style="background: white;">
+                    <div class="split-left reveal reveal-3" style="background: #2d6a4f; padding: 1.5rem 2.5rem; overflow-y: auto; text-align: left; color: white;">
+                        <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.8rem;">Frecuencia recomendada: 2-4 publicaciones semanales (orgánico) y 1-2 impulsadas por mes (preventa).</p>
+                        <div style="font-size: 0.8rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                            Facebook: Mar, Jue, Sáb<br>
+                            Instagram: Lun, Mié, Vie, Dom<br>
+                            Twitter: Lun, Mar, Mié, Jue, Vie<br>
+                            LinkedIn: Mar, Jue
+                        </div>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Fechas sugeridas (incluyendo feriados):</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; columns: 2; line-height: 1.4;">
+                            <li>01/06 — Mar</li><li>03/06 — Jue</li>
+                            <li>08/06 — Mar</li><li>10/06 — Jue</li>
+                            <li>15/06 — Mar</li><li>21/06 — Lun (Año Nuevo Andino)</li>
+                            <li>24/06 — Jue (San Juan)</li><li>29/06 — Mar</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.5rem;">Consejos rápidos:</h4>
+                        <ul style="font-size: 0.8rem; list-style: disc; padding-left: 1.2rem; margin-bottom: 1.5rem; line-height: 1.4;">
+                            <li>San Juan: "Calidez y comunidad en el bosque".</li>
+                            <li>Hito: 1 año de campaña. Resumen de avances.</li>
+                            <li>Urgencia: "Últimas unidades con precio de Fase 1".</li>
+                        </ul>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Campaña "Mitad de Camino, Meta Cumplida"</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; line-height: 1.4;">Mostramos los logros del primer año de preventa y lo que viene.<br>
+                        <strong>Guía de imagen:</strong> Amigos reunidos alrededor de un fogón moderno en el área común.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Tu lugar en el Urubó es hoy, no esperes a mañana.</em></p>
+
+                        <h4 style="font-size: 1.0rem; color: var(--yellow-text); margin-bottom: 0.4rem;">Post: Noche de San Juan en Comunidad</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.4;">Enfoque en la vida social y las tradiciones dentro del proyecto.<br>
+                        <strong>Guía de imagen:</strong> Render de las áreas de fogón y club house de noche.<br>
+                        <em style="opacity: 0.8;">Frase de refuerzo: Celebramos la vida, construimos comunidad.</em></p>
+                    </div>
+                    <div class="bottom-left-img reveal reveal-4" style="background-image: url('assets/urubo_june_2027_community.png'); background-color: white; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 31: Cierre -->
+        <section class="slide" id="slide-31">
+            <div class="split-layout">
+                <div class="split-left" style="background: #1b4332; align-items: center; justify-content: center; text-align: center; padding: 4rem;">
+                    <div class="reveal reveal-1" style="margin-bottom: 2rem;">
+                        <img src="assets/logo.png" alt="Urubó Green Park Logo" style="max-width: 60%; height: auto; opacity: 0.9;">
+                    </div>
+                    <div class="reveal reveal-2">
+                        <div style="width: 40%; height: 2px; background: #a3cf62; margin: 2rem auto;"></div>
+                        <h1 class="accent" style="font-size: 5rem; color: #a3cf62; margin-bottom: 1rem;">¡GRACIAS!</h1>
+                        <p style="color: white; font-size: 1.2rem; opacity: 0.8; letter-spacing: 2px; text-transform: uppercase;">Urubó Green Park</p>
+                        <p style="color: #a3cf62; font-size: 1rem; margin-top: 0.5rem;">Estudio de Campaña 2026-2027</p>
+                    </div>
+                    <div class="reveal reveal-3" style="margin-top: 4rem; font-size: 0.9rem; color: white; opacity: 0.6;">
+                        <p>Santa Cruz de la Sierra, Bolivia</p>
+                    </div>
+                </div>
+                <div class="split-right reveal reveal-4" style="background-image: url('assets/urubo_final_closing_zen.png');">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <nav class="navigation-controls">
+        <!-- Slide Search Button -->
+        <button id="search-btn" title="Buscar Slide" style="border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.8); padding: 0.8rem 1rem;">&#9776;</button>
+        <button id="prev-btn">ANTERIOR</button>
+        <div class="slide-numbers">
+            <span id="current-num">1</span> / <span id="total-num">31</span>
+        </div>
+        <button id="next-btn">SIGUIENTE</button>
+    </nav>
+
+    <!-- Slide Search Panel -->
+    <div id="slide-search-panel">
+        <div id="slide-search-header">
+            <input type="text" id="slide-search-input" placeholder="Buscar slide por nombre..." autocomplete="off">
+            <button id="slide-search-close">&times;</button>
+        </div>
+        <ul id="slide-search-list"></ul>
+    </div>
+    <div id="slide-search-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
