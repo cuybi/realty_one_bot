@@ -1,6 +1,6 @@
-# E-Tech Group - Sitio Web y Sistema de Contactos
+# E-Tech Group - Sitio Web, CMS y Sistema de Contactos
 
-Sistema web corporativo con backend FastAPI, persistencia SQLite y panel de administración protegido.
+Sistema web corporativo con backend FastAPI, persistencia SQLite, panel de administración con bandeja de contactos y gestor de contenidos (CMS) dinámico.
 
 ## 🚀 Inicio Rápido (Local)
 
@@ -11,17 +11,23 @@ Hacer doble clic en `INICIAR_SERVIDOR.bat` o ejecutar:
 ```
 
 - **Sitio Web:** `http://127.0.0.1:8000/`
-- **Panel Administrativo:** `http://127.0.0.1:8000/admin.html`
+- **Panel Administrativo (Inbox + CMS):** `http://127.0.0.1:8000/admin.html`
 - **Documentación de API:** `http://127.0.0.1:8000/docs`
 
-## 🔐 Seguridad y Configuración
+## 🔐 Credenciales y Seguridad
 
-- **Contraseña de administrador:** Por defecto `caromilu`. Se puede configurar mediante la variable de entorno `ETECH_ADMIN_PASSWORD`.
-- **Tokens de sesión:** Generados dinámicamente con `secrets` estándar en cada inicio de sesión.
-- **Validación:** Límites de longitud en esquemas Pydantic para prevenir abusos de almacenamiento.
+- **Contraseña de administrador:** `caromilu` (personalizable con la variable de entorno `ETECH_ADMIN_PASSWORD`).
+- **Autenticación:** Tokens de sesión Bearer generados dinámicamente (`secrets`).
+- **Endpoints CMS:**
+  - `GET /api/content`: Obtiene textos y fotos configuradas (público).
+  - `POST /api/content`: Guarda textos del CMS (requiere token).
+  - `POST /api/upload`: Subida de imágenes a `images/uploads/` (requiere token).
+  - `POST /api/contact`: Formulario de contacto con soporte offline.
+  - `GET /api/messages`: Bandeja de mensajes (requiere token).
 
 ## 📁 Estructura
 
 - `backend/`: API FastAPI (`main.py`), modelos SQLAlchemy (`models.py`), esquemas Pydantic (`schemas.py`) y conexión SQLite (`database.py`).
+- `api/`: Endpoint dual PHP (`index.php`) para despliegue en hosting compartido (Apache / SiteGround).
 - `frontend/`: Archivos web activos (`index.html`, `admin.html`, `styles.css`, `script.js`, `images/`).
-- `etech.db`: Base de datos SQLite local.
+- `etech.db`: Base de datos SQLite local (tablas `contact_messages` y `site_content`).

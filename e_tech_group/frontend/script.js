@@ -305,5 +305,73 @@ document.addEventListener('DOMContentLoaded', () => {
             syncPendingMessages();
         });
     }
+
+    // ==========================================
+    //  CARGA DINÁMICA DE CONTENIDOS (CMS)
+    // ==========================================
+    async function loadDynamicContent() {
+        const controller = window.AbortController ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => controller.abort(), 3500) : null;
+
+        try {
+            const fetchOptions = controller ? { signal: controller.signal } : {};
+            const res = await fetch('/api/content', fetchOptions);
+            if (timeoutId) clearTimeout(timeoutId);
+            if (!res.ok) return;
+
+            const content = await res.json();
+            if (!content || typeof content !== 'object') return;
+
+            Object.keys(content).forEach(key => {
+                const val = content[key];
+                if (typeof val !== 'string') return;
+
+                const safeKey = key.replace(/[^a-zA-Z0-9_-]/g, '');
+                if (!safeKey) return;
+
+                document.querySelectorAll(`[data-cms="${safeKey}"]`).forEach(el => {
+                    if (el.tagName === 'IMG') {
+                        if (val) el.src = val;
+                    } else if (el.tagName === 'A') {
+                        const icon = el.querySelector('i');
+                        el.textContent = val + ' ';
+                        if (icon) el.appendChild(icon);
+                    } else {
+                        const temp = document.createElement('div');
+                        temp.innerHTML = val;
+                        temp.querySelectorAll('script, iframe, object, embed').forEach(s => s.remove());
+                        el.innerHTML = temp.innerHTML;
+                    }
+                });
+
+                document.querySelectorAll(`[data-cms-href="${safeKey}"]`).forEach(el => {
+                    const cleanHref = val.trim();
+                    if (/^(https?:\/\/|mailto:|tel:)/i.test(cleanHref)) {
+                        el.href = cleanHref;
+                    }
+                });
+
+                if (safeKey === 'hero_whatsapp_link' && /^(https?:\/\/)/i.test(val.trim())) {
+                    document.querySelectorAll('[data-cms-href="hero_whatsapp_link"]').forEach(el => {
+                        el.href = val.trim();
+                    });
+                }
+
+                if (safeKey === 'hero_whatsapp') {
+                    const cleanPhone = val.replace(/[^0-9]/g, '');
+                    if (cleanPhone) {
+                        document.querySelectorAll('.whatsapp-float').forEach(w => {
+                            w.href = `https://wa.me/${cleanPhone}`;
+                        });
+                    }
+                }
+            });
+        } catch (e) {
+            if (timeoutId) clearTimeout(timeoutId);
+            console.info('CMS: Usando contenido por defecto');
+        }
+    }
+
+    loadDynamicContent();
 });
 

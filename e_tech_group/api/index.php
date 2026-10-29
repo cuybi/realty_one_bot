@@ -115,6 +115,10 @@ if (strpos($uri, '/api/upload') !== false && $method === 'POST') {
     $targetPath = $uploadDir . $filename;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+        $frontendDir = __DIR__ . '/../frontend/images/uploads/';
+        if (is_dir($frontendDir)) {
+            copy($targetPath, $frontendDir . $filename);
+        }
         echo json_encode(['url' => 'images/uploads/' . $filename]);
         exit;
     }

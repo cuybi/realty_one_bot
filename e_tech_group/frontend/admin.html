@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Tech Group | Admin Inbox</title>
+    <title>E-Tech Group | Panel de Administración</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0a0e14;
-            --bg-card: rgba(18, 26, 38, 0.6);
-            --bg-input: rgba(30, 41, 59, 0.4);
+            --bg-card: rgba(18, 26, 38, 0.7);
+            --bg-input: rgba(30, 41, 59, 0.45);
             --primary: #00f2fe;
             --primary-rgb: 0, 242, 254;
             --secondary: #4facfe;
@@ -132,10 +132,11 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            text-decoration: none;
         }
 
         .btn-primary {
@@ -160,7 +161,8 @@
         /* ── DASHBOARD CONTAINER ── */
         .dashboard-container {
             width: 95%;
-            max-width: 1200px;
+            max-width: 1240px;
+            margin: 2rem auto;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -200,7 +202,7 @@
 
         .header-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
         }
 
@@ -234,10 +236,54 @@
             border-color: var(--text-3);
         }
 
+        /* ── TABS DE NAVEGACIÓN ── */
+        .dashboard-nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 14, 20, 0.4);
+        }
+
+        .nav-tab-btn {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-3);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
+        }
+
+        .nav-tab-btn:hover {
+            color: var(--text-1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .nav-tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(0, 242, 254, 0.05);
+        }
+
         .dashboard-body {
             padding: 2rem;
         }
 
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* ── TABLA DE MENSAJES ── */
         .table-responsive {
             overflow-x: auto;
             border-radius: 12px;
@@ -344,6 +390,170 @@
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
+        /* ── CMS LAYOUT ── */
+        .cms-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cms-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .cms-toolbar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-1);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .cms-toolbar-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .cms-card {
+            background: rgba(18, 26, 38, 0.75);
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cms-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.8rem;
+        }
+
+        .cms-card-header i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .cms-card-title {
+            font-family: 'Michroma', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-1);
+            letter-spacing: 0.5px;
+        }
+
+        .cms-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cms-field {
+            margin-bottom: 1.2rem;
+        }
+
+        .cms-field label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .cms-input, .cms-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            color: var(--text-1);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .cms-input:focus, .cms-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .cms-textarea {
+            resize: vertical;
+            min-height: 85px;
+            line-height: 1.5;
+        }
+
+        .img-upload-group {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            margin-top: 0.5rem;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .img-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            background: #000;
+        }
+
+        .img-upload-controls {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast-notify {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(18, 26, 38, 0.95);
+            border: 1px solid var(--primary);
+            color: var(--text-1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .toast-notify.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-notify.toast-success i {
+            color: var(--success);
+        }
+
+        .toast-notify.toast-error i {
+            color: var(--danger);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -362,7 +572,7 @@
     <div class="login-container" id="login-screen">
         <img src="images/logo.png" alt="E-Tech Group Logo" class="login-logo">
         <h2 class="login-title">Administración</h2>
-        <p class="login-subtitle">Bandeja de Entrada de Contactos</p>
+        <p class="login-subtitle">Panel de Control & Gestor Web</p>
         
         <form id="login-form">
             <div class="form-group">
@@ -384,38 +594,243 @@
         <div class="dashboard-header">
             <div class="header-brand">
                 <img src="images/logo.png" alt="E-Tech Group Logo">
-                <div class="header-title">Inbox de Contacto</div>
+                <div class="header-title">Panel de Administración</div>
             </div>
             <div class="header-actions">
-                <button class="btn btn-secondary-outline btn-sm" onclick="loadMessages()">
-                    <i class="fas fa-sync-alt"></i> Actualizar
-                </button>
+                <a href="/" target="_blank" class="btn btn-secondary-outline btn-sm">
+                    <i class="fas fa-external-link-alt"></i> Ver Web
+                </a>
                 <button class="btn btn-danger btn-sm" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Salir
                 </button>
             </div>
         </div>
 
+        <!-- TABS NAV -->
+        <div class="dashboard-nav-tabs">
+            <button class="nav-tab-btn active" id="tab-btn-messages" onclick="switchTab('messages')">
+                <i class="fas fa-inbox"></i> Bandeja de Contactos
+            </button>
+            <button class="nav-tab-btn" id="tab-btn-cms" onclick="switchTab('cms')">
+                <i class="fas fa-edit"></i> Gestor de Contenidos (CMS)
+            </button>
+        </div>
+
         <div class="dashboard-body">
-            <div class="table-responsive">
-                <table id="messages-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Nombre Completo</th>
-                            <th>Correo Electrónico</th>
-                            <th>Teléfono / WhatsApp</th>
-                            <th>Mensaje</th>
-                            <th>Estado</th>
-                            <th class="action-cell"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Los mensajes se cargarán dinámicamente aquí -->
-                    </tbody>
-                </table>
+            <!-- TAB 1: MENSAJES -->
+            <div class="tab-pane active" id="pane-messages">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+                    <span style="font-size:0.9rem; color:var(--text-3);">Mensajes recibidos mediante el formulario de contacto</span>
+                    <button class="btn btn-secondary-outline btn-sm" onclick="loadMessages()">
+                        <i class="fas fa-sync-alt"></i> Actualizar
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table id="messages-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre Completo</th>
+                                <th>Correo Electrónico</th>
+                                <th>Teléfono / WhatsApp</th>
+                                <th>Mensaje</th>
+                                <th>Estado</th>
+                                <th class="action-cell"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se cargan dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 2: CMS GESTOR DE CONTENIDOS -->
+            <div class="tab-pane" id="pane-cms">
+                <div class="cms-layout">
+                    <div class="cms-toolbar">
+                        <div class="cms-toolbar-title">
+                            <i class="fas fa-sliders-h" style="color:var(--primary);"></i>
+                            Editor de Contenido del Sitio Web
+                        </div>
+                        <div class="cms-toolbar-actions">
+                            <button type="button" class="btn btn-secondary-outline btn-sm" onclick="loadCmsContent()">
+                                <i class="fas fa-undo"></i> Recargar
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-save-cms" onclick="saveCmsContent()">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="cms-form" onsubmit="event.preventDefault(); saveCmsContent();">
+                        <!-- Card 1: Portada (Hero) -->
+                        <div class="cms-card">
+                            <div class="cms-card-header">
+                                <i class="fas fa-home"></i>
+                                <span class="cms-card-title">Sección Portada / Hero</span>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_hero_title">Título Principal (Soporta &lt;span&gt;)</label>
+                                    <input type="text" id="cms_hero_title" class="cms-input" data-key="hero_title" placeholder="Ingeniería <span>Informática</span> de Clase Mundial">
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_hero_subtitle">Subtítulo Descriptivo</label>
+                                    <textarea id="cms_hero_subtitle" class="cms-textarea" data-key="hero_subtitle" placeholder="Soluciones integrales en TI y Outsourcing estratégico para el sector industrial y petrolero."></textarea>
+                                </div>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_hero_whatsapp">Número de WhatsApp Principal</label>
+                                    <input type="text" id="cms_hero_whatsapp" class="cms-input" data-key="hero_whatsapp" placeholder="+591 79878853">
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_hero_whatsapp_link">Enlace Directo WhatsApp</label>
+                                    <input type="text" id="cms_hero_whatsapp_link" class="cms-input" data-key="hero_whatsapp_link" placeholder="https://wa.me/59179878853">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Acerca de Nosotros & Historia -->
+                        <div class="cms-card" style="margin-top:1.5rem;">
+                            <div class="cms-card-header">
+                                <i class="fas fa-building"></i>
+                                <span class="cms-card-title">Acerca de Nosotros & Trayectoria</span>
+                            </div>
+                            <div class="cms-field">
+                                <label for="cms_about_header">Encabezado de Sección</label>
+                                <input type="text" id="cms_about_header" class="cms-input" data-key="about_header" placeholder="Conociendo a e-Tech Group y nuestra trayectoria">
+                            </div>
+                            <div class="cms-field">
+                                <label for="cms_about_highlight">Texto Destacado (Párrafo Principal)</label>
+                                <textarea id="cms_about_highlight" class="cms-textarea" data-key="about_highlight" placeholder="e-Tech Group, fundado en 2001, lidera el sector petrolero..."></textarea>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_about_p1">Párrafo 1 (Trayectoria)</label>
+                                    <textarea id="cms_about_p1" class="cms-textarea" data-key="about_p1" placeholder="Sus primeras actividades se centraron en la administración del área informática..."></textarea>
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_about_p2">Párrafo 2 (Evolución)</label>
+                                    <textarea id="cms_about_p2" class="cms-textarea" data-key="about_p2" placeholder="Desde entonces no hemos dejado de crecer tanto en tecnología..."></textarea>
+                                </div>
+                            </div>
+                            <div class="cms-field">
+                                <label>Imagen Principal Acerca de</label>
+                                <div class="img-upload-group">
+                                    <img src="images/about_developer.jpg" id="preview_about_image" class="img-preview" alt="Preview">
+                                    <div class="img-upload-controls">
+                                        <input type="text" id="cms_about_image" class="cms-input" data-key="about_image" placeholder="images/about_developer.jpg" oninput="updatePreview('about_image')">
+                                        <label class="btn btn-secondary-outline btn-sm" style="display:inline-flex;cursor:pointer;width:fit-content;">
+                                            <i class="fas fa-upload"></i> Subir Nueva Foto
+                                            <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'about_image')">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Misión, Visión & Principios -->
+                        <div class="cms-card" style="margin-top:1.5rem;">
+                            <div class="cms-card-header">
+                                <i class="fas fa-bullseye"></i>
+                                <span class="cms-card-title">Misión, Visión & Valores</span>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_mission_text">Misión</label>
+                                    <textarea id="cms_mission_text" class="cms-textarea" data-key="mission_text" placeholder="Brindar servicios de Ingeniería Informática con calidad total..."></textarea>
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_vision_text">Visión</label>
+                                    <textarea id="cms_vision_text" class="cms-textarea" data-key="vision_text" placeholder="Ser la mejor opción en Ingeniería Informática y TI..."></textarea>
+                                </div>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_values_text">Valores y Principios</label>
+                                    <textarea id="cms_values_text" class="cms-textarea" data-key="values_text" placeholder="Integridad, Innovación, Compromiso y Excelencia..."></textarea>
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_awards_text">Premios y Reconocimientos</label>
+                                    <textarea id="cms_awards_text" class="cms-textarea" data-key="awards_text" placeholder="Reconocidos por nuestra trayectoria en el sector petrolero..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Dpto de Sistemas Virtual -->
+                        <div class="cms-card" style="margin-top:1.5rem;">
+                            <div class="cms-card-header">
+                                <i class="fas fa-network-wired"></i>
+                                <span class="cms-card-title">Departamento de Sistemas Virtual</span>
+                            </div>
+                            <div class="cms-field">
+                                <label for="cms_virtual_title">Título del Módulo</label>
+                                <input type="text" id="cms_virtual_title" class="cms-input" data-key="virtual_title" placeholder="Soluciones Informáticas">
+                            </div>
+                            <div class="cms-field">
+                                <label for="cms_virtual_intro">Texto Introductorio</label>
+                                <textarea id="cms_virtual_intro" class="cms-textarea" data-key="virtual_intro" placeholder="Contar con nuestro servicio 'Departamento de Sistema Virtual' pone a su disposición todos los beneficios..."></textarea>
+                            </div>
+                            <div class="cms-field">
+                                <label>Imagen Departamento Virtual</label>
+                                <div class="img-upload-group">
+                                    <img src="images/virtual_dept_new.jpg" id="preview_virtual_image" class="img-preview" alt="Preview">
+                                    <div class="img-upload-controls">
+                                        <input type="text" id="cms_virtual_image" class="cms-input" data-key="virtual_image" placeholder="images/virtual_dept_new.jpg" oninput="updatePreview('virtual_image')">
+                                        <label class="btn btn-secondary-outline btn-sm" style="display:inline-flex;cursor:pointer;width:fit-content;">
+                                            <i class="fas fa-upload"></i> Subir Nueva Foto
+                                            <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'virtual_image')">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Contacto & Pie de Página -->
+                        <div class="cms-card" style="margin-top:1.5rem;">
+                            <div class="cms-card-header">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="cms-card-title">Información de Contacto & Pie de Página</span>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_contact_address">Dirección Oficina Central</label>
+                                    <input type="text" id="cms_contact_address" class="cms-input" data-key="contact_address" placeholder="Barrio Equipetrol, Calle Lugones N° 10">
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_contact_city">Ciudad y País</label>
+                                    <input type="text" id="cms_contact_city" class="cms-input" data-key="contact_city" placeholder="Santa Cruz de la Sierra - Bolivia">
+                                </div>
+                            </div>
+                            <div class="cms-grid-2">
+                                <div class="cms-field">
+                                    <label for="cms_contact_phone">Teléfono de Contacto</label>
+                                    <input type="text" id="cms_contact_phone" class="cms-input" data-key="contact_phone" placeholder="+591 79878853">
+                                </div>
+                                <div class="cms-field">
+                                    <label for="cms_footer_desc">Descripción en el Pie de Página</label>
+                                    <textarea id="cms_footer_desc" class="cms-textarea" data-key="footer_desc" placeholder="e-Tech Group es una empresa líder en ingeniería informática y TI..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:2rem;text-align:right;">
+                            <button type="submit" class="btn btn-primary" style="display:inline-flex;width:auto;padding:0.9rem 2.5rem;">
+                                <i class="fas fa-save"></i> Guardar Todos los Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="cms-toast" class="toast-notify">
+        <i class="fas fa-info-circle"></i>
+        <span id="cms-toast-msg">Notificación</span>
     </div>
 
     <script>
@@ -441,6 +856,7 @@
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'flex';
             loadMessages();
+            loadCmsContent();
         }
 
         async function handleLogin(e) {
@@ -453,7 +869,6 @@
             submitBtn.textContent = 'Verificando...';
             errorMsg.style.display = 'none';
 
-            // 1. Intento de autenticación vía API
             let authenticated = false;
             let failureReason = 'Contraseña incorrecta. Por favor intente de nuevo.';
 
@@ -491,18 +906,58 @@
             }
         }
 
-        function logout() {
+        async function logout() {
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            if (token) {
+                try {
+                    await fetch('/api/logout', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                } catch(e) { /* ignorar si servidor no disponible */ }
+            }
             localStorage.removeItem(AUTH_TOKEN_KEY);
             showLogin();
         }
 
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            if (tab === 'messages') {
+                document.getElementById('tab-btn-messages').classList.add('active');
+                document.getElementById('pane-messages').classList.add('active');
+                loadMessages();
+            } else if (tab === 'cms') {
+                document.getElementById('tab-btn-cms').classList.add('active');
+                document.getElementById('pane-cms').classList.add('active');
+                loadCmsContent();
+            }
+        }
+
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('cms-toast');
+            const toastMsg = document.getElementById('cms-toast-msg');
+            const icon = toast.querySelector('i');
+
+            toastMsg.textContent = msg;
+            toast.className = 'toast-notify ' + (type === 'success' ? 'toast-success' : 'toast-error');
+            icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        // ==========================================
+        //  BANDEJA DE CONTACTOS
+        // ==========================================
         async function loadMessages() {
             const tbody = document.querySelector('#messages-table tbody');
             tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin"></i> Cargando mensajes...</td></tr>';
 
             const token = localStorage.getItem(AUTH_TOKEN_KEY);
-            
-            // Unir mensajes locales guardados temporalmente en localStorage y mensajes del servidor
             let serverMessages = [];
             let offlineMessages = JSON.parse(localStorage.getItem('etech_messages') || '[]');
 
@@ -523,14 +978,8 @@
                 }
             }
 
-            // Combinar y ordenar
-            // Los mensajes offline pendientes van arriba, luego los del servidor ordenados por fecha desc.
             tbody.innerHTML = '';
-            
-            // Filtrar del local storage los que están pendientes de sincronizar
             const pendingMessages = offlineMessages.filter(m => !m.synced);
-            
-            // Combinar para mostrar todo en el dashboard local si estamos offline o mixtos
             const allMessages = [...pendingMessages.map(m => ({ ...m, isPending: true })), ...serverMessages.map(m => ({ ...m, isPending: false }))];
 
             if (allMessages.length === 0) {
@@ -573,14 +1022,156 @@
                     });
                     if (res.ok) {
                         loadMessages();
+                        showToast('Mensaje eliminado');
                     } else {
-                        alert('Error al intentar eliminar el mensaje.');
+                        showToast('Error al intentar eliminar el mensaje', 'error');
                     }
                 } catch (e) {
-                    alert('No se pudo establecer conexión para eliminar el mensaje.');
+                    showToast('Error de conexión', 'error');
                 }
             } else {
                 alert('No se pueden eliminar mensajes del servidor en modo offline.');
+            }
+        }
+
+        // ==========================================
+        //  GESTOR DE CONTENIDOS (CMS)
+        // ==========================================
+        let cmsLoaded = false;
+
+        async function loadCmsContent() {
+            try {
+                const res = await fetch('/api/content');
+                if (!res.ok) return;
+                const data = await res.json();
+                
+                document.querySelectorAll('#cms-form [data-key]').forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    if (data[key] !== undefined && data[key] !== null) {
+                        el.value = data[key];
+                    }
+                    if (key.includes('image')) {
+                        updatePreview(key);
+                    }
+                });
+                cmsLoaded = true;
+            } catch (e) {
+                console.warn('Error al cargar contenido CMS:', e);
+            }
+        }
+
+        function updatePreview(key) {
+            const input = document.querySelector(`[data-key="${key}"]`);
+            const preview = document.getElementById(`preview_${key}`);
+            if (input && preview && input.value) {
+                preview.src = input.value;
+            }
+        }
+
+        async function handleImageUpload(inputEl, key) {
+            if (!inputEl.files || !inputEl.files[0]) return;
+            const file = inputEl.files[0];
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Subiendo imagen...', 'success');
+
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                    body: formData
+                });
+
+                if (res.status === 401) {
+                    showToast('Sesión expirada. Inicie sesión nuevamente.', 'error');
+                    logout();
+                    return;
+                }
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const inputField = document.querySelector(`[data-key="${key}"]`);
+                    if (inputField) {
+                        inputField.value = data.url;
+                        updatePreview(key);
+                    }
+                    showToast('¡Imagen subida con éxito!');
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showToast(extractErrorMsg(err.detail) || 'Error al subir imagen', 'error');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('Error de conexión al subir imagen', 'error');
+            }
+        }
+
+        function extractErrorMsg(detail) {
+            if (typeof detail === 'string') return detail;
+            if (Array.isArray(detail) && detail[0] && detail[0].msg) return detail[0].msg;
+            return 'Error desconocido';
+        }
+
+        async function saveCmsContent() {
+            if (!cmsLoaded) {
+                showToast('Espere a que cargue el contenido antes de guardar.', 'error');
+                return;
+            }
+
+            const token = localStorage.getItem(AUTH_TOKEN_KEY);
+            const allSaveBtns = document.querySelectorAll('#cms-form button[type="submit"], #btn-save-cms');
+            allSaveBtns.forEach(b => b.disabled = true);
+
+            const mainBtn = document.getElementById('btn-save-cms');
+            if (mainBtn) {
+                mainBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+            }
+
+            const payload = {};
+            document.querySelectorAll('#cms-form [data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                const val = el.value.trim();
+                if (val) payload[key] = val;
+            });
+
+            if (Object.keys(payload).length === 0) {
+                showToast('No hay cambios para guardar.', 'error');
+                allSaveBtns.forEach(b => b.disabled = false);
+                if (mainBtn) mainBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.status === 401) {
+                    showToast('Sesión inválida o expirada', 'error');
+                    logout();
+                    return;
+                }
+
+                if (res.ok) {
+                    showToast('¡Contenido guardado con éxito!');
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showToast(extractErrorMsg(err.detail) || 'Error al guardar cambios', 'error');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast('Fallo al conectar con el servidor', 'error');
+            } finally {
+                allSaveBtns.forEach(b => b.disabled = false);
+                if (mainBtn) mainBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
             }
         }
 
